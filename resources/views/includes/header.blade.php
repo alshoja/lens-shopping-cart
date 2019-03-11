@@ -23,6 +23,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href={{URL::asset("assets/css/login_overlay.css")}} rel='stylesheet' type='text/css' />
 	<link href={{URL::asset("assets/css/style6.css")}} rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href={{URL::asset("assets/css/shop.css")}} type="text/css" />
+	<link rel="stylesheet" type="text/css" href={{URL::asset("assets/css/checkout.css")}}>
+	<link href={{URL::asset("assets/css/contact.css")}} rel='stylesheet' type='text/css' />
+	<link href={{URL::asset("assets/css/easy-responsive-tabs.css")}} rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.carousel.css")}} type="text/css" media="all">
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.theme.css")}} type="text/css" media="all">
 	<link href={{URL::asset("assets/css/style.css")}} rel='stylesheet' type='text/css' />
@@ -95,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div class="form-group">
 										<label class="mb-2">Email address</label>
 										<input type="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" id="exampleInputEmail1" autofocus aria-describedby="emailHelp" placeholder="Email" required>
-										<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+										<small id="emailHelp" class="form-text text-muted">Well never share your email with anyone</small>
 										@if ($errors->has('email'))
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $errors->first('email') }}</strong>
@@ -202,13 +205,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 					<ul class="navbar-nav nav-mega mx-auto">
 						<li class="nav-item active">
-							<a class="nav-link ml-lg-0" href="index.html">Home
+						<a class="nav-link ml-lg-0" href=" {{url('/')}} ">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 					
 						<li class="nav-item">
-							<a class="nav-link" href="about.html">About</a>
+							<a class="nav-link" href="{{url('/about')}}">About</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -222,22 +225,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h5 class="tittle-w3layouts-sub"> Tittle goes here </h5>
 											<ul>
 												<li class="media-mini mt-3">
-													<a href="shop.html">Designer Glasses</a>
+													<a href="{{url('/shop')}}">Designer Glasses</a>
 												</li>
 												<li class="">
-													<a href="shop.html"> Ray-Ban</a>
+													<a href="{{url('/shop')}}"> Ray-Ban</a>
 												</li>
 												<li>
-													<a href="shop.html">Prescription Glasses</a>
+													<a href="{{url('/shop')}}">Prescription Glasses</a>
 												</li>
 												<li class="mt-3">
 													<h5>View more pages</h5>
 												</li>
 												<li class="mt-2">
-													<a href="about.html">About</a>
+													<a href="{{url('/about')}}">About</a>
 												</li>
 												<li>
-													<a href="customer.html">Customers</a>
+													<a href="{{url('/about')}}">Customers</a>
 												</li>
 											</ul>
 										</div>

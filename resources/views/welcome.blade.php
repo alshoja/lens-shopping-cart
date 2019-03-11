@@ -42,7 +42,7 @@
 							<h3>Men’s eyewear
 								<span>Cool summer sale 50% off</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+						<a href="{{url('/shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
 
 						</div>
 					</div>

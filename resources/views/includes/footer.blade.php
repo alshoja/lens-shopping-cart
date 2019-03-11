@@ -184,8 +184,8 @@
 </script>
 <!-- carousel -->
 <!-- Count-down -->
-<script src={{URL::asset("assets/js/simplyCountdown.js")}}></script>
-<link href={{URL::asset("assets/css/simplyCountdown.css")}} rel='stylesheet' type='text/css' />
+<script src={{ URL::asset("assets/js/simplyCountdown.js") }}></script>
+<link href={{ URL::asset("assets/css/simplyCountdown.css") }} rel='stylesheet' type='text/css' />
 <script>
     var d = new Date();
     simplyCountdown('simply-countdown-custom', {
@@ -230,6 +230,21 @@
 
 
 <!-- dropdown nav -->
+<!--quantity-->
+<script>
+    $('.value-plus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) + 1;
+        divUpd.text(newVal);
+    });
+
+    $('.value-minus').on('click', function () {
+        var divUpd = $(this).parent().find('.value'),
+            newVal = parseInt(divUpd.text(), 10) - 1;
+        if (newVal >= 1) divUpd.text(newVal);
+    });
+</script>
+<!--quantity-->
 <script>
     $(document).ready(function () {
         $(".dropdown").hover(
@@ -276,6 +291,85 @@
 </script>
 <!--// end-smoth-scrolling -->
 
+<!-- easy-responsive-tabs -->
+		<script src={{URL::asset("assets/js/easy-responsive-tabs.js")}}></script>
+		<script>
+			$(document).ready(function () {
+				$('#horizontalTab').easyResponsiveTabs({
+					type: 'default', //Types: default, vertical, accordion           
+					width: 'auto', //auto or any width like 600px
+					fit: true, // 100% fit in a container
+					closed: 'accordion', // Start closed if in accordion view
+					activate: function (event) { // Callback function if tab is switched
+						var $tab = $(this);
+						var $info = $('#tabInfo');
+						var $name = $('span', $info);
+						$name.text($tab.text());
+						$info.show();
+					}
+				});
+				$('#verticalTab').easyResponsiveTabs({
+					type: 'vertical',
+					width: 'auto',
+					fit: true
+				});
+			});
+		</script>
+	<!--close-->
+	<script>
+		$(document).ready(function (c) {
+			$('.close1').on('click', function (c) {
+				$('.rem1').fadeOut('slow', function (c) {
+					$('.rem1').remove();
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function (c) {
+			$('.close2').on('click', function (c) {
+				$('.rem2').fadeOut('slow', function (c) {
+					$('.rem2').remove();
+				});
+			});
+		});
+	</script>
+	<script>
+		$(document).ready(function (c) {
+			$('.close3').on('click', function (c) {
+				$('.rem3').fadeOut('slow', function (c) {
+					$('.rem3').remove();
+				});
+			});
+		});
+	</script>
+	<!--//close-->
+		<!-- credit-card -->
+		<script type="text/javascript" src={{URL::asset("assets/js/creditly.js")}}></script>
+		<link rel="stylesheet" href={{URL::asset("assets/css/creditly.css")}} type="text/css" media="all" />
+
+		<script type="text/javascript">
+			$(function () {
+				var creditly = Creditly.initialize(
+					'.creditly-wrapper .expiration-month-and-year',
+					'.creditly-wrapper .credit-card-number',
+					'.creditly-wrapper .security-code',
+					'.creditly-wrapper .card-type');
+
+				$(".creditly-card-form .submit").click(function (e) {
+					e.preventDefault();
+					var output = creditly.validate();
+					if (output) {
+						// Your validated credit card output
+						console.log(output);
+					}
+				});
+			});
+		</script>
+		<!-- //credit-card -->
+		
+		
+   
 <script src={{URL::asset("assets/js/bootstrap.js")}}></script>
 <!-- js file -->
 </body>

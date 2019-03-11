@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Shop')
+@section('title', 'Items Details')
 
 @section('sidebar')
     @parent
@@ -53,8 +53,14 @@
                                 </div>
                             </div>
                         </div>
+                          
+                            
+                      
+                        {{-- @foreach ($items as $item) --}}
+                            
+                      
                         <div class="col-lg-8 single-right-left simpleCart_shelfItem">
-                            <h3>Irayz Butterfly Sunglasses  (Black)</h3>
+                        <h3> {{ ($data->name) }} </h3>
                             <p><span class="item_price">$650</span>
                                 <del>$1,199</del>
                             </p>
@@ -143,7 +149,14 @@
                                     
                                 </ul>
     
-                        </div>
+                        </div>               
+                        
+                        {{-- @endforeach      --}}
+                       
+                            
+                        
+                            
+                        
                         <div class="clearfix"> </div>
                         <!--/tabs-->
                         <div class="responsive_tabs">
@@ -204,8 +217,10 @@
                                     </div>
                                     <div class="tab3">
             
+                
+           
                                         <div class="single_page">
-                                            <h6>Irayz Butterfly Sunglasses  (Black)</h6>
+                                        <h6>xx</h6>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
                                                 blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
                                                 ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
@@ -215,6 +230,8 @@
                                                 ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
                                                 magna aliqua.</p>
                                         </div>
+
+                                  
                                     </div>
                                 </div>
                             </div>

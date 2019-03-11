@@ -75,7 +75,9 @@
 				<div class="row">
 					<!-- /womens -->
 					
-    @for ($i = 1; $i <=4 ; $i++)
+    @foreach ($products as $item)
+		
+	
 					<div class="col-md-3 product-men women_two">
 						<div class="product-googles-info googles">
 							<div class="men-pro-item">
@@ -149,7 +151,7 @@
 						</div>
 					</div>
 
-					@endfor
+					@endforeach
 				</div>
 				<!-- //womens -->
 

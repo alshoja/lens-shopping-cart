@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
 
 class SimpleHome extends Controller
 {
     public function index(){
 
-        return view('welcome');
+        $products = Product::where('stock','>','0')->orderBy('id', 'desc')->get();
+        return view('welcome')->with('products',$products);
     }
 
     public function item(){
-
-        return view('item');
+         $items = Product::findOrFail(1);
+       
+         return view('item')->withdata($items);
     }
     
     public function shop(){

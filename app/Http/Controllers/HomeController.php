@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $products = Product::where('stock','>','0')->orderBy('id', 'desc')->get();
+        return view('welcome')->with('products',$products);
     }
 }

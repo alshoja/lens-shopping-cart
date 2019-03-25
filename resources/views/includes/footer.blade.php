@@ -191,7 +191,7 @@
     simplyCountdown('simply-countdown-custom', {
         year: d.getFullYear(),
         month: d.getMonth() + 2,
-        day: 25
+        day: 1
     });
 </script>
 <!--// Count-down -->

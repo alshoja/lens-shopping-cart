@@ -10,12 +10,12 @@ class SimpleHome extends Controller
 {
     public function index(){
 
-        $products = Product::where('stock','>','0')->orderBy('id', 'desc')->get();
+        $products = Product::where('stock','>','0') ->take(4)->orderBy('id', 'desc')->get();
         return view('welcome')->with('products',$products);
     }
 
-    public function item(){
-         $items = Product::findOrFail(1);
+    public function item($id){
+         $items = Product::findOrFail($id);
        
          return view('item')->withdata($items);
     }

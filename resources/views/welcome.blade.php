@@ -155,7 +155,7 @@
 				</div>
 				<!-- //womens -->
 
-				<!-- /mens -->
+				{{-- <!-- /mens -->
 				<div class="row mt-lg-3 mt-0">
 					<!-- /womens -->
 					@for($i=1 ;$i<=4; $i++)
@@ -231,7 +231,7 @@
 						</div>
 					</div>
 					@endfor	
-					<!-- /mens -->
+					<!-- /mens --> --}}
 				</div>
 				<!--//row-->
 				<!--/meddle-->

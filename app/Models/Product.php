@@ -6,5 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    //
+    public function user()
+    {
+        return $this->hasOne('App\User','id','user_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(Product_image::class);
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo('App\Models\Categorie', 'category_id', 'id');
+    }
 }

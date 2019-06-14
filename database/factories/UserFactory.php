@@ -16,10 +16,13 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $role = $faker->randomElement(['admin', 'user']);
     return [
         'name' => $faker->name,
+        'role' => $faker->name($role),
+        'status' => '0',
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
+        // 'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
     ];

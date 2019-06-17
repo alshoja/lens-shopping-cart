@@ -13,7 +13,7 @@
 
 Route::get('/', 'SimpleHome@index')->name('home');
 Route::get('product/shop', 'SimpleHome@shop')->name('shop');
-Route::get('/product/item', 'SimpleHome@item')->name('item');
+Route::get('/product/item/{id}', 'SimpleHome@item')->name('item');
 Route::get('/about', 'SimpleHome@about')->name('about');
 Route::get('/contact', 'SimpleHome@contact')->name('contact');
 Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');

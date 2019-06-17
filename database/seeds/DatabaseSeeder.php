@@ -17,6 +17,9 @@ class DatabaseSeeder extends Seeder
                 ProductsTableSeeder::class,
                 ProductsImageTableSeeder::class,
                 CategoriesTableSeeder::class,
+                TestimonialsTableSeeder::class,
+                EditorspicTableseeder::class,
+                FirstFooterFeatureTableSeeder::class,
             ]
         );
     }

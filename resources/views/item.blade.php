@@ -39,14 +39,14 @@
                                 <div class="flexslider1">
             
                                     <ul class="slides">
-                                        <li data-thumb="images/d2.jpg">
-                                            <div class="thumb-image"> <img src="images/d2.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                        <li data-thumb="{{URL::asset("assets/images/d2.jpg")}}">
+                                            <div class="thumb-image"> <img src="{{URL::asset("assets/images/d2.jpg")}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
                                         </li>
-                                        <li data-thumb="images/d1.jpg">
-                                            <div class="thumb-image"> <img src="images/d1.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                        <li data-thumb="{{URL::asset("assets/images/d1.jpg")}}">
+                                            <div class="thumb-image"> <img src={{URL::asset("assets/images/d1.jpg")}} data-imagezoom="true" class="img-fluid" alt=" "> </div>
                                         </li>
-                                        <li data-thumb="images/d3.jpg">
-                                            <div class="thumb-image"> <img src="images/d3.jpg" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                        <li data-thumb="{{URL::asset("assets/images/d3.jpg")}}">
+                                            <div class="thumb-image"> <img src={{URL::asset("assets/images/d3.jpg")}} data-imagezoom="true" class="img-fluid" alt=" "> </div>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
@@ -60,7 +60,7 @@
                             
                       
                         <div class="col-lg-8 single-right-left simpleCart_shelfItem">
-                        <h3> {{ ($data->name) }} </h3>
+                        <h3> </h3>
                             <p><span class="item_price">$650</span>
                                 <del>$1,199</del>
                             </p>

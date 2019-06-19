@@ -83,7 +83,7 @@
 									@endforeach
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="{{url('/shop',$item->id)}}" class="link-product-add-cart">Quick View</a>
+											<a href="{{url('product/item',$item->id)}}" class="link-product-add-cart">Quick View</a>
 										</div>
 									</div>
 									<span class="product-new-top">New</span>

@@ -36,8 +36,11 @@ class SimpleHome extends Controller
     public function item($id)
     {
         $offer_box = OfferBox::first();
-        $items = Product::findOrFail($id);
-        return view('item')->withdata($items);
+        $contact = Contact::first();
+        $about = About::first();
+        $collection = Product::with('user', 'images', 'categorie')->findOrFail($id);
+       // return response()->json($collection);
+        return view('item',compact('collection','about','contact','offer_box'));
     }
 
     public function shop()

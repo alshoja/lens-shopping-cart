@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Shop')
+@section('title', 'Contact')
 
 @section('sidebar')
     @parent
@@ -12,7 +12,15 @@
 
 
 <!-- banner -->
-<div class="banner_inner">
+<div style="
+    background: url({{URL::asset("assets/images/$contact->header_image")}})no-repeat 0px -73px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    moz-background-size: cover;
+    min-height: 180px;
+">
     <div class="services-breadcrumb">
         <div class="inner_breadcrumb">
 
@@ -35,7 +43,7 @@
 <div class="container">
     <h3 class="tittle-w3layouts text-center my-lg-4 my-4">Contact</h3>
     <div class="inner_sec">
-        <p class="sub text-center mb-lg-5 mb-3">We love to discuss your idea</p>
+    <p class="sub text-center mb-lg-5 mb-3">{{$contact->title}}</p>
         <div class="address row">
 
             <div class="col-lg-4 address-grid">
@@ -45,8 +53,8 @@
                     </div>
                     <div class="col-md-9 address-right text-left">
                         <h6>Address</h6>
-                        <p> California, USA
-
+                        <p> 
+                        {{$contact->location}}
                         </p>
                     </div>
                 </div>
@@ -60,7 +68,7 @@
                     <div class="col-md-9 address-right text-left">
                         <h6>Email</h6>
                         <p>Email :
-                            <a href="mailto:example@email.com"> mail@example.com</a>
+                            <a href="{{$contact->email}}">{{$contact->email}}</a>
 
                         </p>
                     </div>
@@ -74,7 +82,7 @@
                     </div>
                     <div class="col-md-9 address-right text-left">
                         <h6>Phone</h6>
-                        <p>+1 234 567 8901</p>
+                        <p>{{$contact->country_code}}{{$contact->phone}}</p>
 
                     </div>
 
@@ -114,7 +122,7 @@
 </section>
 <div class="contact-map">
 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100949.24429313939!2d-122.44206553967531!3d37.75102885910819!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan+Francisco%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1472190196783"
+<iframe src="{{$contact->map_iframe_data}}"
     class="map" style="border:0" allowfullscreen=""></iframe>
 </div>
 

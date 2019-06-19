@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TopSliderTableSeeder extends Seeder
+class PartnerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class TopSliderTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\TopSlider::class, 10)->create();
+        factory(App\Models\Partner::class, 10)->create();
     }
 }

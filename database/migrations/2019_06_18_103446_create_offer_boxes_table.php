@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopSlidersTable extends Migration
+class CreateOfferBoxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateTopSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('top_sliders', function (Blueprint $table) {
+        Schema::create('offer_boxes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
-            $table->string('main_heading');
-            $table->string('sub_heading');
+            $table->string('title');
+            $table->string('description');
+            $table->string('textbox_label');
             $table->string('button_value');
-            $table->integer('order');
+            $table->string('href_tittle');
+            $table->string('href_url');   
             $table->integer('isActive')->default(0);
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateTopSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('top_sliders');
+        Schema::dropIfExists('offer_boxes');
     }
 }

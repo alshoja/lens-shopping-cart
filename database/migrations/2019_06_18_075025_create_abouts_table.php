@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopSlidersTable extends Migration
+class CreateAboutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateTopSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('top_sliders', function (Blueprint $table) {
+        Schema::create('abouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image');
-            $table->string('main_heading');
-            $table->string('sub_heading');
+            $table->string('heading');
+            $table->longtext('description');
             $table->string('button_value');
-            $table->integer('order');
-            $table->integer('isActive')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateTopSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('top_sliders');
+        Schema::dropIfExists('abouts');
     }
 }

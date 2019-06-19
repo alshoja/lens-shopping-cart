@@ -7,37 +7,36 @@
                     <h3>About Us</h3>
                 </div>
                 <div class="footer-text">
-                    <p>Curabitur non nulla sit amet nislinit tempus convallis quis ac lectus. lac inia eget consectetur sed, convallis at
-                        tellus. Nulla porttitor accumsana tincidunt.</p>
+                <p>{{$about->description}}</p>
                     <ul class="footer-social text-left mt-lg-4 mt-3">
 
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->fb_url}}">
                                 <span class="fab fa-facebook-f"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->twitter_url}}">
                                 <span class="fab fa-twitter"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->google_url}}">
                                 <span class="fab fa-google-plus-g"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->link_url}}">
                                 <span class="fab fa-linkedin-in"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->rss_link}}">
                                 <span class="fas fa-rss"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="#">
+                            <a href="{{$about->other}}">
                                 <span class="fab fa-vk"></span>
                             </a>
                         </li>
@@ -50,12 +49,12 @@
                 </div>
                 <div class="contact-info">
                     <h4>Location :</h4>
-                    <p>0926k 4th block building, king Avenue, New York City.</p>
+                    <p>{{$contact->location}}</p>
                     <div class="phone">
                         <h4>Contact :</h4>
-                        <p>Phone : +121 098 8907 9987</p>
+                        <p>Phone :{{$contact->country_code}} {{$contact->phone}}</p>
                         <p>Email :
-                            <a href="mailto:info@example.com">info@example.com</a>
+                            <a href="mailto:{{$contact->email}}">{{$contact->email}}</a>
                         </p>
                     </div>
                 </div>
@@ -87,7 +86,7 @@
                     <h3>Sign up for your offers</h3>
                 </div>
                 <div class="footer-text">
-                    <p>By subscribing to our mailing list you will always get latest news and updates from us.</p>
+                    <p>{{$contact->rights_company_data}}</p>
                     <form action="#" method="post">
                         <input class="form-control" type="email" name="Email" placeholder="Enter your email..." required="">
                         <button class="btn1">
@@ -99,8 +98,8 @@
             </div>
         </div>
         <div class="copyright-w3layouts mt-4">
-            <p class="copy-right text-center ">&copy; 2018 Bookstore. All Rights Reserved |
-                <a href=""> Technalatus </a>
+            <p class="copy-right text-center ">&copy; {{$contact->rights_data}} |
+                <a target="_blank" href="{{$contact->company_url}}"> {{$contact->rights_company_name}} </a>
             </p>
         </div>
     </div>
@@ -112,6 +111,7 @@
 <!-- newsletter modal -->
 <!-- Modal -->
 <!-- Modal -->
+@if ($offer_box->isActive)
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -122,18 +122,18 @@
                 </button>
             </div>
             <div class="modal-body text-center p-5 mx-auto mw-100">
-                <h6>Join our newsletter and get</h6>
-                <h3>50% Off for your first Pair of Eye wear</h3>
+            <h6>{{$offer_box->title}}</h6>
+                <h3>{{$offer_box->description}}</h3>
                 <div class="login newsletter">
                     <form action="#" method="post">
                         <div class="form-group">
-                            <label class="mb-2">Email address</label>
+                            <label class="mb-2">{{$offer_box->textbox_label}}</label>
                             <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="" required="">
                         </div>
-                        <button type="submit" class="btn btn-primary submit mb-4">Get 50% Off</button>
+                        <button type="submit" class="btn btn-primary submit mb-4">{{$offer_box->button_value}}</button>
                     </form>
                     <p class="text-center">
-                        <a href="#">No thanks I want to pay full Price</a>
+                        <a href={{$offer_box->href_url}}>{{$offer_box->href_tittle}}</a>
                     </p>
                 </div>
             </div>
@@ -141,6 +141,7 @@
         </div>
     </div>
 </div>
+@endif
 <script>
     $(document).ready(function () {
         $("#myModal").modal();

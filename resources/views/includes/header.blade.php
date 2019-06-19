@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul>
 						<li>
 							<i class="fas fa-phone"></i> Call</li>
-						<li class="number-phone mt-3">12345678099</li>
+						<li class="number-phone mt-3">{{$contact->country_code}} {{$contact->phone}}</li>
 					</ul>
 				</div>
 				<div class="col-md-6 logo-w3layouts text-center">
@@ -213,7 +213,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="nav-item">
 							<a class="nav-link" href="{{url('/about')}}">About</a>
 						</li>
-						<li class="nav-item dropdown">
+						{{-- <li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
 							    aria-expanded="false">
 								Features
@@ -265,7 +265,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<hr>
 								</li>
 							</ul>
-						</li>
+						</li> --}}
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true"
 							    aria-expanded="false">
@@ -278,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h5 class="tittle-w3layouts-sub"> Tittle goes here </h5>
 											<ul>
 												<li class="media-mini mt-3">
-													<a href="shop.html">Designer Glasses</a>
+													<a href="{{url('/shop')}}">Designer Glasses</a>
 												</li>
 												<li class="">
 													<a href="shop.html"> Ray-Ban</a>
@@ -359,7 +359,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="contact.html">Contact</a>
+							<a class="nav-link" href="{{url('/contact')}}">Contact</a>
 						</li>
 					</ul>
 

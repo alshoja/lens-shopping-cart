@@ -18,8 +18,14 @@ class DatabaseSeeder extends Seeder
                 ProductsImageTableSeeder::class,
                 CategoriesTableSeeder::class,
                 TestimonialsTableSeeder::class,
-                EditorspicTableseeder::class,
+                EditorsPicTableSeeder::class,
                 FirstFooterFeatureTableSeeder::class,
+                TopSliderTableSeeder::class,
+                PartnerTableSeeder::class,
+                About::class,
+                OfferBoxTableSeeder::class,
+                ContactTableSeeder::class,
+                MiddleTimerTableSeeder::class
             ]
         );
     }

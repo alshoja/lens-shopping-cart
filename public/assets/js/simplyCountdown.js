@@ -7,6 +7,7 @@
  * Author : Vincent Loy <vincent.loy1@gmail.com>
  */
 /*global window, document*/
+
 (function (exports) {
     'use strict';
 
@@ -41,7 +42,7 @@
     simplyCountdown = function (eltId, args) {
 
         var parameters = extend({
-                year: 2015,
+                year: 2019,
                 month: 6,
                 day: 28,
                 words: {

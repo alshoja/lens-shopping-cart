@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTopSlidersTable extends Migration
+class CreateMiddlePosterTimersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateTopSlidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('top_sliders', function (Blueprint $table) {
+        Schema::create('middle_poster_timers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('image');
-            $table->string('main_heading');
-            $table->string('sub_heading');
-            $table->string('button_value');
-            $table->integer('order');
-            $table->integer('isActive')->default(0);
+            $table->string('poster_image');
+            $table->string('title');
+            $table->string('timestamp');
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateTopSlidersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('top_sliders');
+        Schema::dropIfExists('middle_poster_timers');
     }
 }

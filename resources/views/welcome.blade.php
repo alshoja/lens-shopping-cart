@@ -14,46 +14,43 @@
 		<div class="banner">
 			<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				<ol class="carousel-indicators">
+					{{ $counter = 0 }}
 					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					@foreach ($slider as $sliderdata)	
+					<li data-target="#carouselExampleIndicators" data-slide-to="{{$counter++}}"></li>									
+					@endforeach
 				</ol>
 				<div class="carousel-inner" role="listbox">
-					<div class="carousel-item active">
+			<?php $s = 0 ?>
+	@foreach ($slider as $sliderdata)	
+			@if ($sliderdata->isActive === 1)
+			<div class="carousel-item active"  
+			style="	
+			background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
+			background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
+			background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
+			background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
+			background-size: cover;	
+					">
+			@else
+			<div class="carousel-item" 
+			style="	
+	background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
+    background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
+    background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
+    background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
+    background-size: cover;	
+			">
+			@endif				
 						<div class="carousel-caption text-center">
-							<h3>Men’s eyewear
-								<span>Cool summer sale 50% off</span>
+							<h3>{{$sliderdata->main_heading}} 
+							<span>{{$sliderdata->sub_heading}}</span>
 							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-						</div>
-					</div>
-					<div class="carousel-item item2">
-						<div class="carousel-caption text-center">
-							<h3>Women’s eyewear
-								<span>Want to Look Your Best?</span>
-							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
+						<a href="{{url('/shop')}}" class="btn btn-sm animated-button gibson-three mt-4">{{$sliderdata->button_value}}</a>
 
 						</div>
 					</div>
-					<div class="carousel-item item3">
-						<div class="carousel-caption text-center">
-							<h3>Men’s eyewear
-								<span>Cool summer sale 50% off</span>
-							</h3>
-						<a href="{{url('/shop')}}" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-
-						</div>
-					</div>
-					<div class="carousel-item item4">
-						<div class="carousel-caption text-center">
-							<h3>Women’s eyewear
-								<span>Want to Look Your Best?</span>
-							</h3>
-							<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">Shop Now</a>
-						</div>
-					</div>
+					@endforeach	
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -76,13 +73,14 @@
 					<!-- /womens -->
 					
     @foreach ($products as $item)
-		
-	
 					<div class="col-md-3 product-men women_two">
 						<div class="product-googles-info googles">
 							<div class="men-pro-item">
 								<div class="men-thumb-item">
-									<img src={{URL::asset("assets/images/s4.jpg")}} class="img-fluid" alt="">
+									@foreach ($item->images as $img)
+									{{-- {{ $property_images = json_decode($img->images) }} --}}
+									<img src={{URL::asset("assets/images/$img->image")}} class="img-fluid" alt="">
+									@endforeach
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
 											<a href="{{url('/shop',$item->id)}}" class="link-product-add-cart">Quick View</a>
@@ -216,12 +214,12 @@
 					<!-- /mens --> --}}
 				</div>
 				<!--//row-->
-				<!--/meddle-->
+				<!--/meddle-- banner-mid.jpg-->
 				<div class="row">
-					<div class="col-md-12 middle-slider my-4">
+					<div class="col-md-12 middle-slider my-4" style=" background: url({{URL::asset("assets/images/$middle->poster_image")}}) no-repeat 0px 0px;">
 						<div class="middle-text-info ">
 
-							<h3 class="tittle-w3layouts two text-center my-lg-4 mt-3">Summer Flash sale</h3>
+							<h3 class="tittle-w3layouts two text-center my-lg-4 mt-3">{{$middle->title}}</h3>
 							<div class="simply-countdown-custom" id="simply-countdown-custom"></div>
 
 						</div>
@@ -233,16 +231,18 @@
 					<!--//banner-sec-->
 					<div class="mid-slider">
 						<div class="owl-carousel owl-theme row">
-							@foreach ($product_slider as $item_slider)
-								
-						
+							@foreach ($product_slider as $item_slider)		
 							<div class="item">
 								<div class="gd-box-info text-center">
 									<div class="product-men women_two bot-gd">
 										<div class="product-googles-info slide-img googles">
 											<div class="men-pro-item">
 												<div class="men-thumb-item">
-													<img src="images/s5.jpg" class="img-fluid" alt="">
+													@foreach ($item_slider->images as $item)
+														
+													@endforeach
+														{{-- {{$property_images = json_decode($item->images)}} --}}
+													<img src="{{URL::asset("assets/images/$item->image")}}" class="img-fluid" alt="">
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
 															<a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -326,7 +326,7 @@
 											<span>{{$person->customer_name}}</span>
 										</h3>
 									<label>{{$person->country}}</label>
-									<p>{{$person->description}}</p>
+									<p>{{ str_limit($person->description, $limit = 100, $end = '...') }}</p>
 									</div>
 								</div>
 								@endforeach
@@ -346,8 +346,6 @@
 				<!-- //testimonials -->
 				<div class="row galsses-grids pt-lg-5 pt-3">
 					@foreach ($editorsPic as $Epic)
-						
-				
 					<div class="col-lg-6 galsses-grid-left">
 						<figure class="effect-lexi">
 							<img src={{URL::asset("assets/images/banner4.jpg")}} alt="" class="img-fluid">	
@@ -355,7 +353,8 @@
 								<h3>
 								<span>{{$Epic->heading}}</span>
 								</h3>
-							<p> {{$Epic->hover_data}}</p>
+							<p> {{ str_limit($Epic->hover_data, $limit = 10, $end = '...') }}</p>
+						
 							</figcaption>
 						</figure>
 					</div>
@@ -374,7 +373,7 @@
 							</div>
 
 							<h4 class="sub-tittle-w3layouts my-lg-4 my-3">{{$f1->heading}}</h4>
-							<p>{{$f1->description}}</p>
+							<p>{{ str_limit($f1->description , $limit = 150, $end = '...') }}</p>
 							<p>
 								<a href="shop.html" class="btn btn-sm animated-button gibson-three mt-4">{{$f1->button_value}}</a>
 							</p>
@@ -394,7 +393,7 @@
 							</div>
 							<div class="mail-grid-text-info">
 							<h3>{{$f2->heading}}</h3>
-								<p>{{$f2->description}}</p>
+								<p>{{str_limit($f2->description , $limit = 94, $end = '...')}}</p>
 							</div>
 						</div>
 			@endforeach
@@ -405,5 +404,5 @@
 		</div>
 	</section>
 	<!-- about -->
-
 @stop
+

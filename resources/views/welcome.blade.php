@@ -230,7 +230,7 @@
 				<div class="slider-img mid-sec">
 					<!--//banner-sec-->
 					<div class="mid-slider">
-						<div class="owl-carousel owl-theme row">
+						<div class="owl-carousel owl-theme row">		
 							@foreach ($product_slider as $item_slider)		
 							<div class="item">
 								<div class="gd-box-info text-center">
@@ -239,10 +239,10 @@
 											<div class="men-pro-item">
 												<div class="men-thumb-item">
 													@foreach ($item_slider->images as $item)
-														
-													@endforeach
+												
 														{{-- {{$property_images = json_decode($item->images)}} --}}
 													<img src="{{URL::asset("assets/images/$item->image")}}" class="img-fluid" alt="">
+													@endforeach
 													<div class="men-cart-pro">
 														<div class="inner-men-cart-pro">
 															<a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -256,7 +256,7 @@
 														<div class="grid_meta">
 															<div class="product_price">
 																<h4>
-																<a href="single.html">{{$item_slider->name}}</a>
+																<a href={{url('product/item',$itemFeaitem_slider->id)}}>{{$item_slider->name}}</a>
 																</h4>
 																<div class="grid-price mt-2">
 																	<span class="money ">$ {{$item_slider->amount}}</span>
@@ -295,6 +295,7 @@
 							</div>
 							
 							@endforeach
+							
 						</div>
 					</div>
 				</div>

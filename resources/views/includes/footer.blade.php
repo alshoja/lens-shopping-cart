@@ -370,7 +370,19 @@
 		<!-- //credit-card -->
 		
 		
-   
+   <!-- FlexSlider -->
+       
+        <script src={{URL::asset("assets/js/jquery.flexslider.js")}}></script>
+		<script>
+			// Can also be used with $(document).ready()
+			$(window).load(function () {
+				$('.flexslider1').flexslider({
+					animation: "slide",
+					controlNav: "thumbnails"
+				});
+			});
+		</script>
+		<!-- //FlexSlider-->
 <script src={{URL::asset("assets/js/bootstrap.js")}}></script>
 <!-- js file -->
 </body>

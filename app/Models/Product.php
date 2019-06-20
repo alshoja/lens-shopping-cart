@@ -20,4 +20,15 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Categorie', 'category_id', 'id');
     }
+
+    public function types()
+    {
+        return $this->hasMany('App\Models\ProductType', 'product_id', 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Models\Review', 'product_id', 'id');
+    }
+    
 }

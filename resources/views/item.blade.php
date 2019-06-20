@@ -39,15 +39,11 @@
                                 <div class="flexslider1">
 
                                     <ul class="slides">
-                                        <li data-thumb="{{URL::asset("assets/images/d2.jpg")}}">
-                                            <div class="thumb-image"> <img src="{{URL::asset("assets/images/d2.jpg")}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
+                                        @foreach ($collection->images as $img)    
+                                        <li data-thumb="{{URL::asset("assets/images/$img->image")}}">
+                                            <div class="thumb-image"> <img src="{{URL::asset("assets/images/$img->image")}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
                                         </li>
-                                        <li data-thumb="{{URL::asset("assets/images/d1.jpg")}}">
-                                            <div class="thumb-image"> <img src={{URL::asset("assets/images/d1.jpg")}} data-imagezoom="true" class="img-fluid" alt=" "> </div>
-                                        </li>
-                                        <li data-thumb="{{URL::asset("assets/images/d3.jpg")}}">
-                                            <div class="thumb-image"> <img src={{URL::asset("assets/images/d3.jpg")}} data-imagezoom="true" class="img-fluid" alt=" "> </div>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
@@ -56,21 +52,21 @@
 
 
 
-                        {{-- @foreach ($items as $item) --}}
+                        
 
 
                         <div class="col-lg-8 single-right-left simpleCart_shelfItem">
                         <h3> </h3>
-                            <p><span class="item_price">$650</span>
-                                <del>$1,199</del>
+                        <p><span class="item_price">₹ {{$collection->amount}}</span>
+                        <del>₹ {{$collection->old_price}}</del>
                             </p>
                             <div class="rating1">
                                 <ul class="stars">
+
+                                    @for ($i = 0; $i < $collection->star; $i++)
                                     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                                    @endfor
+                                    
                                 </ul>
                             </div>
                             <div class="description">
@@ -82,26 +78,25 @@
                             </div>
                             <div class="color-quality">
                                 <div class="color-quality-right">
-                                    <h5>Quality :</h5>
-                                    <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+                                <h5>Stock :{{$collection->stock}}</h5>
+                                    {{-- <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
                                             <option value="null">5 Qty</option>
                                             <option value="null">6 Qty</option>
                                             <option value="null">7 Qty</option>
                                             <option value="null">10 Qty</option>
-                                        </select>
+                                        </select> --}}
                                 </div>
                             </div>
                             <div class="occasional">
                                 <h5>Types :</h5>
                                 <div class="colr ert">
-                                    <label class="radio"><input type="radio" name="radio" checked=""><i></i> Irayz Butterfly(Black)</label>
+
+                                    @foreach ($collection->types as $Itemtype)
+                                <label class="radio"><input type="radio" name="radio" ><i></i> {{$Itemtype->type}}</label>
+                                @endforeach
+                                
                                 </div>
-                                <div class="colr">
-                                    <label class="radio"><input type="radio" name="radio"><i></i> Irayz Butterfly (Grey)</label>
-                                </div>
-                                <div class="colr">
-                                    <label class="radio"><input type="radio" name="radio"><i></i> Irayz Butterfly (white)</label>
-                                </div>
+                               
                                 <div class="clearfix"> </div>
                             </div>
                             <div class="occasion-cart">
@@ -151,8 +146,7 @@
 
                         </div>
 
-                        {{-- @endforeach      --}}
-
+                    
 
 
 
@@ -164,22 +158,16 @@
                                 <ul class="resp-tabs-list">
                                     <li>Description</li>
                                     <li>Reviews</li>
-                                    <li>Information</li>
+                                    {{-- <li>Information</li> --}}
                                 </ul>
                                 <div class="resp-tabs-container">
                                     <!--/tab_one-->
                                     <div class="tab1">
 
                                         <div class="single_page">
-                                            <h6>Lorem ipsum dolor sit amet</h6>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-                                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-                                                magna aliqua.</p>
-                                            <p class="para">Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
-                                                blandit ipsum auctor. Mauris volutpat augue dolor.Consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                                                ut lab ore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco. labore et dolore
-                                                magna aliqua.</p>
+                                        <h6>{{$collection->name}}</h6>
+                                        <p>{{$collection->description}}</p>
+                                            
                                         </div>
                                     </div>
                                     <!--//tab_one-->
@@ -188,20 +176,22 @@
                                         <div class="single_page">
                                             <div class="bootstrap-tab-text-grids">
                                                 <div class="bootstrap-tab-text-grid">
+                                                        @foreach ($collection->reviews as $Ritem)
                                                     <div class="bootstrap-tab-text-grid-left">
                                                         <img src="{{URL::asset("assets/images/team1.jpg")}}" alt=" " class="img-fluid">
                                                     </div>
+                                                   
                                                     <div class="bootstrap-tab-text-grid-right">
                                                         <ul>
-                                                            <li><a href="#">Admin</a></li>
+                                                            <li><a href="#">{{$Ritem->users->name}}</a></li>
                                                             <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i> Reply</a></li>
                                                         </ul>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget.Ut enim ad minima veniam,
-                                                            quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis
-                                                            autem vel eum iure reprehenderit.</p>
+                                                    <p>{{$Ritem->review}}</p>
                                                     </div>
-                                                    <div class="clearfix"> </div>
+                                                  
+                                                    <div class="clearfix"> </div><hr>
                                                 </div>
+                                                @endforeach
                                                 <div class="add-review">
                                                     <h4>add a review</h4>
                                                     <form action="#" method="post">
@@ -215,7 +205,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="tab3">
+                                    {{-- <div class="tab3">
 
 
 
@@ -232,7 +222,7 @@
                                         </div>
 
 
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -247,14 +237,16 @@
                 <!--//banner-sec-->
                 <h3 class="tittle-w3layouts text-left my-lg-4 my-3">Featured Products</h3>
                 <div class="mid-slider">
+                   
                     <div class="owl-carousel owl-theme row">
+                            @foreach ($product_featured as $itemFeatured)                          
                         <div class="item">
                             <div class="gd-box-info text-center">
                                 <div class="product-men women_two bot-gd">
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s5.jpg")}}" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/$itemFeatured->image")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -268,38 +260,22 @@
                                                     <div class="grid_meta">
                                                         <div class="product_price">
                                                             <h4>
-                                                                <a href="single.html">Fastrack Aviator </a>
+                                                                <a href="{{url('product/item',$itemFeatured->id)}}">{{$itemFeatured->name}} </a>
                                                             </h4>
                                                             <div class="grid-price mt-2">
-                                                                <span class="money ">$325.00</span>
+                                                            <span class="money ">{{$itemFeatured->amount}}</span>
                                                             </div>
                                                         </div>
                                                         <ul class="stars">
+
+                                                            @for ($i = 0; $i < $itemFeatured->star; $i++)     
                                                             <li>
                                                                 <a href="#">
                                                                     <i class="fa fa-star" aria-hidden="true"></i>
                                                                 </a>
                                                             </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
+                                                            @endfor
+                                                            
                                                         </ul>
                                                     </div>
                                                     <div class="googles single-item hvr-outline-out">
@@ -321,379 +297,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="gd-box-info text-center">
-                                <div class="product-men women_two bot-gd">
-                                    <div class="product-googles-info slide-img googles">
-                                        <div class="men-pro-item">
-                                            <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s6.jpg")}}" class="img-fluid" alt="">
-                                                <div class="men-cart-pro">
-                                                    <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-new-top">New</span>
-                                            </div>
-                                            <div class="item-info-product">
-
-                                                <div class="info-product-price">
-                                                    <div class="grid_meta">
-                                                        <div class="product_price">
-                                                            <h4>
-                                                                <a href="single.html">MARTIN Aviator </a>
-                                                            </h4>
-                                                            <div class="grid-price mt-2">
-                                                                <span class="money ">$425.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="stars">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="googles single-item hvr-outline-out">
-                                                        <form action="#" method="post">
-                                                            <input type="hidden" name="cmd" value="_cart">
-                                                            <input type="hidden" name="add" value="1">
-                                                            <input type="hidden" name="googles_item" value="MARTIN Aviator">
-                                                            <input type="hidden" name="amount" value="425.00">
-                                                            <button type="submit" class="googles-cart pgoogles-cart">
-                                                                <i class="fas fa-cart-plus"></i>
-                                                            </button>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="gd-box-info text-center">
-                                <div class="product-men women_two bot-gd">
-                                    <div class="product-googles-info slide-img googles">
-                                        <div class="men-pro-item">
-                                            <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s3.jpg")}}" class="img-fluid" alt="">
-                                                <div class="men-cart-pro">
-                                                    <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-new-top">New</span>
-                                            </div>
-                                            <div class="item-info-product">
-
-                                                <div class="info-product-price">
-                                                    <div class="grid_meta">
-                                                        <div class="product_price">
-                                                            <h4>
-                                                                <a href="single.html">Royal Son Aviator </a>
-                                                            </h4>
-                                                            <div class="grid-price mt-2">
-                                                                <span class="money ">$425.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="stars">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="googles single-item hvr-outline-out">
-                                                        <form action="#" method="post">
-                                                            <input type="hidden" name="cmd" value="_cart">
-                                                            <input type="hidden" name="add" value="1">
-                                                            <input type="hidden" name="googles_item" value="Royal Son Aviator">
-                                                            <input type="hidden" name="amount" value="425.00">
-                                                            <button type="submit" class="googles-cart pgoogles-cart">
-                                                                <i class="fas fa-cart-plus"></i>
-                                                            </button>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="gd-box-info text-center">
-                                <div class="product-men women_two bot-gd">
-                                    <div class="product-googles-info slide-img googles">
-                                        <div class="men-pro-item">
-                                            <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s3.jpg")}}" class="img-fluid" alt="">
-                                                <div class="men-cart-pro">
-                                                    <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-new-top">New</span>
-                                            </div>
-                                            <div class="item-info-product">
-
-                                                <div class="info-product-price">
-                                                    <div class="grid_meta">
-                                                        <div class="product_price">
-                                                            <h4>
-                                                                <a href="single.html">Irayz Butterfly </a>
-                                                            </h4>
-                                                            <div class="grid-price mt-2">
-                                                                <span class="money ">$281.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="stars">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="googles single-item hvr-outline-out">
-                                                        <form action="#" method="post">
-                                                            <input type="hidden" name="cmd" value="_cart">
-                                                            <input type="hidden" name="add" value="1">
-                                                            <input type="hidden" name="googles_item" value="Irayz Butterfly">
-                                                            <input type="hidden" name="amount" value="281.00">
-                                                            <button type="submit" class="googles-cart pgoogles-cart">
-                                                                <i class="fas fa-cart-plus"></i>
-                                                            </button>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="gd-box-info text-center">
-                                <div class="product-men women_two bot-gd">
-                                    <div class="product-googles-info slide-img googles">
-                                        <div class="men-pro-item">
-                                            <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s6.jpg")}}" class="img-fluid" alt="">
-                                                <div class="men-cart-pro">
-                                                    <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-new-top">New</span>
-                                            </div>
-                                            <div class="item-info-product">
-
-                                                <div class="info-product-price">
-                                                    <div class="grid_meta">
-                                                        <div class="product_price">
-                                                            <h4>
-                                                                <a href="single.html">Jerry Rectangular </a>
-                                                            </h4>
-                                                            <div class="grid-price mt-2">
-                                                                <span class="money ">$525.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="stars">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="googles single-item hvr-outline-out">
-                                                        <form action="#" method="post">
-                                                            <input type="hidden" name="cmd" value="_cart">
-                                                            <input type="hidden" name="add" value="1">
-                                                            <input type="hidden" name="googles_item" value="Jerry Rectangular ">
-                                                            <input type="hidden" name="amount" value="525.00">
-                                                            <button type="submit" class="googles-cart pgoogles-cart">
-                                                                <i class="fas fa-cart-plus"></i>
-                                                            </button>
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="gd-box-info text-center">
-                                <div class="product-men women_two bot-gd">
-                                    <div class="product-googles-info slide-img googles">
-                                        <div class="men-pro-item">
-                                            <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s10.jpg")}}" class="img-fluid" alt="">
-                                                <div class="men-cart-pro">
-                                                    <div class="inner-men-cart-pro">
-                                                        <a href="single.html" class="link-product-add-cart">Quick View</a>
-                                                    </div>
-                                                </div>
-                                                <span class="product-new-top">New</span>
-                                            </div>
-                                            <div class="item-info-product">
-
-                                                <div class="info-product-price">
-                                                    <div class="grid_meta">
-                                                        <div class="product_price">
-                                                            <h4>
-                                                                <a href="single.html">Herdy Wayfarer </a>
-                                                            </h4>
-                                                            <div class="grid-price mt-2">
-                                                                <span class="money ">$325.00</span>
-                                                            </div>
-                                                        </div>
-                                                        <ul class="stars">
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">
-                                                                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="googles single-item hvr-outline-out">
-                                                            <form action="#" method="post">
-                                                                <input type="hidden" name="cmd" value="_cart">
-                                                                <input type="hidden" name="add" value="1">
-                                                                <input type="hidden" name="googles_item" value="Royal Son Aviator">
-                                                                <input type="hidden" name="amount" value="425.00">
-                                                                <button type="submit" class="googles-cart pgoogles-cart">
-                                                                    <i class="fas fa-cart-plus"></i>
-                                                                </button>
-
-
-                                                            </form>
-
-                                                        </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </div> 
+                        
+                        @endforeach
                     </div>
                 </div>
             </div>

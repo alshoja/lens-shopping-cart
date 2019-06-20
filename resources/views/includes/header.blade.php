@@ -24,8 +24,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href={{URL::asset("assets/css/style6.css")}} rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href={{URL::asset("assets/css/shop.css")}} type="text/css" />
 	<link rel="stylesheet" type="text/css" href={{URL::asset("assets/css/checkout.css")}}>
+	<link rel="stylesheet" type="text/css" href={{URL::asset("assets/css/jquery-ui1.css")}}>
 	<link href={{URL::asset("assets/css/contact.css")}} rel='stylesheet' type='text/css' />
 	<link href={{URL::asset("assets/css/easy-responsive-tabs.css")}} rel='stylesheet' type='text/css' />
+	<link rel="stylesheet" href="{{URL::asset("assets/css/flexslider.css")}}" type="text/css" media="screen" />
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.carousel.css")}} type="text/css" media="all">
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.theme.css")}} type="text/css" media="all">
 	<link href={{URL::asset("assets/css/style.css")}} rel='stylesheet' type='text/css' />

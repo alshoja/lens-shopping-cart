@@ -1748,7 +1748,7 @@ ul.links li a:hover {
 @media(max-width:1280px) {
 
     .banner_inner {
-        background: url(../images/banner4.jpg)no-repeat 0px -55px;
+        /* background: url(../images/banner4.jpg)no-repeat 0px -55px; */
         background-size: cover;
         -webkit-background-size: cover;
         -o-background-size: cover;
@@ -1898,7 +1898,7 @@ ul.links li a:hover {
     .owl-item.active {
        padding:0px;
     }
- 
+
 }
 
 @media(max-width:1024px) {
@@ -2084,7 +2084,7 @@ ul.links li a:hover {
         min-height: 271px;
         padding: 3em 0 0 0;
     }
-  
+
 }
 
 @media(max-width:768px) {
@@ -2095,7 +2095,7 @@ ul.links li a:hover {
     }
     .carousel-item {
         height: 26em;
-    }  
+    }
       .bottom-sub-grid {
         padding: 1em 4em;
     }
@@ -2167,12 +2167,12 @@ ul.links li a:hover {
 }
 
 @media(max-width:640px) {
-   
+
     ul.short {
         text-align: left;
         padding: 3em 0em 0 1.3em;
     }
-  
+
     .ser-first-grid p {
         padding: 0 5px;
     }
@@ -2197,7 +2197,7 @@ ul.links li a:hover {
     }
     .carousel-caption {
         bottom: 4em;
-    }   
+    }
     .nav-mega .dropdown-menu.mega-menu>li {
         padding: 2em 1em;
     }

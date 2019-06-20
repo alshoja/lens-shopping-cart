@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
                 About::class,
                 OfferBoxTableSeeder::class,
                 ContactTableSeeder::class,
-                MiddleTimerTableSeeder::class
+                MiddleTimerTableSeeder::class,
+                DeliveryTableSeeder::class
             ]
         );
     }

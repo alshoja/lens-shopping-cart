@@ -11,7 +11,7 @@
 @section('content')
 
 <!-- banner -->
-<div class="banner_inner">
+<div class="banner_inner" style=" background: url({{URL::asset("assets/images/banner-mid.jpg")}})no-repeat 0px -55px;">
     <div class="services-breadcrumb">
         <div class="inner_breadcrumb">
 
@@ -37,7 +37,7 @@
                     <div class="col-lg-4 single-right-left ">
                             <div class="grid images_3_of_2">
                                 <div class="flexslider1">
-            
+
                                     <ul class="slides">
                                         <li data-thumb="{{URL::asset("assets/images/d2.jpg")}}">
                                             <div class="thumb-image"> <img src="{{URL::asset("assets/images/d2.jpg")}}" data-imagezoom="true" class="img-fluid" alt=" "> </div>
@@ -53,12 +53,12 @@
                                 </div>
                             </div>
                         </div>
-                          
-                            
-                      
+
+
+
                         {{-- @foreach ($items as $item) --}}
-                            
-                      
+
+
                         <div class="col-lg-8 single-right-left simpleCart_shelfItem">
                         <h3> </h3>
                             <p><span class="item_price">$650</span>
@@ -85,9 +85,9 @@
                                     <h5>Quality :</h5>
                                     <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
                                             <option value="null">5 Qty</option>
-                                            <option value="null">6 Qty</option> 
-                                            <option value="null">7 Qty</option>					
-                                            <option value="null">10 Qty</option>								
+                                            <option value="null">6 Qty</option>
+                                            <option value="null">7 Qty</option>
+                                            <option value="null">10 Qty</option>
                                         </select>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
                                                 <button type="submit" class="googles-cart pgoogles-cart">
                                                     Add to Cart
                                                 </button>
-                                                
+
                                             </form>
 
                                         </div>
@@ -146,17 +146,17 @@
                                             <span class="fas fa-rss"></span>
                                         </a>
                                     </li>
-                                    
+
                                 </ul>
-    
-                        </div>               
-                        
+
+                        </div>
+
                         {{-- @endforeach      --}}
-                       
-                            
-                        
-                            
-                        
+
+
+
+
+
                         <div class="clearfix"> </div>
                         <!--/tabs-->
                         <div class="responsive_tabs">
@@ -169,7 +169,7 @@
                                 <div class="resp-tabs-container">
                                     <!--/tab_one-->
                                     <div class="tab1">
-            
+
                                         <div class="single_page">
                                             <h6>Lorem ipsum dolor sit amet</h6>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
@@ -184,12 +184,12 @@
                                     </div>
                                     <!--//tab_one-->
                                     <div class="tab2">
-            
+
                                         <div class="single_page">
                                             <div class="bootstrap-tab-text-grids">
                                                 <div class="bootstrap-tab-text-grid">
                                                     <div class="bootstrap-tab-text-grid-left">
-                                                        <img src="images/team1.jpg" alt=" " class="img-fluid">
+                                                        <img src="{{URL::asset("assets/images/team1.jpg")}}" alt=" " class="img-fluid">
                                                     </div>
                                                     <div class="bootstrap-tab-text-grid-right">
                                                         <ul>
@@ -212,13 +212,13 @@
                                                     </form>
                                                 </div>
                                             </div>
-            
+
                                         </div>
                                     </div>
                                     <div class="tab3">
-            
-                
-           
+
+
+
                                         <div class="single_page">
                                         <h6>xx</h6>
                                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elPellentesque vehicula augue eget nisl ullamcorper, molestie
@@ -231,13 +231,13 @@
                                                 magna aliqua.</p>
                                         </div>
 
-                                  
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!--//tabs-->
-            
+
             </div>
         </div>
     </div>
@@ -254,7 +254,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s5.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s5.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -328,7 +328,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s6.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s6.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -402,7 +402,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s7.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s3.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -476,7 +476,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s8.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s3.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -550,7 +550,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s9.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s6.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -624,7 +624,7 @@
                                     <div class="product-googles-info slide-img googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="images/s10.jpg" class="img-fluid" alt="">
+                                                <img src="{{URL::asset("assets/images/s10.jpg")}}" class="img-fluid" alt="">
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -682,7 +682,7 @@
                                                                     <i class="fas fa-cart-plus"></i>
                                                                 </button>
 
-                                                                
+
                                                             </form>
 
                                                         </div>

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\DeliveryPlace;
+use App\Models\Menu;
 use Illuminate\Http\Request;
-use DB;
 
-class DeliveryPlaceController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class DeliveryPlaceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DeliveryPlace  $deliveryPlace
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(DeliveryPlace $deliveryPlace)
+    public function show(Menu $menu)
     {
         //
     }
@@ -53,10 +52,10 @@ class DeliveryPlaceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DeliveryPlace  $deliveryPlace
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(DeliveryPlace $deliveryPlace)
+    public function edit(Menu $menu)
     {
         //
     }
@@ -65,10 +64,10 @@ class DeliveryPlaceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DeliveryPlace  $deliveryPlace
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DeliveryPlace $deliveryPlace)
+    public function update(Request $request, Menu $menu)
     {
         //
     }
@@ -76,31 +75,11 @@ class DeliveryPlaceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DeliveryPlace  $deliveryPlace
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeliveryPlace $deliveryPlace)
+    public function destroy(Menu $menu)
     {
         //
-    }
-
-    public function search(Request $request)
-    {
-      
-        if ($request->ajax()) {
-            $output = "";
-            $msg = "Item Available";
-            $places = DB::table('delivery_places')->where('pincode', 'LIKE', '%' . $request->search . "%")->get();
-            if ($places) {
-                foreach ($places as $key => $place) {
-                    $output .= '<li>' . $place->pincode. '</li>' ;
-                  
-                } 
-               
-            } else if($output === ""){
-                $output = "Not avialable";
-            }
-            return Response($output);
-        }
     }
 }

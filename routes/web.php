@@ -20,6 +20,7 @@ Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
 Route::get('product/payment', 'SimpleHome@payment')->name('payment');
 
 
+Route::get('/search','DeliveryPlaceController@search');
 
 
 

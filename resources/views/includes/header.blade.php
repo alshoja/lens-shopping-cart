@@ -34,7 +34,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href={{URL::asset("assets/css/fontawesome-all.css")}} rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
-	    rel="stylesheet">
+		rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -277,80 +279,36 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<div class="row">
 										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> Tittle goes here </h5>
+										
+											<h5 class="tittle-w3layouts-sub"> {{$menu->title_one}} </h5>
 											<ul>
+												@foreach ($categorie as $categories)
 												<li class="media-mini mt-3">
-													<a href="{{url('/shop')}}">Designer Glasses</a>
+												<a href="{{url('product/shop')}}">{{$categories->name}}</a>
 												</li>
-												<li class="">
-													<a href="shop.html"> Ray-Ban</a>
-												</li>
-												<li>
-													<a href="shop.html">Prescription Glasses</a>
-												</li>
-												<li>
-													<a href="shop.html">Rx Sunglasses</a>
-												</li>
-												<li>
-													<a href="shop.html">Contact Lenses</a>
-												</li>
-												<li>
-													<a href="shop.html">Multifocal Glasses</a>
-												</li>
-												<li>
-													<a href="shop.html">Kids Glasses</a>
-												</li>
-												<li>
-													<a href="shop.html">Lightweight Glasses</a>
-												</li>
-												<li>
-													<a href="shop.html">Sports Glasses</a>
-												</li>
+												@endforeach
+											
 											</ul>
 										</div>
 										<div class="col-md-4 media-list span4 text-left">
-											<h5 class="tittle-w3layouts-sub"> Tittle goes here </h5>
+											<h5 class="tittle-w3layouts-sub">{{$menu->title_two}}</h5>
 											<ul>
+												@foreach ($new_products as $newitem)
+		
 												<li class="media-mini mt-3">
 
-													<a href="shop.html">Brooks Brothers</a>
+												<a href={{url('product/item',$newitem->id)}}>{{$newitem->name}}</a>
 												</li>
-												<li>
-													<a href="shop.html">Persol</a>
-												</li>
-												<li>
-													<a href="shop.html">Polo Ralph Lauren</a>
-												</li>
-												<li>
-													<a href="shop.html">Prada</a>
-												</li>
-												<li>
-													<a href="shop.html">Ray-Ban Jr</a>
-												</li>
-												<li>
-													<a href="shop.html">Sferoflex</a>
-												</li>
-											</ul>
-											<ul class="sub-in text-left">
-
-												<li>
-													<a href="shop.html">Polo Ralph Lauren</a>
-												</li>
-												<li>
-													<a href="shop.html">Prada</a>
-												</li>
-												<li>
-													<a href="shop.html">Ray-Ban Jr</a>
-												</li>
+												@endforeach
 											</ul>
 
 										</div>
 										<div class="col-md-4 media-list span4 text-left">
 
-											<h5 class="tittle-w3layouts-sub-nav">Tittle goes here </h5>
+											<h5 class="tittle-w3layouts-sub-nav">{{$menu->image_title}} </h5>
 											<div class="media-mini mt-3">
-												<a href="shop.html">
-													<img src={{URL::asset("assets/images/g1.jpg")}} class="img-fluid" alt="">
+												<a href="{{url('/shop')}}">
+													<img src={{URL::asset("assets/images/$menu->image")}} class="img-fluid" alt="">
 												</a>
 											</div>
 

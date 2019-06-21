@@ -28,7 +28,8 @@ class DatabaseSeeder extends Seeder
                 MiddleTimerTableSeeder::class,
                 DeliveryTableSeeder::class,
                 ProductTypeTableSeeder::class,
-                ReviewTableSeeder::class
+                ReviewTableSeeder::class,
+                CreateMenusTableSeeder::class
             ]
         );
     }

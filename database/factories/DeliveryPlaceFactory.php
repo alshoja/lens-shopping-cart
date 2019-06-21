@@ -5,7 +5,7 @@
 use App\Models\DeliveryPlace;
 use Faker\Generator as Faker;
 
-$factory->define(DeliveryPlace::class, function (Faker $faker) {
+$factory->define(DeliveryPlace::class, function (Faker $faker) use($factory) {
     return [
         'state'=>$faker->state,
         'district'=>$faker->city,

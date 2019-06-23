@@ -11,6 +11,6 @@ class TopSliderTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\TopSlider::class, 10)->create();
+        factory(App\Models\TopSlider::class, 3)->create();
     }
 }

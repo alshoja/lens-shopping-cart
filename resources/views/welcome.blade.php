@@ -23,20 +23,20 @@
             <?php $s = 0 ?>
             @foreach ($slider as $sliderdata)
             @if ($sliderdata->isActive === 1)
-            <div class="carousel-item active" style="	
+            <div class="carousel-item active" style="
 			background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
 			background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
 			background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
 			background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
-			background-size: cover;	
+			background-size: cover;
 					">
                 @else
-                <div class="carousel-item" style="	
+                <div class="carousel-item" style="
 	background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
     background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
     background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
     background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
-    background-size: cover;	
+    background-size: cover;
 			">
                     @endif
                     <div class="carousel-caption text-center">
@@ -76,9 +76,10 @@
                         <div class="men-pro-item">
                             <div class="men-thumb-item">
                                 @foreach ($item->images as $img)
-                                @endforeach
+
                                 {{-- {{ $property_images = json_decode($img->images) }} --}}
                                 <img src={{URL::asset("assets/images/$img->image")}} class="img-fluid" alt="">
+                                @endforeach
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
                                         <a href="{{url('product/item',$item->id)}}" class="link-product-add-cart">Quick

@@ -11,6 +11,6 @@ class EditorsPicTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Editorspic::class, 10)->create();
+        factory(App\Models\Editorspic::class, 3)->create();
     }
 }

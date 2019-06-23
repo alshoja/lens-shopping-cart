@@ -11,6 +11,6 @@ class TestimonialsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Testimonial::class, 10)->create();
+        factory(App\Models\Testimonial::class, 4)->create();
     }
 }

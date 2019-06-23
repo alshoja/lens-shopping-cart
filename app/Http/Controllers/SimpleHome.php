@@ -66,7 +66,7 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        //return response()->json($product_slider);
+        // return response()->json($products);
         return view('welcome', compact('product_featured', 'categorie', 'new_products', 'products', 'middle', 'about', 'contact', 'offer_box', 'product_slider', 'testimonials', 'editorsPic', 'second_feature', 'first_feature', 'slider', 'menu'));
     }
 
@@ -91,12 +91,13 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        //return response()->json($menu);
-        return view('item', compact('collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu'));
+       // return response()->json($menu);
+        return view('item',compact('collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu'));
     }
 
     public function shop()
     {
+        $collection = Product::with('user', 'images', 'categorie', 'types', 'reviews', 'reviews.users')->get();
         $menu = Menu::first();
         $offer_box = OfferBox::first();
         $about = About::first();
@@ -155,7 +156,7 @@ class SimpleHome extends Controller
 
     public function contact()
     {
-       
+
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')

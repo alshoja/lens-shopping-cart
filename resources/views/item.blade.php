@@ -61,9 +61,14 @@
                     <div class="rating1">
                         <ul class="stars">
 
-                            @for ($i = 0; $i < $collection->star; $i++)
-                                <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
-                                @endfor
+                        @for ($i = 0; $i < $collection->star; $i++)
+                                <li><a href="#"><i class="fa fa-star" style="color: orangered" aria-hidden="true"></i></a></li>
+                        @endfor
+
+                        @for ($i = 0; $i < 5-$collection->star; $i++)
+                            <li><a href="#"><i class="fa fa-star"  aria-hidden="true"></i></a></li>
+                        @endfor
+
 
                         </ul>
                     </div>
@@ -72,12 +77,12 @@
                         <form action="#" method="post">
                             <input class="form-control" type="text" autocomplete="off"  id="search" name="search" placeholder="Check with your Pin Code"
                                 required="">
-                                
-                            <input type="submit" value="Check">
+
+                            <input type="submit" disabled value="search" >
                         </form>
-                       
+
                         <spans></spans>
-                              
+
                     </div>
                     <div class="color-quality">
                         <div class="color-quality-right">
@@ -111,8 +116,8 @@
                             <form action="#" method="post">
                                 <input type="hidden" name="cmd" value="_cart">
                                 <input type="hidden" name="add" value="1">
-                                <input type="hidden" name="googles_item" value="Farenheit">
-                                <input type="hidden" name="amount" value="575.00">
+                            <input type="hidden" name="googles_item" value="{{$collection->name}}">
+                            <input type="hidden" name="amount" value="{{$collection->amount}}">
                                 <button type="submit" class="googles-cart pgoogles-cart">
                                     Add to Cart
                                 </button>
@@ -203,7 +208,19 @@
                                         </div>
                                         @endforeach
                                         <div class="add-review">
-                                            <h4>add a review</h4>
+                                                <h4>add a review</h4>
+
+                                                        <div class="container">
+                                                                <div class="smileybox">
+                                                                    <label for="r1" class="check"><input type="checkbox" id="r1" onchange="ratingStar(event)"/><i class="em em-weary"></i></label>
+                                                                    <label for="r2" class="check"><input type="checkbox" id="r2" onchange="ratingStar(event)"/><i class="em em-worried"></i></label>
+                                                                    <label for="r3" class="check"><input type="checkbox" id="r3" onchange="ratingStar(event)"/><i class="em em-blush"></i></label>
+                                                                    <label for="r4" class="check"><input type="checkbox" id="r4" onchange="ratingStar(event)"/><i class="em em-smiley"></i></label>
+                                                                    <label for="r5" class="check"><input type="checkbox" id="r5" onchange="ratingStar(event)"/><i class="em em-sunglasses"></i></label>
+                                                                </div>
+                                                            </div>
+
+
                                             <form action="#" method="post">
                                                 <input class="form-control" type="text" name="Name"
                                                     placeholder="Enter your email..." required="">
@@ -333,15 +350,18 @@
     $value=$(this).val();
     $.ajax({
     type : 'get',
-    url : '{{URL::to('search')}}',
-    data:{'search':$value},
+    url : '{{URL::to('search')}}',data:{'search':$value},
     success:function(data){
-    $('spans').html(data);
+        $('spans').html(data);
     }
-    });
+    }
+    );
     })
     </script>
     <script type="text/javascript">
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+    </script>
+    <script>
+
     </script>
 @stop

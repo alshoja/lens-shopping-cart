@@ -280,7 +280,7 @@
                                       containerID: 'toTop', // fading element id
                                     containerHoverID: 'toTopHover', // fading element hover id
                                     scrollSpeed: 1200,
-                                    easingType: 'linear' 
+                                    easingType: 'linear'
                                  };
                                 */
 
@@ -297,7 +297,7 @@
 		<script>
 			$(document).ready(function () {
 				$('#horizontalTab').easyResponsiveTabs({
-					type: 'default', //Types: default, vertical, accordion           
+					type: 'default', //Types: default, vertical, accordion
 					width: 'auto', //auto or any width like 600px
 					fit: true, // 100% fit in a container
 					closed: 'accordion', // Start closed if in accordion view
@@ -368,10 +368,10 @@
 			});
 		</script>
 		<!-- //credit-card -->
-		
-		
+
+
    <!-- FlexSlider -->
-       
+
         <script src={{URL::asset("assets/js/jquery.flexslider.js")}}></script>
 		<script>
 			// Can also be used with $(document).ready()
@@ -385,6 +385,32 @@
 		<!-- //FlexSlider-->
 <script src={{URL::asset("assets/js/bootstrap.js")}}></script>
 <!-- js file -->
+
+<!-- price range (top products) -->
+<script src={{URL::asset("assets/js/jquery-ui.js")}}></script>
+<script src={{URL::asset("assets/js/star.js")}}></script>
+<script>
+    //<![CDATA[
+    $(window).load(function () {
+        $("#slider-range").slider({
+            range: true,
+            min: 0,
+            max: 9000,
+            values: [50, 6000],
+            slide: function (event, ui) {
+                $("#amount").val("₹" + ui.values[0] + " - ₹" + ui.values[1]);
+                $("#from").val(ui.values[0]);
+                $("#to").val(ui.values[1]);
+            }
+        });
+        $("#amount").val("₹" + $("#slider-range").slider("values", 0) + " - ₹" + $("#slider-range").slider("values", 1));
+        $("#from").val( $("#slider-range").slider("values", 0)) ;
+        $("#to").val($("#slider-range").slider("values", 1)) ;
+
+    }); //]]>
+</script>
+
+<!-- //price range (top products) -->
 </body>
 
 </html>

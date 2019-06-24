@@ -8,7 +8,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
-	<meta name="keywords" content="Goggles a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<meta name="keywords" content="Goggles a Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script>
 		addEventListener("load", function () {
@@ -31,17 +31,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.carousel.css")}} type="text/css" media="all">
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.theme.css")}} type="text/css" media="all">
 	<link href={{URL::asset("assets/css/style.css")}} rel='stylesheet' type='text/css' />
-	<link href={{URL::asset("assets/css/fontawesome-all.css")}} rel="stylesheet">
+    <link href={{URL::asset("assets/css/fontawesome-all.css")}} rel="stylesheet">
+    <link rel="stylesheet"  href={{URL::asset("assets/css/star.css")}} >
 	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
+        <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'>
 </head>
 
 <body>
 	<div class="banner-top container-fluid" id="home">
-			
+
 		<!-- header -->
 		<header>
 			<div class="row">
@@ -62,12 +64,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				<div class="col-md-3 top-info-cart text-right mt-lg-4">
 					<ul class="cart-inner-info">
-						
-						{{-- <li class="button-log">
+
+						<li class="button-log">
 							<a class="btn-open" href="#">
 								<span class="fa fa-user" aria-hidden="true"></span>
 							</a>
-						</li> --}}
+						</li>
 						<li class="galssescart galssescart2 cart cart box_1">
 							<form action="#" method="post" class="last">
 								<input type="hidden" name="cmd" value="_cart">
@@ -79,17 +81,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</form>
 						</li>
 					</ul>
-				
+
 					@if (session('status'))
 					<div class="alert alert-success" role="alert">
 						{{ session('status') }}
 					</div>
-				@endif		
+				@endif
 					<!---->
 					@if (Route::has('login'))
 					@auth
 					{{-- <a href="{{ url('/home') }}">Logout</a> --}}
-					@else		
+					@else
 					<div class="overlay-login text-left">
 						<button type="button" class="overlay-close1">
 							<i class="fa fa-times" aria-hidden="true"></i>
@@ -140,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					@endif
 					@show
-					
+
 					<!---->
 				</div>
 			</div>
@@ -171,14 +173,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 				    aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon">
-						
+
 					</span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav ml-auto">
 								<!-- Authentication Links -->
 								@guest
-								
+
 									<li class="nav-item button-log">
 										<a class="nav-link btn-open" href="#">{{ __('Login') }}</a>
 									</li>
@@ -192,14 +194,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
 											{{ Auth::user()->name }} <span class="caret"></span>
 										</a>
-		
+
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 											<a class="dropdown-item" href="{{ route('logout') }}"
 											   onclick="event.preventDefault();
 															 document.getElementById('logout-form').submit();">
 												{{ __('Logout') }}
 											</a>
-		
+
 											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 												@csrf
 											</form>
@@ -213,7 +215,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
-					
+
 						<li class="nav-item">
 							<a class="nav-link" href="{{url('/about')}}">About</a>
 						</li>
@@ -279,7 +281,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<div class="row">
 										<div class="col-md-4 media-list span4 text-left">
-										
+
 											<h5 class="tittle-w3layouts-sub"> {{$menu->title_one}} </h5>
 											<ul>
 												@foreach ($categorie as $categories)
@@ -287,14 +289,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<a href="{{url('product/shop')}}">{{$categories->name}}</a>
 												</li>
 												@endforeach
-											
+
 											</ul>
 										</div>
 										<div class="col-md-4 media-list span4 text-left">
 											<h5 class="tittle-w3layouts-sub">{{$menu->title_two}}</h5>
 											<ul>
 												@foreach ($new_products as $newitem)
-		
+
 												<li class="media-mini mt-3">
 
 												<a href={{url('product/item',$newitem->id)}}>{{$newitem->name}}</a>

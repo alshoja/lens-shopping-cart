@@ -16,7 +16,8 @@ $factory->define(App\Models\Product::class, function (Faker $faker) use($factory
         'category_id' => $factory->create(App\Models\Categorie::class)->id,
         'in_flashSale'=>$bool,
         'in_Featured_sale'=>$bool,
-        'enable_type'=>$bool
+        'enable_type'=>$bool,
+        'is_inDeals'=>$bool
 
     ];
 });

@@ -86,17 +86,17 @@ class DeliveryPlaceController extends Controller
 
     public function search(Request $request)
     {
-      
+
         if ($request->ajax()) {
             $output = "";
-            $msg = "Item Available";
+            $msg = "Available Delivery Places";
             $places = DB::table('delivery_places')->where('pincode', 'LIKE', '%' . $request->search . "%")->get();
             if ($places) {
                 foreach ($places as $key => $place) {
-                    $output .= '<li>' . $place->pincode. '</li>' ;
-                  
-                } 
-               
+                    $output .= '<br>'.$msg.'<br>'.'<li>' . $place->pincode .'&nbsp'.$place->district. '</li>' ;
+
+                }
+
             } else if($output === ""){
                 $output = "Not avialable";
             }

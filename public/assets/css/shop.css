@@ -1,7 +1,28 @@
 body {
 	font-family: 'Inconsolata', monospace;
 }
-
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #ff4e00;
+    border-color: #df7f55;
+}
+.page-link:hover {
+    color: #ec9e0c;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+.page-link {
+    position: relative;
+    display: block;
+    padding: 0.5rem 0.75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffae00;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
 /*-- Shopping-Cart-PopUp --*/
 
 div#my-cart-modal {
@@ -1405,7 +1426,7 @@ span.item_price {
     .product-men.women_two {
         padding: 0 5px;
     }
-    
+
 }
 
 @media(max-width:991px) {

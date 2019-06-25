@@ -101,13 +101,20 @@
                                             </div>
                                         </div>
                                         <ul class="stars">
-                                            <?php for ($i=0; $i < $item->star ; $i++) { ?>
+                                            @for ($i = 0; $i < $item->star; $i++)
                                             <li>
-                                                <a href="#">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </a>
+                                            <a>
+                                                    <i class="fa fa-star" style="color: orangered" aria-hidden="true"></i>
+                                            </a>
                                             </li>
-                                            <?php	} ?>
+                                            @endfor
+                                            @for ($i = 0; $i < 5-$item->star; $i++)
+                                            <li>
+                                            <a>
+                                                    <i class="fa fa-star"  aria-hidden="true"></i>
+                                            </a>
+                                            </li>
+                                            @endfor
                                         </ul>
                                     </div>
                                     <div class="googles single-item hvr-outline-out">
@@ -266,14 +273,20 @@
                                                     </div>
                                                 </div>
                                                 <ul class="stars">
-                                                    <?php for ($i=0; $i < $item_slider->star ; $i++) { ?>
+                                                    @for ($i = 0; $i < $item_slider->star; $i++)
                                                     <li>
-                                                        <a href="#">
-                                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                                        </a>
+                                                    <a>
+                                                            <i class="fa fa-star" style="color: orangered" aria-hidden="true"></i>
+                                                    </a>
                                                     </li>
-                                                    <?php } ?>
-
+                                                    @endfor
+                                                    @for ($i = 0; $i < 5-$item_slider->star; $i++)
+                                                    <li>
+                                                    <a>
+                                                            <i class="fa fa-star"  aria-hidden="true"></i>
+                                                    </a>
+                                                    </li>
+                                                    @endfor
                                                 </ul>
                                             </div>
                                             <div class="googles single-item hvr-outline-out">

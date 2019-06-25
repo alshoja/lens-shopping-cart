@@ -212,11 +212,11 @@
 
                                                         <div class="container">
                                                                 <div class="smileybox">
-                                                                    <label for="r1" class="check"><input type="checkbox" id="r1" onchange="ratingStar(event)"/><i class="em em-weary"></i></label>
-                                                                    <label for="r2" class="check"><input type="checkbox" id="r2" onchange="ratingStar(event)"/><i class="em em-worried"></i></label>
-                                                                    <label for="r3" class="check"><input type="checkbox" id="r3" onchange="ratingStar(event)"/><i class="em em-blush"></i></label>
-                                                                    <label for="r4" class="check"><input type="checkbox" id="r4" onchange="ratingStar(event)"/><i class="em em-smiley"></i></label>
-                                                                    <label for="r5" class="check"><input type="checkbox" id="r5" onchange="ratingStar(event)"/><i class="em em-sunglasses"></i></label>
+                                                                    <label for="r1" class="check x"><input class="star" type="checkbox" id="r1" onchange="ratingStar(event)"/><i class="em em-weary"></i></label>
+                                                                    <label for="r2" class="check x"><input class="star" type="checkbox" id="r2" onchange="ratingStar(event)"/><i class="em em-worried"></i></label>
+                                                                    <label for="r3" class="check x"><input class="star" type="checkbox" id="r3" onchange="ratingStar(event)"/><i class="em em-blush"></i></label>
+                                                                    <label for="r4" class="check x"><input class="star" type="checkbox" id="r4" onchange="ratingStar(event)"/><i class="em em-smiley"></i></label>
+                                                                    <label for="r5" class="check x"><input class="star" type="checkbox" id="r5" onchange="ratingStar(event)"/><i class="em em-sunglasses"></i></label>
                                                                 </div>
                                                             </div>
 

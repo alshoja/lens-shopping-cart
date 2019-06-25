@@ -388,7 +388,7 @@
 
 <!-- price range (top products) -->
 <script src={{URL::asset("assets/js/jquery-ui.js")}}></script>
-<script src={{URL::asset("assets/js/star.js")}}></script>
+{{-- <script src={{URL::asset("assets/js/star.js")}}></script> --}}
 <script>
     //<![CDATA[
     $(window).load(function () {

@@ -275,10 +275,12 @@
                                 <div class="product-googles-info slide-img googles">
                                     <div class="men-pro-item">
                                         <div class="men-thumb-item">
+                                            
                                             @foreach ($itemFeatured->images as $imgf)
-                                            @endforeach
+                                           
                                             <img src="{{URL::asset("assets/images/$imgf->image")}}" class="img-fluid"
                                                 alt="">
+                                                @endforeach
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
 
@@ -319,8 +321,8 @@
                                                         <input type="hidden" name="cmd" value="_cart">
                                                         <input type="hidden" name="add" value="1">
                                                         <input type="hidden" name="googles_item"
-                                                            value="Fastrack Aviator">
-                                                        <input type="hidden" name="amount" value="325.00">
+                                                            value="{{$itemFeatured->name}}">
+                                                    <input type="hidden" name="amount" value="{{$itemFeatured->amount}}">
                                                         <button type="submit" class="googles-cart pgoogles-cart">
                                                             <i class="fas fa-cart-plus"></i>
                                                         </button>

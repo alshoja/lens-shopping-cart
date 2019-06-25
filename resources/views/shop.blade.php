@@ -86,7 +86,7 @@
                         </div>
                         <!-- // preference -->
                         <!-- discounts -->
-                        <div class="left-side">
+                        {{-- <div class="left-side">
                             <h3 class="agileits-sear-head">Discount</h3>
                             <ul>
                                 <li>
@@ -114,14 +114,14 @@
                                     <span class="span">60% or More</span>
                                 </li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <!-- //discounts -->
                         <!-- reviews -->
                         <div class="customer-rev left-side">
                             <h3 class="agileits-sear-head">Customer Review</h3>
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{URL('product/shop/cat',5)}}">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -131,7 +131,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{URL('product/shop/cat',4)}}">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -141,33 +141,33 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{URL('product/shop/cat',3)}}">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star-half-o" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <span>3.5</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
                                         <i class="fa fa-star-o" aria-hidden="true"></i>
                                         <span>3.0</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="{{URL('product/shop/cat',2)}}">
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <span>2.0</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{URL('product/shop/cat',1)}}">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
                                         <i class="fa fa-star-half-o" aria-hidden="true"></i>
                                         <i class="fa fa-star-o" aria-hidden="true"></i>
                                         <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        <span>2.5</span>
+                                        <span>1.0</span>
                                     </a>
                                 </li>
                             </ul>
@@ -209,6 +209,12 @@
                             </div>
                             <div class="row">
                                 <!-- /womens -->
+
+                                @if ($all_products->count()===0)
+                                <div class="row col-md-12">
+                                <img style="padding: 50px" src="{{URL::asset("assets/gif/found.gif")}}"  class="img-fluid" alt="">
+                                </div>
+                                @else
                                 @foreach ($all_products as $item)
                                 <div class="col-md-3 product-men women_two shop-gd" style="padding-bottom: 10px">
                                     <div class="product-googles-info googles">
@@ -264,7 +270,7 @@
                                 </div>
 
                                 @endforeach
-
+                                @endif
                             </div>
                             <?php echo $all_products->links(); ?>
                        </div>

@@ -114,8 +114,8 @@
                                         <form action="#" method="post">
                                             <input type="hidden" name="cmd" value="_cart">
                                             <input type="hidden" name="add" value="1">
-                                            <input type="hidden" name="googles_item" value="Farenheit Oval">
-                                            <input type="hidden" name="amount" value="325.00">
+                                        <input type="hidden" name="googles_item" value="{{$item->name}}">
+                                            <input type="hidden" name="amount" value="{{$item->amount}}">
                                             <button type="submit" class="googles-cart pgoogles-cart">
                                                 <i class="fas fa-cart-plus"></i>
                                             </button>

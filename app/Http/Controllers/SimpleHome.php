@@ -126,7 +126,7 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->paginate(12);
 
-        return view('shop', compact('deals','all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('deals', 'all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 
     public function contact()
@@ -176,6 +176,44 @@ class SimpleHome extends Controller
 
         return view('payment');
     }
+    public function star($id)
+    {
+        $from = Input::get('from');
+        $to = Input::get('to');
+        $query = Input::get('search');
+        $menu = Menu::first();
+        $offer_box = OfferBox::first();
+        $about = About::first();
+        $contact = Contact::first();
+        $deals = Product::where('stock', '>', '0')
+        ->where('is_inDeals', 1)
+        ->with('user', 'images', 'categorie')
+        ->take(4)->orderBy('id', 'desc')
+        ->get();
+        $product_featured = Product::where('stock', '>', '0')
+            ->where('in_featured_sale', 1)
+            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->take(8)
+            ->orderBy('id', 'desc')
+            ->get();
+        $categorie = Categorie::take(8)
+            ->orderBy('id', 'desc')
+            ->get();
+        $new_products = Product::where('stock', '>', '0')
+            ->with('user', 'images', 'categorie')
+            ->take(8)->orderBy('id', 'desc')
+            ->get();
+
+        $all_products = Product::where('stock', '>', '0')
+            ->where('star', $id)
+            ->with('user', 'images', 'categorie')
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+
+        // return response()->json($all_products);
+        return view('shop', compact('all_products','deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+
+    }
 
     public function search(Request $request)
     {
@@ -186,6 +224,11 @@ class SimpleHome extends Controller
         $offer_box = OfferBox::first();
         $about = About::first();
         $contact = Contact::first();
+        $deals = Product::where('stock', '>', '0')
+        ->where('is_inDeals', 1)
+        ->with('user', 'images', 'categorie')
+        ->take(4)->orderBy('id', 'desc')
+        ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
             ->with('user', 'images', 'categorie', 'types', 'reviews')
@@ -212,6 +255,6 @@ class SimpleHome extends Controller
         }
 
         // return response()->json($all_products);
-        return view('shop', compact('all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('all_products', 'deals','categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 }

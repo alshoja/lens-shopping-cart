@@ -32,13 +32,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link rel="stylesheet" href={{URL::asset("assets/css/owl.theme.css")}} type="text/css" media="all">
 	<link href={{URL::asset("assets/css/style.css")}} rel='stylesheet' type='text/css' />
     <link href={{URL::asset("assets/css/fontawesome-all.css")}} rel="stylesheet">
-    {{-- <link rel="stylesheet"  href={{URL::asset("assets/css/star.css")}} > --}}
+    <link rel="stylesheet"  href={{URL::asset("assets/css/star.css")}} >
 	<link href="//fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800"
 		rel="stylesheet">
-		{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> --}}
-        {{-- <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
-        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'> --}}
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
+        <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'>
 </head>
 
 <body>

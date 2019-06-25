@@ -169,6 +169,15 @@ class SimpleHome extends Controller
     public function checkout(Request $request)
     {
         $post =$request->all();
+        
+        for($i=1;$i<=$post['loop_length'];$i++){
+          
+          echo $post['googles_item_'.$i];
+          echo $post['quantity_'.$i];
+          echo $post['item_id_'.$i];
+          echo $post['amount_'.$i];
+          echo '<br>';
+        }
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')
@@ -182,7 +191,7 @@ class SimpleHome extends Controller
         $partners = Partner::all();
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
-        return response()->json($post);
+         //return response()->json($post);
         return view('checkout', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
       //  return view('checkout');
     }

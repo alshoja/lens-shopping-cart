@@ -15,7 +15,8 @@ use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\TopSlider as Slider;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class SimpleHome extends Controller
 {
@@ -165,10 +166,25 @@ class SimpleHome extends Controller
         return view('about', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-
-        return view('checkout');
+        $post =$request->all();
+        $menu = Menu::first();
+        $new_products = Product::where('stock', '>', '0')
+            ->with('user', 'images', 'categorie')
+            ->take(8)->orderBy('id', 'desc')
+            ->get();
+        $offer_box = OfferBox::first();
+        $categorie = Categorie::take(8)
+            ->orderBy('id', 'desc')
+            ->get();
+        $about = About::first();
+        $partners = Partner::all();
+        $contact = Contact::first();
+        $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
+        return response()->json($post);
+        return view('checkout', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
+      //  return view('checkout');
     }
 
     public function payment()

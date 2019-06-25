@@ -165,7 +165,9 @@
         if (this.subtotal() > 0) {
             items = this.items();
 
-            for (i = 0, len = items.length; i < len; i++) {}
+            for (i = 0, len = items.length; i < len; i++) {
+                console.log(items)
+            }
         }
     });
 </script>

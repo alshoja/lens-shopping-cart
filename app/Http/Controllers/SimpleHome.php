@@ -170,22 +170,17 @@ class SimpleHome extends Controller
     {
         $post = $request->all();
         $cart = array();
+       
+
         for ($i = 1; $i <= $post['loop_length']; $i++) {
 
-            // $cart[$i]['googles_item'] = $post['googles_item_' . $i];
-            // $cart[$i]['quantity'] = $post['quantity_' . $i];
-            // $cart[$i]['item_id'] = $post['item_id_' . $i];
-            // $cart[$i]['amount'] = $post['amount_' . $i];
-            array_push($cart,
-            [
-             'googles_item' => $post['googles_item_' . $i],
-             'quantity' => $post['quantity_' . $i],
-             'item_id' => $post['item_id_' . $i],
-             'amount' => $post['amount_' . $i],
-             ]
-            );
+            $cart_item_id[]['item_id'] = $post['item_id_' . $i];       
         }
-$x = response()->json($cart);
+
+        $cart_items = $products = Product::wherein('id',$cart_item_id)
+        ->with('user', 'images', 'categorie')
+        ->get();
+
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')
@@ -199,10 +194,9 @@ $x = response()->json($cart);
         $partners = Partner::all();
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
-         //return response()->json($cart);
-        //  dd($cart);
-        return view('checkout', compact('x', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
-        //  return view('checkout');
+        // return response()->json($result);
+        return view('checkout', compact('cart_items', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
+      
     }
 
     public function payment()

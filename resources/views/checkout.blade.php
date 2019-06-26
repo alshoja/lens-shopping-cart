@@ -51,14 +51,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 0 ?>
-                    {{-- {{    dd($x)}} --}}
-                    @foreach ($x as $items)
-                <tr class="rem{{$i++}}">
-                        <td class="invert">1</td>
+                    <?php $i = 1 ?>
+                  
+                    @foreach ($cart_items as $items)
+                <tr class="rem{{$i}}">
+                <td class="invert">{{$i}}</td>
                         <td class="invert-image">
                             <a href="single.html">
-                                <img src="images/s1.jpg" alt=" " class="img-responsive">
+                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt=" " class="img-responsive">
                             </a>
                         </td>
                         <td class="invert">
@@ -66,22 +66,23 @@
                                 <div class="quantity-select">
                                     <div class="entry value-minus">&nbsp;</div>
                                     <div class="entry value">
-                                    <span></span>
+                                    <span>2</span>
                                     </div>
                                     <div class="entry value-plus active">&nbsp;</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="invert">{{$items->googles_item}} </td>
+                        <td class="invert">{{$items->name}} </td>
 
                     <td class="invert">{{$items->amount}}</td>
                         <td class="invert">
                             <div class="rem">
-                            <div class="close{{$i++}}"> </div>
+                            <div class="close{{$i}}"> </div>
                             </div>
 
                         </td>
                     </tr>
+                    <?php $i++?>
 @endforeach
                 </tbody>
             </table>

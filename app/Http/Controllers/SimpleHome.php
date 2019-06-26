@@ -14,8 +14,9 @@ use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Testimonial;
 use App\Models\TopSlider as Slider;
+use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
 
 class SimpleHome extends Controller
 {
@@ -165,8 +166,26 @@ class SimpleHome extends Controller
         return view('about', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
+        $post = $request->all();
+        $cart = array();
+        for ($i = 1; $i <= $post['loop_length']; $i++) {
+
+            // $cart[$i]['googles_item'] = $post['googles_item_' . $i];
+            // $cart[$i]['quantity'] = $post['quantity_' . $i];
+            // $cart[$i]['item_id'] = $post['item_id_' . $i];
+            // $cart[$i]['amount'] = $post['amount_' . $i];
+            array_push($cart,
+            [
+             'googles_item' => $post['googles_item_' . $i],
+             'quantity' => $post['quantity_' . $i],
+             'item_id' => $post['item_id_' . $i],
+             'amount' => $post['amount_' . $i],
+             ]
+            );
+        }
+$x = response()->json($cart);
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')
@@ -180,8 +199,10 @@ class SimpleHome extends Controller
         $partners = Partner::all();
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
-
-        return view('checkout',compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
+         //return response()->json($cart);
+        //  dd($cart);
+        return view('checkout', compact('x', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
+        //  return view('checkout');
     }
 
     public function payment()
@@ -199,10 +220,10 @@ class SimpleHome extends Controller
         $about = About::first();
         $contact = Contact::first();
         $deals = Product::where('stock', '>', '0')
-        ->where('is_inDeals', 1)
-        ->with('user', 'images', 'categorie')
-        ->take(4)->orderBy('id', 'desc')
-        ->get();
+            ->where('is_inDeals', 1)
+            ->with('user', 'images', 'categorie')
+            ->take(4)->orderBy('id', 'desc')
+            ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
             ->with('user', 'images', 'categorie', 'types', 'reviews')
@@ -224,7 +245,7 @@ class SimpleHome extends Controller
             ->paginate(12);
 
         // return response()->json($all_products);
-        return view('shop', compact('all_products','deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
 
     }
 
@@ -238,10 +259,10 @@ class SimpleHome extends Controller
         $about = About::first();
         $contact = Contact::first();
         $deals = Product::where('stock', '>', '0')
-        ->where('is_inDeals', 1)
-        ->with('user', 'images', 'categorie')
-        ->take(4)->orderBy('id', 'desc')
-        ->get();
+            ->where('is_inDeals', 1)
+            ->with('user', 'images', 'categorie')
+            ->take(4)->orderBy('id', 'desc')
+            ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
             ->with('user', 'images', 'categorie', 'types', 'reviews')
@@ -268,6 +289,6 @@ class SimpleHome extends Controller
         }
 
         // return response()->json($all_products);
-        return view('shop', compact('all_products', 'deals','categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 }

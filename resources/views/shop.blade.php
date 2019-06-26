@@ -256,6 +256,7 @@
                                                             <input type="hidden" name="add" value="1">
                                                         <input type="hidden" name="googles_item" value="{{$item->name}}">
                                                         <input type="hidden" name="amount" value="{{$item->amount}}">
+                                                        <input type="hidden" name="item_id" value=" {{$item->id}}">
                                                             <button type="submit" class="googles-cart pgoogles-cart">
                                                                 <i class="fas fa-cart-plus"></i>
                                                             </button>
@@ -314,18 +315,27 @@
                                                                 @for ($i = 0; $i < $itemFeatured->star; $i++)
                                                                <li>
                                                                     <a href="#">
-                                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                                        <i class="fa fa-star" style="color: orangered" aria-hidden="true"></i>
                                                                     </a>
                                                                 </li>
                                                                 @endfor
+
+                                                                @for ($i = 0; $i < 5- $itemFeatured->star; $i++)
+                                                                <li>
+                                                                     <a href="#">
+                                                                         <i class="fa fa-star" aria-hidden="true"></i>
+                                                                     </a>
+                                                                 </li>
+                                                                 @endfor
                                                             </ul>
                                                         </div>
                                                         <div class="googles single-item hvr-outline-out">
                                                             <form action="#" method="post">
                                                                 <input type="hidden" name="cmd" value="_cart">
                                                                 <input type="hidden" name="add" value="1">
-                                                            <input type="hidden" name="googles_item" value="{{$itemFeatured->name}}">
-                                                            <input type="hidden" name="amount" value="{{$itemFeatured->amount}}">
+                                                                <input type="hidden" name="googles_item" value="{{$itemFeatured->name}}">
+                                                                  <input type="hidden" name="amount" value="{{$itemFeatured->amount}}">
+                                                                 <input type="hidden" name="item_id" value=" {{$itemFeatured->id}}">
                                                                 <button type="submit" class="googles-cart pgoogles-cart">
                                                                     <i class="fas fa-cart-plus"></i>
                                                                 </button>

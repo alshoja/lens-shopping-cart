@@ -51,7 +51,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="rem1">
+                    <?php $i = 0 ?>
+                    {{-- {{    dd($x)}} --}}
+                    @foreach ($x as $items)
+                <tr class="rem{{$i++}}">
                         <td class="invert">1</td>
                         <td class="invert-image">
                             <a href="single.html">
@@ -63,79 +66,23 @@
                                 <div class="quantity-select">
                                     <div class="entry value-minus">&nbsp;</div>
                                     <div class="entry value">
-                                        <span>1</span>
+                                    <span></span>
                                     </div>
                                     <div class="entry value-plus active">&nbsp;</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="invert">Irayz Butterfly </td>
+                        <td class="invert">{{$items->googles_item}} </td>
 
-                        <td class="invert">$281.00</td>
+                    <td class="invert">{{$items->amount}}</td>
                         <td class="invert">
                             <div class="rem">
-                                <div class="close1"> </div>
+                            <div class="close{{$i++}}"> </div>
                             </div>
 
                         </td>
                     </tr>
-                    <tr class="rem2">
-                        <td class="invert">2</td>
-                        <td class="invert-image">
-                            <a href="single.html">
-                                <img src="images/s5.jpg" alt=" " class="img-responsive">
-                            </a>
-                        </td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value">
-                                        <span>1</span>
-                                    </div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Fastrack Aviator </td>
-
-                        <td class="invert">$325.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close2"> </div>
-                            </div>
-
-                        </td>
-                    </tr>
-                    <tr class="rem3">
-                        <td class="invert">3</td>
-                        <td class="invert-image">
-                            <a href="single.html">
-                                <img src="images/s2.jpg" alt=" " class="img-responsive">
-                            </a>
-                        </td>
-                        <td class="invert">
-                            <div class="quantity">
-                                <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
-                                    <div class="entry value">
-                                        <span>1</span>
-                                    </div>
-                                    <div class="entry value-plus active">&nbsp;</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="invert">Opium (Grey)</td>
-
-                        <td class="invert">$325.00</td>
-                        <td class="invert">
-                            <div class="rem">
-                                <div class="close3"> </div>
-                            </div>
-
-                        </td>
-                    </tr>
-
+@endforeach
                 </tbody>
             </table>
         </div>

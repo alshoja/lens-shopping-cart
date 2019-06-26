@@ -155,6 +155,7 @@
 <script src={{URL::asset("assets/js/demo1-search.js")}}></script>
 <!--//search jQuery-->
 <!-- cart-js -->
+
 <script src={{URL::asset("assets/js/minicart.js")}}></script>
 <script>
     googles.render();
@@ -165,7 +166,9 @@
         if (this.subtotal() > 0) {
             items = this.items();
 
-            for (i = 0, len = items.length; i < len; i++) {}
+            for (i = 0, len = items.length; i < len; i++) {
+                console.log(items)
+            }
         }
     });
 </script>

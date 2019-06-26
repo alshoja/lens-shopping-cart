@@ -116,8 +116,9 @@
                             <form action="#" method="post">
                                 <input type="hidden" name="cmd" value="_cart">
                                 <input type="hidden" name="add" value="1">
-                            <input type="hidden" name="googles_item" value="{{$collection->name}}">
-                            <input type="hidden" name="amount" value="{{$collection->amount}}">
+                                <input type="hidden" name="googles_item" value="{{$collection->name}}">
+                                <input type="hidden" name="amount" value="{{$collection->amount}}">
+                                <input type="hidden" name="item_id" value=" {{$collection->id}}">
                                 <button type="submit" class="googles-cart pgoogles-cart">
                                     Add to Cart
                                 </button>
@@ -275,9 +276,9 @@
                                 <div class="product-googles-info slide-img googles">
                                     <div class="men-pro-item">
                                         <div class="men-thumb-item">
-                                            
+
                                             @foreach ($itemFeatured->images as $imgf)
-                                           
+
                                             <img src="{{URL::asset("assets/images/$imgf->image")}}" class="img-fluid"
                                                 alt="">
                                                 @endforeach
@@ -323,6 +324,7 @@
                                                         <input type="hidden" name="googles_item"
                                                             value="{{$itemFeatured->name}}">
                                                     <input type="hidden" name="amount" value="{{$itemFeatured->amount}}">
+                                                    <input type="hidden" name="item_id" value=" {{$itemFeatured->id}}">
                                                         <button type="submit" class="googles-cart pgoogles-cart">
                                                             <i class="fas fa-cart-plus"></i>
                                                         </button>

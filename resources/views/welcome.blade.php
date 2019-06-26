@@ -121,8 +121,9 @@
                                         <form action="#" method="post">
                                             <input type="hidden" name="cmd" value="_cart">
                                             <input type="hidden" name="add" value="1">
-                                        <input type="hidden" name="googles_item" value="{{$item->name}}">
+                                            <input type="hidden" name="googles_item" value="{{$item->name}}">
                                             <input type="hidden" name="amount" value="{{$item->amount}}">
+                                            <input type="hidden" name="item_id" value=" {{$item->id}}">
                                             <button type="submit" class="googles-cart pgoogles-cart">
                                                 <i class="fas fa-cart-plus"></i>
                                             </button>
@@ -293,8 +294,9 @@
                                                 <form action="#" method="post">
                                                     <input type="hidden" name="cmd" value="_cart">
                                                     <input type="hidden" name="add" value="1">
-                                                    <input type="hidden" name="googles_item" value="Fastrack Aviator">
-                                                    <input type="hidden" name="amount" value="325.00">
+                                                    <input type="hidden" name="googles_item" value=" {{$item_slider->name}}">
+                                                    <input type="hidden" name="amount" value=" {{$item_slider->amount}}">
+                                                    <input type="hidden" name="item_id" value=" {{$item_slider->id}}">
                                                     <button type="submit" class="googles-cart pgoogles-cart">
                                                         <i class="fas fa-cart-plus"></i>
                                                     </button>

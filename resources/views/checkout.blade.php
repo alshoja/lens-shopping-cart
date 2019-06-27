@@ -58,7 +58,7 @@
                 <td class="invert">{{$i}}</td>
                         <td class="invert-image">
                             <a href="single.html">
-                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt=" " class="img-responsive">
+                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt="" class="img-responsive">
                             </a>
                         </td>
                         <td class="invert">

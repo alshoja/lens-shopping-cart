@@ -36,7 +36,7 @@
         <h3 class="tittle-w3layouts my-lg-4 mt-3">Checkout </h3>
         <div class="checkout-right">
             <h4>Your shopping cart contains:
-                <span>3 Products</span>
+                {{-- <span>3 Products</span> --}}
             </h4>
             <table class="timetable_sub">
                 <thead>
@@ -52,8 +52,8 @@
                 </thead>
                 <tbody>
                     <?php $i = 1 ?>
-                  
-                    @foreach ($cart_items as $items)
+
+                    @foreach ($cart_items as $item)
                 <tr class="rem{{$i}}">
                 <td class="invert">{{$i}}</td>
                         <td class="invert-image">
@@ -66,15 +66,18 @@
                                 <div class="quantity-select">
                                     <div class="entry value-minus">&nbsp;</div>
                                     <div class="entry value">
-                                    <span>2</span>
+                                    <span >{{$item['quantity']}}</span>
+                                    <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
+                                    <input type="hidden" id="length" value="{{$item['length']}}" >
                                     </div>
-                                    <div class="entry value-plus active">&nbsp;</div>
+                                <div class="entry value-plus active" id="{{$i}}"  onclick="add_number((this.id || this.innerText))">&nbsp;</div>
                                 </div>
                             </div>
                         </td>
-                        <td class="invert">{{$items->name}} </td>
+                        <td class="invert">{{$item['name']}} </td>
 
-                    <td class="invert">{{$items->amount}}</td>
+                    <td  class="invert">{{$item['amount']}}</td>
+                    <input type="hidden" name="amount_{{$i}}" value="{{$item['amount']}}" class="item_amount" id="item_amount" >
                         <td class="invert">
                             <div class="rem">
                             <div class="close{{$i}}"> </div>
@@ -86,6 +89,7 @@
 @endforeach
                 </tbody>
             </table>
+            <button id='b' class="buttonx" type="button"></button>
         </div>
         <div class="checkout-left row">
             <div class="col-md-4 checkout-left-basket">

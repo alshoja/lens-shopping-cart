@@ -170,16 +170,20 @@ class SimpleHome extends Controller
     {
         $post = $request->all();
         $cart = array();
-       
+
 
         for ($i = 1; $i <= $post['loop_length']; $i++) {
 
-            $cart_item_id[]['item_id'] = $post['item_id_' . $i];       
+
+            $cart_items[] = array(
+                "amount"=>$post['amount_' . $i],
+                "name"=>$post['googles_item_' . $i],
+                "item_id"=>$post['item_id_' . $i],
+                "quantity"=>$post['quantity_' . $i],
+                 "length"=>$post['loop_length'],
+            );
         }
 
-        $cart_items = $products = Product::wherein('id',$cart_item_id)
-        ->with('user', 'images', 'categorie')
-        ->get();
 
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
@@ -194,9 +198,9 @@ class SimpleHome extends Controller
         $partners = Partner::all();
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
-        // return response()->json($result);
+        // return response()->json($post);
         return view('checkout', compact('cart_items', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
-      
+
     }
 
     public function payment()

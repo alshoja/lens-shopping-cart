@@ -155,7 +155,7 @@
 <script src={{URL::asset("assets/js/demo1-search.js")}}></script>
 <!--//search jQuery-->
 <!-- cart-js -->
-
+<script src={{URL::asset("assets/js/calculate-cart-amount.js")}}></script>
 <script src={{URL::asset("assets/js/minicart.js")}}></script>
 <script>
     googles.render();

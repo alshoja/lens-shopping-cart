@@ -17,8 +17,7 @@ function urlParam() {
     var loop_id = 1;
     var totalInit = 0;
 
-    for (let index = 0; index < length; index++)
-     {
+    for (let index = 0; index < length; index++) {
         var item_id = url.searchParams.get("item_id_" + loop_id);
         var item_name = url.searchParams.get("googles_item_" + loop_id);
         var amount = url.searchParams.get("amount_" + loop_id);
@@ -26,24 +25,33 @@ function urlParam() {
         totalInit = parseFloat(amount) * parseInt(quantity) + parseFloat(totalInit);
         loop_id++;
         items.push({
-            'id':index,
+            'id': index,
             'amount': amount,
             'item_id': item_id,
             'item_name': item_name,
             'quantity': quantity
         })
-     }
-    console.log('with index',items)
+    }
+    console.log('with index', items)
     document.querySelector(".total").innerHTML = totalInit;
     document.getElementById("final_amount").value = totalInit;
 }
 
-function remove(id) {
-    console.log('id from page',id)
+function remove(id1) {
+    var id = id1;
+
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].id == id) {
+            console.log('f* id is  ',i)
+            items.splice(i, 1);
+            break;
+        }
+    }
+    // console.log('id from page', id)
     // const removed = items.splice(item, 1);
-    console.log('removed index', index)
-    console.log('removed', removed)
-    console.log('current items', items)
+    // console.log('removed index', index)
+    // console.log('removed', removed)
+    // console.log('current items', items)
     sumOfCart()
 }
 
@@ -51,7 +59,7 @@ function plusButton(id, amount, quantity) {
     const newamount = parseFloat(amount)
     quantity = parseInt(quantity) + 1
     var newitem = {
-        'id':'',
+        'id': '',
         'amount': newamount,
         'item_id': '',
         'item_name': '',

@@ -51,27 +51,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1 ?>
+                    <?php
+                    $i = 1;
+                    $id = 0 ;
+                    ?>
 
                     @foreach ($cart_items as $item)
                 <tr class="rem{{$i}}">
                 <td class="invert">{{$i}}</td>
                         <td class="invert-image">
                             <a href="single.html">
-                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt=" " class="img-responsive">
+                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt="" class="img-responsive">
                             </a>
                         </td>
                         <td class="invert">
                             <div class="quantity">
                                 <div class="quantity-select">
-                                    <div class="entry value-minus">&nbsp;</div>
+                                    <button class="entry value-minus"  id="minus{{$id}}" value="{{$item['quantity']}}"   onclick="minusbutton({{$id}},{{$item['amount']}},this.value)">&nbsp;</button>
                                     <div class="entry value">
                                     <span >{{$item['quantity']}}</span>
                                     <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
                                     <input type="hidden" id="length" value="{{$item['length']}}" >
 
                                     </div>
-                                <div class="entry value-plus active" id="{{$i}}"   onclick="add_number((this.id || this.innerText))">&nbsp;</div>
+                                <button class="entry value-plus " id="plus{{$id}}" value="{{$item['quantity']}}"   onclick="plusButton({{$id}},{{$item['amount']}},this.value)"></button>
                                 </div>
                             </div>
                         </td>
@@ -79,18 +82,23 @@
 
                     <td  class="invert">{{$item['amount']}}</td>
                     <input type="hidden" name="amount_{{$i}}" value="{{$item['amount']}}" class="item_amount" id="item_amount" >
+
                         <td class="invert">
                             <div class="rem">
-                            <div class="close{{$i}}"> </div>
+                            <div class="close{{$i}}" id="{{$id}}" onclick="remove(this.id)"> </div>
                             </div>
 
                         </td>
                     </tr>
-                    <?php $i++?>
+                    <?php
+                    $i++;
+                    $id++;
+                    ?>
 @endforeach
                 </tbody>
             </table>
-            <button id='b' class="buttonx" type="button"></button>
+            <input type="hidden" name="final_amount" value="" id="final_amount" class="final_amount"  >
+
         </div>
         <div class="checkout-left row">
             <div class="col-md-4 checkout-left-basket">
@@ -114,7 +122,7 @@
                     </li>
                     <li>Total
                         <i>-</i>
-                        <span>$986.00</span>
+                        <span class="total"></span>
                     </li>
                 </ul>
             </div>
@@ -174,6 +182,12 @@
 
 </div>
 </section>
+<div hidden class="simply-countdown-custom" id="simply-countdown-custom"></div>
 <!--//checkout-->
+<script>
 
+window.onload = function() {
+    urlParam();
+};
+</script>
 @stop

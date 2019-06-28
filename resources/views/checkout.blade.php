@@ -51,7 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                     $i = 1;
                     $id = 0 ;
                     ?>
@@ -67,13 +67,14 @@
                         <td class="invert">
                             <div class="quantity">
                                 <div class="quantity-select">
-                                    <button class="entry value-minus">&nbsp;</button>
+                                    <button class="entry value-minus"  id="minus{{$id}}" value="{{$item['quantity']}}"   onclick="minusbutton({{$id}},{{$item['amount']}},this.value)">&nbsp;</button>
                                     <div class="entry value">
                                     <span >{{$item['quantity']}}</span>
                                     <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
                                     <input type="hidden" id="length" value="{{$item['length']}}" >
+
                                     </div>
-                                <button class="entry value-plus " id="{{$item['quantity']}}" value="444"  onclick="plusButton(this.id,this.value)"></button>
+                                <button class="entry value-plus " id="plus{{$id}}" value="{{$item['quantity']}}"   onclick="plusButton({{$id}},{{$item['amount']}},this.value)"></button>
                                 </div>
                             </div>
                         </td>
@@ -81,7 +82,7 @@
 
                     <td  class="invert">{{$item['amount']}}</td>
                     <input type="hidden" name="amount_{{$i}}" value="{{$item['amount']}}" class="item_amount" id="item_amount" >
-                   
+
                         <td class="invert">
                             <div class="rem">
                             <div class="close{{$i}}" id="{{$id}}" onclick="remove(this.id)"> </div>
@@ -89,7 +90,7 @@
 
                         </td>
                     </tr>
-                    <?php 
+                    <?php
                     $i++;
                     $id++;
                     ?>
@@ -97,7 +98,7 @@
                 </tbody>
             </table>
             <input type="hidden" name="final_amount" value="" id="final_amount" class="final_amount"  >
-          
+
         </div>
         <div class="checkout-left row">
             <div class="col-md-4 checkout-left-basket">
@@ -181,6 +182,7 @@
 
 </div>
 </section>
+<div hidden class="simply-countdown-custom" id="simply-countdown-custom"></div>
 <!--//checkout-->
 <script>
 

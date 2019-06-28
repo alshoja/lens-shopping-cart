@@ -37,8 +37,8 @@ function urlParam() {
     document.getElementById("final_amount").value = totalInit;
 }
 
-function remove(id1) {
-    var id = id1;
+function remove(data_id) {
+    var id = data_id;
 
     for (var i = 0; i < items.length; i++) {
         if (items[i].id == id) {
@@ -51,21 +51,29 @@ function remove(id1) {
     // const removed = items.splice(item, 1);
     // console.log('removed index', index)
     // console.log('removed', removed)
-    // console.log('current items', items)
+     console.log('current items', items)
     sumOfCart()
 }
 
 function plusButton(id, amount, quantity) {
+    
     const newamount = parseFloat(amount)
     quantity = parseInt(quantity) + 1
     var newitem = {
-        'id': '',
+        'id': id,
         'amount': newamount,
         'item_id': '',
         'item_name': '',
         'quantity': quantity
     }
-    items.splice(id, 1, newitem)
+    for (var i = 0; i < items.length; i++) {
+        if (items[i].id == id) {
+            console.log('f* id is  ',i)
+            items.splice(i, 1, newitem)
+            break;
+        }
+    }
+ 
     document.getElementById("plus" + id).value = quantity;
     document.getElementById("minus" + id).value = quantity;
     console.log('new array', items)
@@ -77,13 +85,20 @@ function minusbutton(id, amount, quantity) {
         const newamount = parseFloat(amount)
         quantity = parseInt(quantity) - 1
         var newitem = {
+            'id':id,
             'amount': newamount,
             'item_id': '',
             'item_name': '',
             'quantity': quantity
         }
-
-        items.splice(id, 1, newitem)
+        for (var i = 0; i < items.length; i++) {
+            if (items[i].id == id) {
+                console.log('f* id is  ',i)
+                items.splice(i, 1, newitem)
+                break;
+            }
+        }
+        // items.splice(id, 1, newitem)
         document.getElementById("plus" + id).value = quantity;
         document.getElementById("minus" + id).value = quantity;
         sumOfCart()

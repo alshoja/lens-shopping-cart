@@ -90,11 +90,19 @@
 
                         </td>
                     </tr>
+                    <tr>
+                    </tr>
                     <?php
                     $i++;
                     $id++;
                     ?>
 @endforeach
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>Total</td>
+<td>&#8377;/ <span class="total"></span></td>
                 </tbody>
             </table>
             <input type="hidden" name="final_amount" value="" id="final_amount" class="final_amount"  >

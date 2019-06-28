@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'SimpleHome@index')->name('home');
+Route::get('/product', 'SimpleHome@index')->name('shopify');
 Route::get('product/shop', 'SimpleHome@shop')->name('shop');
 Route::get('product/shop/price', 'SimpleHome@search');
 Route::get('/product/item/{id}', 'SimpleHome@item')->name('item');
@@ -20,12 +20,17 @@ Route::get('/about', 'SimpleHome@about')->name('about');
 Route::get('/contact', 'SimpleHome@contact')->name('contact');
 Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
 Route::get('product/payment', 'SimpleHome@payment')->name('payment');
-
-
 Route::get('/search','DeliveryPlaceController@search');
 
 
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('user', 'UserController', ['except' => ['show']]);
+	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
+	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+});
+

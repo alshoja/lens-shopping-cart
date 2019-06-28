@@ -69,8 +69,9 @@
                                     <span >{{$item['quantity']}}</span>
                                     <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
                                     <input type="hidden" id="length" value="{{$item['length']}}" >
+
                                     </div>
-                                <div class="entry value-plus active" id="{{$i}}"  onclick="add_number((this.id || this.innerText))">&nbsp;</div>
+                                <div class="entry value-plus active" id="{{$i}}"   onclick="add_number((this.id || this.innerText))">&nbsp;</div>
                                 </div>
                             </div>
                         </td>

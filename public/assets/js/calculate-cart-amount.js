@@ -37,9 +37,8 @@ function urlParam() {
     document.getElementById("final_amount").value = totalInit;
 }
 
-function remove(id1) {
-    var id = id1;
-
+function remove(objid) {
+    var id = objid;
     for (var i = 0; i < items.length; i++) {
         if (items[i].id == id) {
             console.log('f* id is  ',i)
@@ -47,11 +46,7 @@ function remove(id1) {
             break;
         }
     }
-    // console.log('id from page', id)
-    // const removed = items.splice(item, 1);
-    // console.log('removed index', index)
-    // console.log('removed', removed)
-    // console.log('current items', items)
+
     sumOfCart()
 }
 

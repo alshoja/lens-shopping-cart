@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'SimpleHome@index')->name('home');
+Route::get('/', 'SimpleHome@index');
 Route::get('product/shop', 'SimpleHome@shop')->name('shop');
 Route::get('product/shop/price', 'SimpleHome@search');
 Route::get('/product/item/{id}', 'SimpleHome@item')->name('item');

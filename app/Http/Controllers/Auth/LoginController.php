@@ -56,7 +56,7 @@ class LoginController extends Controller
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
-        return view('auth.login',compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
+        return view('user-auth.login',compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
     }
 
 }

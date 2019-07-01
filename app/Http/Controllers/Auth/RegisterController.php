@@ -59,7 +59,7 @@ class RegisterController extends Controller
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
-        return view('auth.register', compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
+        return view('user-auth.register', compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
     }
 
     /**

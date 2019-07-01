@@ -56,7 +56,7 @@ function remove(data_id) {
 }
 
 function plusButton(id, amount, quantity) {
-    
+
     const newamount = parseFloat(amount)
     quantity = parseInt(quantity) + 1
     var newitem = {
@@ -73,7 +73,7 @@ function plusButton(id, amount, quantity) {
             break;
         }
     }
- 
+
     document.getElementById("plus" + id).value = quantity;
     document.getElementById("minus" + id).value = quantity;
     console.log('new array', items)

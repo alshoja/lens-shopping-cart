@@ -20,9 +20,14 @@ use Illuminate\Support\Facades\Input;
 
 class SimpleHome extends Controller
 {
-    public function index()
+    public function __construct()
     {
 
+        $this->middleware('auth', ['only' => ['checkout']]);
+    }
+
+    public function index()
+    {
         $products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')
             ->take(4)->orderBy('id', 'desc')

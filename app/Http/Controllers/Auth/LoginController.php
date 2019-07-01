@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\Categorie;
+use App\Models\Contact;
+use App\Models\Menu;
+use App\Models\OfferBox;
+use App\Models\Product;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -16,7 +22,7 @@ class LoginController extends Controller
     | redirecting them to your home screen. The controller uses a trait
     | to conveniently provide its functionality to your applications.
     |
-    */
+     */
 
     use AuthenticatesUsers;
 
@@ -36,4 +42,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm()
+    {
+        $menu = Menu::first();
+        $about = About::first();
+        $contact = Contact::first();
+        $categorie = Categorie::take(8)
+            ->orderBy('id', 'desc')
+            ->get();
+        $new_products = Product::where('stock', '>', '0')
+            ->with('user', 'images', 'categorie')
+            ->take(8)->orderBy('id', 'desc')
+            ->get();
+        $offer_box = OfferBox::first();
+        return view('auth.login',compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
+    }
+
 }

@@ -11,7 +11,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -21,8 +21,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::where('stock', '>', '0')->with('products', 'images', 'categorie')->orderBy('id', 'desc')->get();
-        return view('welcome', $products);
+       // $products = Product::where('stock', '>', '0')->with('products', 'images', 'categorie')->orderBy('id', 'desc')->get();
+        return view('admin.welcome');
         //return view('dashboard');
     }
 }

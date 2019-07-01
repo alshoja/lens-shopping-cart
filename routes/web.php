@@ -21,8 +21,10 @@ Route::get('/contact', 'SimpleHome@contact')->name('contact');
 Route::get('product/payment', 'SimpleHome@payment')->name('payment');
 Route::get('/search','DeliveryPlaceController@search');
 
-Auth::routes();
+Route::get('/admin', 'admin\AdminController@login')->name('admin');
+Route::get('/admin/register', 'admin\AdminController@register')->name('admin');
 
+Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

@@ -25,13 +25,12 @@ Route::get('/admin', 'admin\AdminController@login')->name('admin');
 Route::get('/admin/register', 'admin\AdminController@register')->name('admin');
 
 Auth::routes();
-Route::group(['middleware' => 'auth'], function () {
+Route::get('/home', 'SimpleHome@index')->name('home');
+Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
+
+Route::group(['middleware' => 'isadmin'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 });
-
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home', 'SimpleHome@index')->name('home');
-Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');

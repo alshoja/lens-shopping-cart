@@ -196,17 +196,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</a>
 
 										<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+												@if ( Auth::user()->Is_admin)		
+												<a class="dropdown-item" href="{{ route('dashboard') }}" >
+												
+														<i class="fas fa-tachometer-alt"></i> {{ __('Dashboard') }} 
+											 </a>
+											 @endif
 											<a class="dropdown-item" href="{{ route('logout') }}"
 											   onclick="event.preventDefault();
 															 document.getElementById('logout-form').submit();">
-												{{ __('Logout') }}
+												<i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
 											</a>
-
+											
 											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 												@csrf
 											</form>
 										</div>
 									</li>
+									
+									
 								@endguest
 							</ul>
 					<ul class="navbar-nav nav-mega mx-auto">

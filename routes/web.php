@@ -34,4 +34,5 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+	Route::get('slider/create', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@create']);
 });

@@ -24,7 +24,7 @@ class TopSliderController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.Homeslider.slider');
     }
 
     /**

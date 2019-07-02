@@ -54,7 +54,8 @@ class LoginController extends Controller
             ->get();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie')
-            ->take(8)->orderBy('id', 'desc')
+            ->take(8)
+            ->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
         return view('user-auth.login',compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));

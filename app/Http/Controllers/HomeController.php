@@ -21,8 +21,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-       // $products = Product::where('stock', '>', '0')->with('products', 'images', 'categorie')->orderBy('id', 'desc')->get();
         return view('admin.welcome');
         //return view('dashboard');
+    }
+
+    public function dashboard()
+    {
+        return view('dashboard');
     }
 }

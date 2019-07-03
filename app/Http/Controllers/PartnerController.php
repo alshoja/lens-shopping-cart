@@ -24,7 +24,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.OurTeam.teams');
     }
 
     /**

@@ -24,7 +24,7 @@ class FirstFooterFeatureController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.Features.feature');
     }
 
     /**

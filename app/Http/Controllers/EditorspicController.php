@@ -24,7 +24,8 @@ class EditorspicController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.EditorPic.editorpic');
+    
     }
 
     /**

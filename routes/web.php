@@ -35,5 +35,10 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::get('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@create']);
-    Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
+	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
+	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
+	Route::get('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@create']);
+	Route::get('update/team', ['as' => 'web-settings.OurTeam.teams', 'uses' => 'PartnerController@create']);
+	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
+	Route::get('update/fetures', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
 });

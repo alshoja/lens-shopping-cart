@@ -24,7 +24,7 @@ class OfferBoxController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.offerbox.offer');
     }
 
     /**

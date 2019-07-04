@@ -40,5 +40,10 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::get('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@create']);
 	Route::get('update/team', ['as' => 'web-settings.OurTeam.teams', 'uses' => 'PartnerController@create']);
 	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
-	Route::get('update/fetures', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
+	Route::get('update/features', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
+	Route::get('update/offerbox', ['as' => 'web-settings.offerbox.offer', 'uses' => 'OfferBoxController@create']);
+	Route::get('update/home/timer', ['as' => 'web-settings.Hometimer.hometimer', 'uses' => 'MiddlePosterTimerController@create']);
+	Route::get('manage/reviews', ['as' => 'web-settings.Review.reviews', 'uses' => 'ReviewController@create']);
+	Route::get('manage/testimonials', ['as' => 'web-settings.Testimonials.testimonials', 'uses' => 'TestimonialController@create']);
+	
 });

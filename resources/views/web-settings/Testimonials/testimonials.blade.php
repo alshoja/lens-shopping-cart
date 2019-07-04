@@ -37,13 +37,17 @@
                                                     Customer
                                                 </th>
                                                 <th scope="col">
+                                                        Work
+                                                    </th>
+                                                <th scope="col">
                                                    Country
                                                 </th>
                                                 <th scope="col">
                                                         Testimonial
                                                      </th>
                         
-                                                <th scope="col"></th>
+                                                <th scope="col">First</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody class="list">
@@ -53,7 +57,9 @@
                                                 <th scope="row" class="name">
                                                     Helen
                                                 </th>
-                        
+                                                <th scope="row" class="name">
+                                                        Work
+                                                    </th>
                                                 <td class="status">
                                                     <span class="badge badge-dot mr-4">
                                                   India
@@ -61,6 +67,14 @@
                                                 </td>
                         
                         <td>good</td>
+                        <td><div class="input-group mb-2">
+                                <span class="clearfix"></span>
+                                <label class="custom-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                </label>
+
+                        </div></td>
                                                 <td class="text-right">
                                                     <div class="dropdown">
                                                         <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"

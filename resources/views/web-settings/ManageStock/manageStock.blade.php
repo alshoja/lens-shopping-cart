@@ -85,14 +85,24 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }} col-md-4">
+                                <div class="col-sm">
+                                <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label>
                                     <select class="form-control">
                                         <option aria-readonly="true">Select</option>
                                     </select>
                                 </div>
+                                </div>
                             </div>
-
+                            <div class="col-sm">
+                                    <label class="form-control-label  col-xs-2">Enable Type</label>
+                                    <div class="col-xs-10">
+                                        <label class="custom-toggle">
+                                            <input type="checkbox">
+                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                        </label>
+                                    </div>
+                                </div>
                             <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }} ">
                                 <label class="form-control-label" for="input-email">{{ __('Description') }}</label>
                                 <textarea name="description"
@@ -152,16 +162,9 @@
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
-                                    <label class="form-control-label  col-xs-2">Enable Type</label>
-                                    <div class="col-xs-10">
-                                        <label class="custom-toggle">
-                                            <input type="checkbox">
-                                            <span class="custom-toggle-slider rounded-circle"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="text-center">
+                             
+                                
+                                <div class=" text-centre">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
                             </div>

@@ -118,7 +118,7 @@
                         <span class="nav-link-text">{{ __('Website Settings') }}</span>
                     </a>
 
-                    <div class="collapse " id="navbar-examples">
+                    <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('web-settings.Homeslider.slider') }}">

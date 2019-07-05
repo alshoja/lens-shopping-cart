@@ -98,10 +98,16 @@
                                     <label class="form-control-label  col-xs-2">Enable Type</label>
                                     <div class="col-xs-10">
                                         <label class="custom-toggle">
-                                            <input type="checkbox">
+                                            <input type="checkbox" id="myCheck" onclick="myFunction()">
                                             <span class="custom-toggle-slider rounded-circle"></span>
                                         </label>
                                     </div>
+                                    <div id="text" style="display:none">                      
+                                    <div class="custom-control custom-radio mb-3">
+                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1">Something</label>
+                                          </div>
+                                        </div>
                                 </div>
                             <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }} ">
                                 <label class="form-control-label" for="input-email">{{ __('Description') }}</label>
@@ -180,6 +186,17 @@
 <span class="clearfix"></span>
 
 
+<script>
+        function myFunction() {
+          var checkBox = document.getElementById("myCheck");
+          var text = document.getElementById("text");
+          if (checkBox.checked == true){
+            text.style.display = "block";
+          } else {
+             text.style.display = "none";
+          }
+        }
+        </script>
 @include('layouts.footers.auth')
 </div>
 @endsection

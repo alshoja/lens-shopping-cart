@@ -123,6 +123,18 @@
 
                                         </div>
                                     </div>
+
+                                    <div class="col-sm">
+                                            <label class="form-control-label" for="input-password">{{ __('Add to second Feature') }}</label>
+                                            <div class="input-group mb-2">
+                                                    <span class="clearfix"></span>
+                                                    <label class="custom-toggle">
+                                                        <input type="checkbox" checked>
+                                                        <span class="custom-toggle-slider rounded-circle"></span>
+                                                    </label>
+        
+                                            </div>
+                                        </div>
                             </div>
 
 

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OfferBox;
 use Illuminate\Http\Request;
 
-class OfferBoxController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class OfferBoxController extends Controller
      */
     public function create()
     {
-        return view('web-settings.offerbox.offer');
+        return view('stock-settings.type.type');
     }
 
     /**
@@ -41,10 +40,10 @@ class OfferBoxController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\OfferBox  $offerBox
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(OfferBox $offerBox)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class OfferBoxController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\OfferBox  $offerBox
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(OfferBox $offerBox)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class OfferBoxController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\OfferBox  $offerBox
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OfferBox $offerBox)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class OfferBoxController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\OfferBox  $offerBox
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OfferBox $offerBox)
+    public function destroy($id)
     {
         //
     }

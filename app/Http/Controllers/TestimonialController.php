@@ -24,7 +24,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.Testimonials.testimonials');
     }
 
     /**

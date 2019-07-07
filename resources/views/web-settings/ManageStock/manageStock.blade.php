@@ -1,8 +1,8 @@
-@extends('layouts.app', ['title' => __('Manage Stock')])
+@extends('layouts.app', ['title' => __('Stock Management')])
 
 @section('content')
-@include('users.partials.header', ['title' => __('Add Stock')])
-
+@include('users.partials.header', ['title' => __('Manage Stock')])
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col-xl-12 order-xl-1">
@@ -10,7 +10,7 @@
                 <div class="card-header bg-white border-0">
                     <div class="row align-items-center">
                         <div class="col-8">
-                            <h3 class="mb-0">{{ __('Stock Management') }}</h3>
+                            <h3 class="mb-0">{{ __('Update/add Stock') }}</h3>
                         </div>
                         <div class="col-4 text-right">
                             <a href="{{ route('user.index') }}"
@@ -22,10 +22,11 @@
                     <form method="post" action="{{ route('user.store') }}" autocomplete="off">
                         @csrf
 
-                        <h6 class="heading-small text-muted mb-4">{{ __('Stock information') }}</h6>
+                        <h6 class="heading-small text-muted mb-4">{{ __('Add Stock') }}</h6>
                         <div class="pl-lg-4">
+
                             <div class="row">
-                                <div class="col-6 col-md-4">
+                                <div class="col-sm">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
                                         <input type="text" name="name" id="input-title"
@@ -39,7 +40,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4">
+                                <div class="col-sm">
                                     <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
                                         <label class="form-control-label"
                                             for="input-email">{{ __('Current Price') }}</label>
@@ -55,7 +56,7 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4">
+                                <div class="col-sm">
                                     <div class="form-group{{ $errors->has('old_price') ? ' has-danger' : '' }}">
                                         <label class="form-control-label"
                                             for="input-email">{{ __('Old Price') }}</label>
@@ -70,12 +71,45 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="col-sm">
+                                    <div class="form-group{{ $errors->has('No of stock') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-email">{{ __('Stock') }}</label>
+                                        <input type="number" name="stock" id="input-email"
+                                            class="form-control form-control-alternative{{ $errors->has('stock') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('No of Stock') }}" value="{{ old('stock') }}" required>
+
+                                        @if ($errors->has('stock'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('stock') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label>
+                                    <select class="form-control">
+                                        <option aria-readonly="true">Select</option>
+                                    </select>
+                                </div>
+                                </div>
                             </div>
-
-
-
-
-                            <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                            <div class="col-sm">
+                                    <label class="form-control-label  col-xs-2">Enable Type</label>
+                                    <div class="col-xs-10">
+                                        <label class="custom-toggle">
+                                            <input type="checkbox" id="myCheck" onclick="myFunction()">
+                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                        </label>
+                                    </div>
+                                    <div id="text" style="display:none">                      
+                                    <div class="custom-control custom-radio mb-3">
+                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1">Something</label>
+                                          </div>
+                                        </div>
+                                </div>
+                            <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }} ">
                                 <label class="form-control-label" for="input-email">{{ __('Description') }}</label>
                                 <textarea name="description"
                                     class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}"
@@ -87,153 +121,82 @@
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group{{ $errors->has('stock') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-password">{{ __('Stock') }}</label>
-                                <input type="number" name="password" id="input-password"
-                                    class="form-control form-control-alternative{{ $errors->has('stock') ? ' is-invalid' : '' }}"
-                                    placeholder="{{ __('No of Stock') }}" value="{{ old('stock') }}" required>
 
-                                @if ($errors->has('stock'))
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('stock') }}</strong>
-                                </span>
-                                @endif
-                            </div>
-                            <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
-                                <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label>
-                                <select class="form-control">
-                                    <option aria-readonly="true">select</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                          
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">Product Default Image</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" required class="custom-file-input" id="inputGroupFile01">
-                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="row">
-                                <label class="form-control-label">In Flash Sale</label>
-                                <div class="col-sm">
-                                    <label class="custom-toggle">
-                                        <input type="checkbox" checked>
-                                        <span class="custom-toggle-slider rounded-circle"></span>
-                                    </label>
 
+                                <div class="form-group col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Product Image</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" required class="custom-file-input" id="inputGroupFile01" multiple>
+                                            <label class="custom-file-label" for="inputGroupFile01">Select multiple files</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <label class="form-control-label">In Deals</label>
-                                <div class="col-smb">
-                                    <label class="custom-toggle">
-                                        <input type="checkbox" checked>
-                                        <span class="custom-toggle-slider rounded-circle"></span>
-                                    </label>
-                                </div>
-                                <label class="form-control-label">In Featured Sale</label>
-                                <div class="col-sm">
-                                    <label class="custom-toggle">
-                                        <input type="checkbox" checked>
-                                        <span class="custom-toggle-slider rounded-circle"></span>
-                                    </label>
-                                </div>
-                                <label class="form-control-label">Type</label>
-                                <div class="col-sm">
-                                    <label class="custom-toggle">
-                                        <input type="checkbox">
-                                        <span class="custom-toggle-slider rounded-circle"></span>
-                                    </label>
+                            </div>
+                            <div class="row">
 
+                                <div class="col-sm-3">
+                                    <label class="form-control-label col-xs-2">Flash Sale</label>
+                                    <div class="col-xs-10">
+                                    <label class="custom-toggle">
+                                        <input type="checkbox" checked>
+                                        <span class="custom-toggle-slider rounded-circle"></span>
+                                    </label>
+                                    </div>
                                 </div>
-                                <div class="text-center">
+
+                                <div class="col-sm-3">
+                                    <label class="form-control-label col-xs-2">In Deals</label>
+                                    <div class="col-xs-10">
+                                        <label class="custom-toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <label class=" form-control-label col-xs-2">Featured Sale</label>
+                                    <div class="col-xs-10">
+                                        <label class="custom-toggle">
+                                            <input type="checkbox" checked>
+                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                             
+                                
+                                <div class=" text-centre">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-    {{-- slider detaisl in list --}}
-    <br>
-    <div class="table-responsive">
-        <div>
-            <table class="table align-items-center">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">
-                            Title
-                        </th>
-                        <th scope="col">
-                            Sub-Title
-                        </th>
-                        <th scope="col">
-                            Button Value
-                        </th>
-                        <th scope="col">IsActive</th>
-
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody class="list">
-
-                    <tr>
-                        <th>1</th>
-                        <th scope="row" class="name">
-                            <div class="media align-items-center">
-                                <a href="#" class="avatar rounded-circle mr-3">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
-                                </a>
-                                <div class="media-body">
-                                    <span class="mb-0 text-sm">Argon Design System</span>
-                                </div>
-                            </div>
-                        </th>
-                        <td class="budget">
-                            $2500 USD
-                        </td>
-                        <td class="status">
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-warning"></i> pending
-                            </span>
-                        </td>
-                        <td>
-                            <div class="avatar-group">
-                                <span class="badge badge-dot mr-4">
-                                    <i class="bg-success"></i>
-                                </span>
-
-                            </div>
-
-                        </td>
-
-                        <td class="text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+</div>
+{{-- slider detaisl in list --}}
+<span class="clearfix"></span>
 
 
-                </tbody>
-            </table>
-        </div>
-
-    </div>
-    @include('layouts.footers.auth')
+<script>
+        function myFunction() {
+          var checkBox = document.getElementById("myCheck");
+          var text = document.getElementById("text");
+          if (checkBox.checked == true){
+            text.style.display = "block";
+          } else {
+             text.style.display = "none";
+          }
+        }
+        </script>
+@include('layouts.footers.auth')
 </div>
 @endsection

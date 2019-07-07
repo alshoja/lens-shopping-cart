@@ -24,7 +24,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('web-settings.Review.reviews');
     }
 
     /**

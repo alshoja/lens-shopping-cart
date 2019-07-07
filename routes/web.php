@@ -40,5 +40,5 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::get('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@create']);
 	Route::get('update/team', ['as' => 'web-settings.OurTeam.teams', 'uses' => 'PartnerController@create']);
 	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
-	Route::get('update/fetures', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
+	Route::get('update/features', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
 });

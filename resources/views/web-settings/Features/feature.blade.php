@@ -64,7 +64,7 @@
                                                 class="form-control form-control-alternative{{ $errors->has('url') ? ' is-invalid' : '' }}"
                                                 placeholder="{{ __('URL:  http://www.example.com/') }}" value="{{ old('url') }}"
                                                 required autofocus>
-    
+
                                             @if ($errors->has('url'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('url') }}</strong>
@@ -103,20 +103,31 @@
                                 <div class="row">
                                 <div class="col-sm">
                                         <label class="form-control-label" for="input-password">{{ __('Active') }}</label>
-                                        <div class="input-group mb-2">
+                                        <div title="One Feature should be Active" class="input-group mb-2">
                                                 <span class="clearfix"></span>
                                                 <label class="custom-toggle">
                                                     <input type="checkbox" checked>
                                                     <span class="custom-toggle-slider rounded-circle"></span>
                                                 </label>
-    
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm">
+                                        <label class="form-control-label"  for="input-password">{{ __('Add to Footer Feature') }}</label>
+                                        <div  title="You can add the same content as second Feature on top of footer" class="input-group mb-2">
+                                                <span class="clearfix"></span>
+                                                <label class="custom-toggle">
+                                                    <input type="checkbox" checked>
+                                                    <span class="custom-toggle-slider rounded-circle"></span>
+                                                </label>
+
                                         </div>
                                     </div>
                             </div>
 
-                          
 
-                            
+
+
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                             </div>

@@ -25,7 +25,7 @@ class DeliveryPlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('stock-settings.delivery.delivery');
     }
 
     /**

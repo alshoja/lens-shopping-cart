@@ -19,8 +19,8 @@ class CreateTopSlidersTable extends Migration
             $table->string('main_heading');
             $table->string('sub_heading');
             $table->string('button_value');
-            $table->integer('order');
-            $table->integer('isActive')->default(0);
+            $table->integer('order')->nullable();
+            $table->boolean('isActive')->default(0);
             $table->timestamps();
         });
     }

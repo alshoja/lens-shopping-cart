@@ -24,7 +24,8 @@ class TopSliderController extends Controller
      */
     public function create()
     {
-        return view('web-settings.Homeslider.slider');
+        $sliders = TopSlider::paginate(5);
+        return view('web-settings.Homeslider.slider',compact('sliders'));
     }
 
     /**
@@ -35,7 +36,16 @@ class TopSliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slider =  new TopSlider;
+        $file = request()->file('image')->store('uploads');
+        $slider->main_heading = $request->title;
+        $slider->image = $file;
+        $slider->sub_heading = $request->sub_title;
+        $slider->button_value = $request->button_value;
+        $slider->order = 1;
+        $slider->isActive = 0;
+        $slider->save();
+        return back();
     }
 
     /**

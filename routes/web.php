@@ -35,6 +35,7 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
     Route::get('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@create']);
+    Route::post('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@store']);
 	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
 	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
 	Route::get('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@create']);
@@ -48,5 +49,8 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('manage/stock/categories', ['as' => 'stock-settings.categories.category', 'uses' => 'CategoryController@create']);
     Route::get('manage/stock/type', ['as' => 'stock-settings.type.type', 'uses' => 'TypeController@create']);
     Route::get('manage/stock/delivery', ['as' => 'stock-settings.delivery.delivery', 'uses' => 'DeliveryPlaceController@create']);
-    Route::get('update/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
+	Route::get('update/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
+
+	
+	
 });

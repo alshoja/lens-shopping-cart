@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('user.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('web-settings.Homeslider.slider') }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
                             
                             <h6 class="heading-small text-muted mb-4">{{ __('slider information') }}</h6>
@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('sub_title') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-email">{{ __('Sub Title') }}</label>
-                                    <input type="email" name="sub_title" id="input-email" class="form-control form-control-alternative{{ $errors->has('sub_title') ? ' is-invalid' : '' }}" placeholder="{{ __('Sub title') }}" value="{{ old('sub_title') }}" required>
+                                    <input type="text" name="sub_title" id="input-email" class="form-control form-control-alternative{{ $errors->has('sub_title') ? ' is-invalid' : '' }}" placeholder="{{ __('Sub title') }}" value="{{ old('sub_title') }}" required>
 
                                     @if ($errors->has('sub_title'))
                                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('button_value') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Button Value') }}</label>
-                                    <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('button_value') ? ' is-invalid' : '' }}" placeholder="{{ __('Button Value') }}" value="" required>
+                                    <input type="text" name="button_value" id="input-password" class="form-control form-control-alternative{{ $errors->has('button_value') ? ' is-invalid' : '' }}" placeholder="{{ __('Button Value') }}" value="" required>
                                     
                                     @if ($errors->has('button_value'))
                                         <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                                               <span class="input-group-text">Slider Image</span>
                                             </div>
                                             <div class="custom-file">
-                                              <input type="file" required class="custom-file-input" id="inputGroupFile01">
+                                              <input type="file" name="image" required class="custom-file-input" id="inputGroupFile01">
                                               <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                             </div>
                                           </div>
@@ -93,38 +93,47 @@
                             <th scope="col">
                                 Button Value
                             </th>
-                            <th scope="col">IsActive</th>
+                            <th scope="col">First Slide</th>
                            
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody class="list">
-                        
+                            @php
+                            $i = 1
+                            @endphp
+                   @foreach ($sliders as $item)
+                       
+                     
                         <tr>
-                            <th>1</th>
+                        <th>{{$i++}}</th>
                             <th scope="row" class="name">
                                 <div class="media align-items-center">
                                     <a href="#" class="avatar rounded-circle mr-3">
                                       <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
                                     </a>
                                     <div class="media-body">
-                                        <span class="mb-0 text-sm">Argon Design System</span>
+                                    <span class="mb-0 text-sm">{{$item->main_heading}}</span>
                                     </div>
                                 </div>
                             </th>
                             <td class="budget">
-                                $2500 USD
+                                    {{$item->sub_heading}}
                             </td>
                             <td class="status">
                                 <span class="badge badge-dot mr-4">
-                                  <i class="bg-warning"></i> pending
+                                  <i class="bg-warning"></i>{{$item->button_value}}
                                 </span>
                             </td>
                             <td>
                                 <div class="avatar-group">
+                                    @if ($item->isActive)
+                                        
+                                
                                         <span class="badge badge-dot mr-4">
                                                 <i class="bg-success"></i> 
                                               </span>
+                                              @endif
                 
             </div>
             
@@ -143,13 +152,14 @@
                                 </div>
                             </td>
                         </tr>
-                        
-                        
+                        @endforeach  
+                                   
                     </tbody>
                 </table>
             </div>
-            
+         
             </div>
+            {{ $sliders->links() }} 
         @include('layouts.footers.auth')
     </div>
 @endsection

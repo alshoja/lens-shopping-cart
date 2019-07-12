@@ -42,5 +42,7 @@
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+        <script src="js/sweetalert.min.js"></script>
+        @include('sweet::alert') 
     </body>
 </html>

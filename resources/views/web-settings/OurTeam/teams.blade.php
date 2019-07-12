@@ -13,13 +13,13 @@
                             <h3 class="mb-0">{{ __('Manage your Team') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('user.index') }}"
+                            <a href="{{ url()->previous() }}"
                                 class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}" autocomplete="off">
+                    <form method="post" enctype="multipart/form-data" action="{{ url('store/team') }}" autocomplete="off">
                         @csrf
 
                         <h6 class="heading-small text-muted mb-4">{{ __('Add Team Members') }}</h6>
@@ -30,7 +30,7 @@
                                                     {{-- <label class="form-control-label" for="input-password">{{ __('Title') }}</label> --}}
                                                     <input type="text" name="name" id="input-password"
                                                         class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                        placeholder="{{ __('Name') }}" value="" required>
+                                                        placeholder="{{ __('Name') }}" value="{{ old('name') }}" required>
             
                                                     @if ($errors->has('name'))
                                                     <span class="invalid-feedback" role="alert">
@@ -42,7 +42,7 @@
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('position') ? ' has-danger' : '' }}">
                                         {{-- <label class="form-control-label" for="input-name">{{ __('Button Value') }}</label> --}}
-                                        <input type="text" name="button_value" id="input-title"
+                                        <input type="text" name="position" id="input-title"
                                             class="form-control form-control-alternative{{ $errors->has('position') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Position') }}" value="{{ old('position') }}" required
                                             autofocus>
@@ -57,50 +57,50 @@
                             </div>
                             <div class="row">
                                     <div class="col-sm">
-                                            <div class="form-group{{ $errors->has('fb_url') ? ' has-danger' : '' }}">
+                                            <div class="form-group{{ $errors->has('fb_link') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-email">{{ __('') }}</label>          
                                                 <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="basic-addon1"><i class="fab fa-facebook-square"></i></span>
                                                         </div>
-                                                        <input type="url" class="form-control" name="fb_url"  placeholder="{{ __('Facebook url') }}" aria-label="facebook url" aria-describedby="basic-addon1">
+                                                        <input type="url" class="form-control" name="fb_link"  placeholder="{{ __('Facebook url') }}" aria-label="facebook url" aria-describedby="basic-addon1">
                                                       </div>
-                                                @if ($errors->has('fb_url'))
+                                                @if ($errors->has('fb_link'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('fb_url') }}</strong>
+                                                    <strong>{{ $errors->first('fb_link') }}</strong>
                                                 </span>
                                                 @endif
                                             </div>
                                         </div>
                                        
                                 <div class="col-sm">
-                                        <div class="form-group{{ $errors->has('insta_url') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('insta_link') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-email">{{ __('') }}</label>          
                                                 <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="basic-addon1"><i class="fab fa-google-plus-g"></i></span>
                                                         </div>
-                                                        <input type="url" class="form-control" name="insta_url"  placeholder="{{ __('Instagram url') }}" aria-label="insta url" aria-describedby="basic-addon1">
+                                                        <input type="url" class="form-control" name="insta_link"  placeholder="{{ __('Instagram url') }}" aria-label="insta url" aria-describedby="basic-addon1">
                                                       </div>
-                                                @if ($errors->has('insta_url'))
+                                                @if ($errors->has('insta_link'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('insta_url') }}</strong>
+                                                    <strong>{{ $errors->first('insta_link') }}</strong>
                                                 </span>
                                                 @endif
                                             </div>
                                 </div>
                                 <div class="col-sm">
-                                        <div class="form-group{{ $errors->has('twitter_url') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('twitter_link') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-email">{{ __('') }}</label>          
                                                 <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="basic-addon1"><i class="fab fa-twitter"></i></span>
                                                         </div>
-                                                        <input type="url" class="form-control" name="twitter_url"  placeholder="{{ __('Twitter  url') }}" aria-label="T url" aria-describedby="basic-addon1">
+                                                        <input type="url" class="form-control" name="twitter_link"  placeholder="{{ __('Twitter  url') }}" aria-label="T url" aria-describedby="basic-addon1">
                                                       </div>
-                                                @if ($errors->has('twitter_url'))
+                                                @if ($errors->has('twitter_link'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('twitter_url') }}</strong>
+                                                    <strong>{{ $errors->first('twitter_link') }}</strong>
                                                 </span>
                                                 @endif
                                             </div>
@@ -112,8 +112,8 @@
                                     <div class="col-sm-4">
                                            <div class="input-group mb-2">
                                                    <div class="custom-file">
-                                                     <input type="file" class="custom-file-input" id="inputGroupFile02">
-                                                     <label class="custom-file-label" for="inputGroupFile02">Choose Profile Image</label>
+                                                     <input type="file" name="image" class="custom-file-input" id="inputGroupFile02">
+                                                     <label class="custom-file-label"  for="inputGroupFile02">Choose Profile Image</label>
                                                    </div>
                                                  
                                                  </div>
@@ -155,23 +155,26 @@
                         </tr>
                     </thead>
                     <tbody class="list">
-    
+                      @php
+                          $i =1
+                      @endphp
+    @foreach ($team as $item)  
                         <tr>
-                            <th>1</th>
+                            <th>{{$i++}}</th>
                             <th scope="row" class="name">
                                 <div class="media align-items-center">
                                     <a href="#" class="avatar rounded-circle mr-3">
-                                        <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
+                                        <img alt="Image placeholder" src="{{URL::asset("assets/$item->image")}}">
                                     </a>
                                     <div class="media-body">
-                                        <span class="mb-0 text-sm">Argon Design System</span>
+                                        <span class="mb-0 text-sm">{{$item->name}}</span>
                                     </div>
                                 </div>
                             </th>
                            
                             <td class="status">
                                 <span class="badge badge-dot mr-4">
-                                    <i class="bg-warning"></i> Postion
+                                    <i class="bg-warning"></i> {{$item->position}}
                                 </span>
                             </td>
                         
@@ -183,14 +186,20 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                
+                                    <a class="dropdown-item" href="{{url('show/team',$item->id)}}">Edit</a>
+                                    <form action="{{ url('delete/team',$item->id) }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="dropdown-item">Delete</button>
+                                    </form>
+                                    
+                                        {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                 </div>
                             </td>
                         </tr>
-    
+                        @endforeach
     
                     </tbody>
                 </table>

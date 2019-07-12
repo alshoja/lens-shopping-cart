@@ -51,6 +51,11 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@update']);
 
 	Route::get('update/team', ['as' => 'web-settings.OurTeam.teams', 'uses' => 'PartnerController@create']);
+	Route::get('show/team/{id}', ['as' => 'web-settings.OurTeam.editteam', 'uses' => 'PartnerController@show']);
+	Route::put('patch/team/{id}', ['as' => 'web-settings.OurTeam.editteam', 'uses' => 'PartnerController@update']);
+	Route::post('store/team', ['as' => 'web-settings.OurTeam.team', 'uses' => 'PartnerController@store']);
+	Route::delete('delete/team/{id}', ['as' => 'web-settings.OurTeam.editteam', 'uses' => 'PartnerController@destroy']);
+
 	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
 	Route::get('update/features', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
 	Route::get('update/offerbox', ['as' => 'web-settings.offerbox.offer', 'uses' => 'OfferBoxController@create']);

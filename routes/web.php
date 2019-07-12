@@ -33,11 +33,16 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+
     Route::get('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@create']);
     Route::post('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@store']);
+    Route::get('show/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@show']);
+    Route::put('update/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@update']);
+
 	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
 	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
+	Route::put('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@update']);
 	Route::get('update/about', ['as' => 'web-settings.About.about', 'uses' => 'AboutController@create']);
 	Route::get('update/team', ['as' => 'web-settings.OurTeam.teams', 'uses' => 'PartnerController@create']);
 	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
@@ -51,6 +56,6 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('manage/stock/delivery', ['as' => 'stock-settings.delivery.delivery', 'uses' => 'DeliveryPlaceController@create']);
 	Route::get('update/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
 
-	
-	
+
+
 });

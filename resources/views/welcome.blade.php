@@ -24,18 +24,18 @@
             @foreach ($slider as $sliderdata)
             @if ($sliderdata->isActive === 1)
             <div class="carousel-item active" style="
-			background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
-			background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
-			background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
-			background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner2.jpg")}}) no-repeat;
+			background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+			background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+			background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+			background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
 			background-size: cover;
 					">
                 @else
                 <div class="carousel-item" style="
-	background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
-    background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
-    background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
-    background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/images/banner1.jpg")}}) no-repeat;
+	background: -webkit-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+    background: -moz-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+    background: -ms-linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
+    background: linear-gradient(rgba(23, 22, 23, 0.2), rgba(23, 22, 23, 0.5)), url({{URL::asset("assets/$sliderdata->image")}}) no-repeat;
     background-size: cover;
 			">
                     @endif

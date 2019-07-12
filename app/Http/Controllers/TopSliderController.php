@@ -54,9 +54,10 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function show(TopSlider $topSlider)
+    public function show(TopSlider $topSlider,$id)
     {
-        //
+        $slider = TopSlider::FindorFail($id);
+        return view('web-settings.Homeslider.editslider',compact('slider'));
     }
 
     /**
@@ -65,9 +66,9 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function edit(TopSlider $topSlider)
+    public function edit(TopSlider $topSlider,Request $request,$id)
     {
-        //
+
     }
 
     /**
@@ -77,9 +78,23 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TopSlider $topSlider)
+    public function update(Request $request, TopSlider $topSlider,$id)
     {
-        //
+        $slider =  TopSlider::find($id);
+        if(request()->file('image')){
+            $file = request()->file('image')->store('uploads');
+        }else {
+            $file = $slider->image;
+        }
+
+        $slider->main_heading = $request->title;
+        $slider->image = $file;
+        $slider->sub_heading = $request->sub_title;
+        $slider->button_value = $request->button_value;
+        $slider->order = 1;
+        $slider->isActive = 0;
+        $slider->save();
+        return back();
     }
 
     /**

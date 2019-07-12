@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Slider update')])
 
 @section('content')
-    @include('users.partials.header', ['title' => __('Add Home Slider')])   
+    @include('users.partials.header', ['title' => __('Add Home Slider')])
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('web-settings.Homeslider.slider') }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
-                            
+
                             <h6 class="heading-small text-muted mb-4">{{ __('slider information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
@@ -46,7 +46,7 @@
                                 <div class="form-group{{ $errors->has('button_value') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Button Value') }}</label>
                                     <input type="text" name="button_value" id="input-password" class="form-control form-control-alternative{{ $errors->has('button_value') ? ' is-invalid' : '' }}" placeholder="{{ __('Button Value') }}" value="" required>
-                                    
+
                                     @if ($errors->has('button_value'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('button_value') }}</strong>
@@ -94,7 +94,7 @@
                                 Button Value
                             </th>
                             <th scope="col">First Slide</th>
-                           
+
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -103,14 +103,14 @@
                             $i = 1
                             @endphp
                    @foreach ($sliders as $item)
-                       
-                     
+
+
                         <tr>
                         <th>{{$i++}}</th>
                             <th scope="row" class="name">
                                 <div class="media align-items-center">
                                     <a href="#" class="avatar rounded-circle mr-3">
-                                      <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
+                                      <img alt="Image placeholder" src={{URL::asset("assets/$item->image")}}>
                                     </a>
                                     <div class="media-body">
                                     <span class="mb-0 text-sm">{{$item->main_heading}}</span>
@@ -128,38 +128,44 @@
                             <td>
                                 <div class="avatar-group">
                                     @if ($item->isActive)
-                                        
-                                
-                                        <span class="badge badge-dot mr-4">
-                                                <i class="bg-success"></i> 
+
+                                      <span class="badge badge-dot mr-4">
+                                                <i class="bg-success"></i>
                                               </span>
+                                              @else
+
+
+                                                  <input type="radio" name="items" value="">
+
+
                                               @endif
-                
+
+
             </div>
-            
+
                             </td>
-                           
+
                             <td class="text-right">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                        <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="{{url('show/slider',$item->id)}}">Edit</a>
                                         <a class="dropdown-item" href="#">Another action</a>
                                         <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach  
-                                   
+                        @endforeach
+
                     </tbody>
                 </table>
             </div>
-         
+
             </div>
-            {{ $sliders->links() }} 
+            {{ $sliders->links() }}
         @include('layouts.footers.auth')
     </div>
 @endsection

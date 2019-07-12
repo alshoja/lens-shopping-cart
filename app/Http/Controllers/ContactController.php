@@ -24,7 +24,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('web-settings.Contact.contact');
+        $contact = Contact::First();
+        return view('web-settings.Contact.contact',compact('contact'));
     }
 
     /**
@@ -69,7 +70,18 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        $contact = Contact::first();
+        $contact->phone = $request->phone;
+        $contact->country_code = $request->country_code;
+        $contact->location = $request->location;
+        $contact->email = $request->email;
+        $contact->footer_subscribing_data = $request->footer_subscribing_data;
+        $contact->rights_data = $request->rights_data;
+        $contact->rights_company_name = $request->rights_company_name;
+        $contact->company_url = $request->company_url;
+        $contact->header_image = $request->header_image;
+        $contact->title = $request->title;
+        $contact->map_iframe_data = $request->map_iframe_data;
     }
 
     /**

@@ -48,4 +48,5 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('manage/stock/categories', ['as' => 'stock-settings.categories.category', 'uses' => 'CategoryController@create']);
     Route::get('manage/stock/type', ['as' => 'stock-settings.type.type', 'uses' => 'TypeController@create']);
     Route::get('manage/stock/delivery', ['as' => 'stock-settings.delivery.delivery', 'uses' => 'DeliveryPlaceController@create']);
+    Route::get('update/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
 });

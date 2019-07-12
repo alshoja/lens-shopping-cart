@@ -151,6 +151,11 @@
                                     {{ __('Features') }}
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('web-settings.Menu.menu') }}">
+                                    {{ __('Menu Items') }}
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

@@ -19,7 +19,7 @@
                 <div class="row">
 
                     <div class="col-lg-6 p-0">
-                        <img src={{URL::asset("assets/images/$about->image")}} alt="Goggles" class="img-fluid">
+                        <img src={{URL::asset("assets/$about->image")}} alt="Goggles" class="img-fluid">
                     </div>
                     <div class="col-lg-6 about-info">
                         <h3 class="tittle-w3layouts text-left mb-lg-5 mb-3">{{$about->heading}}</h3>

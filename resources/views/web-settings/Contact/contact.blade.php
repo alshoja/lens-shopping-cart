@@ -19,9 +19,9 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="put" action="{{ route('web-settings.Contact.contact') }}" autocomplete="off">
+                    <form method="post" action="{{ route('web-settings.Contact.contact') }}" enctype="multipart/form-data" autocomplete="off">
                         @csrf
-
+                        @method('put')
                         <h6 class="heading-small text-muted mb-4">{{ __('Update Contact information') }}</h6>
                         <div class="pl-lg-4">
                             <div class="row">
@@ -40,15 +40,15 @@
                                                 </div>
                                     </div>
                                     <div class="col-sm">
-                                        <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('country_code') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-password">{{ __('Country code') }}</label>
-                                                <input type="text" name="title" id="input-password"
-                                                    class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Title') }}" value="{{$contact->country_code}}" required>
+                                                <input type="text" name="country_code" id="input-password"
+                                                    class="form-control form-control-alternative{{ $errors->has('country_code') ? ' is-invalid' : '' }}"
+                                        placeholder="{{ __('country_code') }}" value="{{$contact->country_code}}" required>
 
-                                                @if ($errors->has('title'))
+                                                @if ($errors->has('country_code'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('title') }}</strong>
+                                                    <strong>{{ $errors->first('country_code') }}</strong>
                                                 </span>
                                                 @endif
                                             </div>
@@ -70,7 +70,7 @@
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('location') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-email">{{ __('Location') }}</label>
-                                        <input type="email" name="location" id="input-email"
+                                        <input type="text" name="location" id="input-email"
                                             class="form-control form-control-alternative{{ $errors->has('location') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Location') }}" value="{{$contact->location}}" required>
 
@@ -158,7 +158,7 @@
                                     <div class="col-sm-6">
                                            <div class="input-group mb-2">
                                                    <div class="custom-file">
-                                                     <input type="file" class="custom-file-input" id="inputGroupFile02">
+                                                     <input type="file" name="header_image" class="custom-file-input" id="inputGroupFile02">
                                                      <label class="custom-file-label" for="inputGroupFile02">Choose Banner Image</label>
                                                    </div>
 
@@ -183,7 +183,7 @@
 
                                     <div class="col-sm">
                                         <div class="input-group-prepend">
-                                            <img src="{{URL::asset("assets/$contact->image")}}" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
+                                            <img src="{{URL::asset("assets/$contact->header_image")}}" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">
                                               </div>
                                         </div>
                            </div>

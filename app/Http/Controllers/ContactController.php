@@ -25,7 +25,7 @@ class ContactController extends Controller
     public function create()
     {
         $contact = Contact::First();
-        return view('web-settings.Contact.contact',compact('contact'));
+        return view('web-settings.Contact.contact', compact('contact'));
     }
 
     /**
@@ -71,6 +71,11 @@ class ContactController extends Controller
     public function update(Request $request, Contact $contact)
     {
         $contact = Contact::first();
+        if (request()->file('header_image')) {
+            $file = request()->file('header_image')->store('uploads');
+        } else {
+            $file = $contact->header_image;
+        }
         $contact->phone = $request->phone;
         $contact->country_code = $request->country_code;
         $contact->location = $request->location;
@@ -79,9 +84,11 @@ class ContactController extends Controller
         $contact->rights_data = $request->rights_data;
         $contact->rights_company_name = $request->rights_company_name;
         $contact->company_url = $request->company_url;
-        $contact->header_image = $request->header_image;
+        $contact->header_image = $file;
         $contact->title = $request->title;
         $contact->map_iframe_data = $request->map_iframe_data;
+        $contact->save();
+        return back();
     }
 
     /**

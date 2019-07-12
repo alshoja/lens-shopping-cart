@@ -161,6 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Patroklo\ImprovedLinks\Providers\ImprovedLinksProvider::class,
 
         /*
          * Package Service Providers...

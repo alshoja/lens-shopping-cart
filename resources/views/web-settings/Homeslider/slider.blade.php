@@ -102,9 +102,9 @@
                             @php
                             $i = 1
                             @endphp
+                  
                    @foreach ($sliders as $item)
-
-
+                  
                         <tr>
                         <th>{{$i++}}</th>
                             <th scope="row" class="name">
@@ -122,7 +122,7 @@
                             </td>
                             <td class="status">
                                 <span class="badge badge-dot mr-4">
-                                  <i class="bg-warning"></i>{{$item->button_value}}
+                                  <button class="btn btn-sm btn-info">{{$item->button_value}}</button>
                                 </span>
                             </td>
                             <td>
@@ -130,12 +130,13 @@
                                     @if ($item->isActive)
 
                                       <span class="badge badge-dot mr-4">
-                                                <i class="bg-success"></i>
+                                                <i class="bg-success"></i>&#9989
                                               </span>
                                               @else
 
-
-                                                  <input type="radio" name="items" value="">
+                                              <span class="badge badge-dot mr-4">
+                                                <i class="bg-danger"></i>
+                                              
 
 
                                               @endif
@@ -151,9 +152,19 @@
                                       <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                            <form action="{{ url('patch/slider',$item->id) }}" method="post">
+                                                @method('PATCH')
+                                                @csrf
+                                                <button class="dropdown-item" href="">Make as first Slide</button>
+                                            </form>
                                     <a class="dropdown-item" href="{{url('show/slider',$item->id)}}">Edit</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
+                                    <form action="{{ url('delete/slider',$item->id) }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="dropdown-item">Delete</button>
+                                    </form>
+                                    
+                                        {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
                                     </div>
                                 </div>
                             </td>

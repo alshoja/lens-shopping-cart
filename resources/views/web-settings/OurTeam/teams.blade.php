@@ -164,7 +164,7 @@
                             <th scope="row" class="name">
                                 <div class="media align-items-center">
                                     <a href="#" class="avatar rounded-circle mr-3">
-                                        <img alt="Image placeholder" src="{{URL::asset("assets/$item->image")}}">
+                                        <img alt="Image placeholder" src="{{URL::asset("assets/$item    ->image")}}">
                                     </a>
                                     <div class="media-body">
                                         <span class="mb-0 text-sm">{{$item->name}}</span>

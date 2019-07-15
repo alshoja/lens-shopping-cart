@@ -24,7 +24,8 @@ class EditorspicController extends Controller
      */
     public function create()
     {
-        return view('web-settings.EditorPic.editorpic');
+        $editorspic = Editorspic::all();
+        return view('web-settings.EditorPic.editorpic',compact('editorspic'));
     
     }
 
@@ -36,7 +37,16 @@ class EditorspicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $editorspic = new Editorspic;
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        }
+        $editorspic->heading = $request->heading;
+        $editorspic->image = $file;
+        $editorspic->hover_data = $request->hover_data;
+        $editorspic->is_active = $request->is_active;
+        $editorspic->save();
+        return back();
     }
 
     /**
@@ -56,9 +66,10 @@ class EditorspicController extends Controller
      * @param  \App\Models\Editorspic  $editorspic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Editorspic $editorspic)
+    public function edit(Editorspic $editorspic,$id)
     {
-        //
+        $editorspic = Editorspic::Findorfail($id);
+        return view('web-settings.EditorPic.editeditorpic',compact('editorspic'));
     }
 
     /**
@@ -68,9 +79,22 @@ class EditorspicController extends Controller
      * @param  \App\Models\Editorspic  $editorspic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Editorspic $editorspic)
+    public function update(Request $request, Editorspic $editorspic,$id)
     {
-        //
+        $editorspic = Editorspic::findOrfail($id);
+
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        }
+        else {
+            $file = $editorspic->image;
+        }
+        $editorspic->heading = $request->heading;
+        $editorspic->image = $file;
+        $editorspic->hover_data = $request->hover_data;
+        $editorspic->is_active = $request->is_active;
+        $editorspic->save();
+        return back();
     }
 
     /**
@@ -79,8 +103,16 @@ class EditorspicController extends Controller
      * @param  \App\Models\Editorspic  $editorspic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Editorspic $editorspic)
+    public function destroy(Editorspic $editorspic,$id)
     {
-        //
+        $editorspic = Editorspic::destroy($id);
+        return back();
+    }
+
+    public function MakeActive(Editorspic $editorspic, $id)
+    {
+        $editorspic = Editorspic::where('id', $id)->update(['is_active' => '1']);
+        $editorspic = Editorspic::where('id', '!=', $id)->update(['is_active' => '0']);
+        return back();
     }
 }

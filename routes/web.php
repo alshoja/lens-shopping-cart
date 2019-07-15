@@ -57,6 +57,12 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::delete('delete/team/{id}', ['as' => 'web-settings.OurTeam.editteam', 'uses' => 'PartnerController@destroy']);
 
 	Route::get('update/editors/pic', ['as' => 'web-settings.EditorPic.editorpic', 'uses' => 'EditorspicController@create']);
+	Route::post('store/editors/pic', ['as' => '', 'uses' => 'EditorspicController@store']);
+	Route::get('edit/editors/pic/{id}', ['as' => 'web-settings.EditorPic.editeditorpic', 'uses' => 'EditorspicController@edit']);
+	Route::put('edit/editors/pic/{id}', ['as' => 'web-settings.EditorPic.editeditorpic', 'uses' => 'EditorspicController@update']);
+	Route::patch('patch/editors/pic/{id}', ['as' => '', 'uses' => 'EditorspicController@MakeActive']);
+
+
 	Route::get('update/features', ['as' => 'web-settings.Features.feature', 'uses' => 'FirstFooterFeatureController@create']);
 	Route::get('update/offerbox', ['as' => 'web-settings.offerbox.offer', 'uses' => 'OfferBoxController@create']);
 	Route::get('update/home/timer', ['as' => 'web-settings.Hometimer.hometimer', 'uses' => 'MiddlePosterTimerController@create']);

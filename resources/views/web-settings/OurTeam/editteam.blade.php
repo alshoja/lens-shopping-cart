@@ -130,14 +130,7 @@
 
                                     </div>
                                 </div>
-                                <div class="col-sm-2 col-sm-offset-1">
-                                    <div class="input-group mb-5">
-                                        <div class="input-group-prepend">
-                                            <img src="{{URL::asset("assets/$team->image")}}" class="img-thumbnail"
-                                                alt="Cinque Terre" width="104" height="76">
-                                        </div>
-                                    </div>
-                                </div>
+                               
 
                             </div>
 

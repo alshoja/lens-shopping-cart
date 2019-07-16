@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}" autocomplete="off">
+                    <form method="post" action="{{ url('store/stock/type') }}" autocomplete="off">
                         @csrf
 
                         <h6 class="heading-small text-muted mb-4">{{ __('Add Type') }}</h6>
@@ -72,32 +72,43 @@
                     </tr>
                 </thead>
                 <tbody class="list">
+                    @php
+                        $i = 1
+                    @endphp
+@foreach ($type as $item)
 
                     <tr>
-                        <th>1</th>
+                        <th>{{$i++}}</th>
 
                         <td class="status">
                             <span class="badge badge-dot mr-4">
-                                <i class="bg-warning"></i> data
+                                <i class="bg-warning"></i> {{$item->name}}
                             </span>
                         </td>
 
 
                         <td class="text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                <div class="dropdown">
+                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                      
+                                       
+                                <a class="dropdown-item" href="{{url('edit/stock/type',$item->id)}}">Edit</a>
+                                
+                                <form action="{{ url('delete/stock/type',$item->id) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="dropdown-item">Delete</button>
+                                </form>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
                     </tr>
-
+    
+                    @endforeach
 
                 </tbody>
             </table>

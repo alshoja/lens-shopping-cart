@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\DeliveryPlace;
+use App\Models\DeliveryPlace;
 use Illuminate\Http\Request;
 use DB;
 
@@ -25,7 +25,8 @@ class DeliveryPlaceController extends Controller
      */
     public function create()
     {
-        return view('stock-settings.delivery.delivery');
+        $delivary = DeliveryPlace::all();
+        return view('stock-settings.delivery.delivery',compact('delivary'));
     }
 
     /**

@@ -71,31 +71,17 @@
                                     </div>
                                 </div>
                             </div>
-                        
-                            @if (count($editorspic)<1)
-                                
-                            
-                            <div class="row">
-                                <div class="col-sm">
-                                    <label class="form-control-label" for="input-password">{{ __('Status') }}</label>
-                                    <div class="input-group mb-2">
-                                        <span class="clearfix"></span>
-                                        <label class="custom-toggle">
-                                            <input name="is_active" value="1"  onclick="return true;  type="checkbox" checked>
-                                            <span class="custom-toggle-slider rounded-circle"></span>
-                                        </label>
-
-                                    </div>
-                                </div>
-                            </div>
-                        @else
-                              <input type="hidden" name="is_active" value="0">  
-
-                            @endif
-
+                                        
+                              <input type="hidden" name="is_active" value="1">  
+                              @if (count($editorspic)<2)
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                             </div>
+                            @else
+                            <div class="text-center">
+                                    <button type="submit" disabled class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                </div>
+                            @endif
 
                         </div>
                     </form>
@@ -175,13 +161,10 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <form action="{{ url('patch/editors/pic',$item->id) }}" method="post">
-                                        @method('patch')
-                                        @csrf
-                                        <button class="dropdown-item" href="">Make this Active</button>
-                                    </form>
+                                  
+                                   
                             <a class="dropdown-item" href="{{url('edit/editors/pic',$item->id)}}">Edit</a>
-                            <form action="{{ url('delete/slider',$item->id) }}" method="post">
+                            <form action="{{ url('delete/editors/pic',$item->id) }}" method="post">
                                 @method('delete')
                                 @csrf
                                 <button class="dropdown-item">Delete</button>

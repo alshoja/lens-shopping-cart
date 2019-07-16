@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\Categorie;
+
 
 class CategoryController extends Controller
 {
@@ -23,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('stock-settings.categories.category');
+        $category = Categorie::all();
+        return view('stock-settings.categories.category',compact('category'));
     }
 
     /**
@@ -34,7 +38,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Categorie;
+        $category->name = $request->name;
+        $category->user_id = Auth::user()->id;
+        $category->save();
+        return back();
     }
 
     /**
@@ -56,7 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Categorie::findorFail($id);
+        return view('stock-settings.categories.editcategory',compact('category'));
     }
 
     /**
@@ -68,7 +77,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Categorie::findorFail($id);
+        $category->name = $request->name;
+        $category->save();
+        return back();
     }
 
     /**
@@ -79,6 +91,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Categorie::destroy($id);
+        return back();
     }
 }

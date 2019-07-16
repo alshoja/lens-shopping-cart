@@ -109,10 +109,5 @@ class EditorspicController extends Controller
         return back();
     }
 
-    public function MakeActive(Editorspic $editorspic, $id)
-    {
-        $editorspic = Editorspic::where('id', $id)->update(['is_active' => '1']);
-        $editorspic = Editorspic::where('id', '!=', $id)->update(['is_active' => '0']);
-        return back();
-    }
+  
 }

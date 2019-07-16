@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Type;
 use Illuminate\Http\Request;
-
+use Auth;
 class TypeController extends Controller
 {
     /**
@@ -23,7 +23,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('stock-settings.type.type');
+        $type = Type::all();
+        return view('stock-settings.type.type',compact('type'));
     }
 
     /**
@@ -34,7 +35,11 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = new Type;
+        $type->name = $request->name;
+        $type->user_id = Auth::user()->id;
+        $type->save();
+        return back();
     }
 
     /**
@@ -56,7 +61,8 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type = Type::findorFail($id);
+        return view('stock-settings.type.edittype',compact('type'));
     }
 
     /**
@@ -68,7 +74,10 @@ class TypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $type = Type::findorFail($id);
+        $type->name = $request->name;
+        $type->save();
+        return back();
     }
 
     /**
@@ -79,6 +88,7 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $type = Type::destroy($id);
+        return back();
     }
 }

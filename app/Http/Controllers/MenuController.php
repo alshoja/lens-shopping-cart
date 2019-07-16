@@ -24,7 +24,8 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('web-settings.Menu.menu');
+        $menu = Menu::first();
+        return view('web-settings.Menu.menu',compact('menu'));
     }
 
     /**
@@ -69,7 +70,18 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
-        //
+        $menu = Menu::First();
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        } else {
+            $file = $menu->image;
+        }
+        $menu->title_one = $request->title_one;
+        $menu->title_two = $request->title_two;
+        $menu->image_title = $request->image_title;
+        $menu->image = $file;
+        $menu->save();
+        return back();
     }
 
     /**

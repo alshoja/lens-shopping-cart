@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}" autocomplete="off">
+                    <form method="post" action="{{ url('store/features') }}" autocomplete="off">
                         @csrf
 
                         <h6 class="heading-small text-muted mb-4">{{ __('Add Features') }}</h6>
@@ -29,7 +29,7 @@
                                     <div class="form-group{{ $errors->has('heading') ? ' has-danger' : '' }}">
                                         {{-- <label class="form-control-label" for="input-password">{{ __('Title') }}</label>
                                         --}}
-                                        <input type="text" name="name" id="input-password"
+                                        <input type="text" name="heading" id="input-password"
                                             class="form-control form-control-alternative{{ $errors->has('heading') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Title') }}" value="" required>
 
@@ -57,92 +57,86 @@
                                     </div>
                                 </div>
                                 <div class="col-sm">
-                                        <div class="form-group{{ $errors->has('url') ? ' has-danger' : '' }}">
-                                            {{-- <label class="form-control-label" for="input-name">{{ __('Button Value') }}</label>
-                                            --}}
-                                            <input type="url" name="button_value" id="input-title"
-                                                class="form-control form-control-alternative{{ $errors->has('url') ? ' is-invalid' : '' }}"
-                                                placeholder="{{ __('URL:  http://www.example.com/') }}" value="{{ old('url') }}"
-                                                required autofocus>
+                                    <div class="form-group{{ $errors->has('url') ? ' has-danger' : '' }}">
+                                        {{-- <label class="form-control-label" for="input-name">{{ __('Button Value') }}</label>
+                                        --}}
+                                        <input type="url" name="url" id="input-title"
+                                            class="form-control form-control-alternative{{ $errors->has('url') ? ' is-invalid' : '' }}"
+                                            placeholder="{{ __('URL:  http://www.example.com/') }}"
+                                            value="{{ old('url') }}" required autofocus>
 
-                                            @if ($errors->has('url'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('url') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
+                                        @if ($errors->has('url'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('url') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
+                                </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-sm-4">
-                                        <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
-                                                {{-- <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label> --}}
-                                                <select class="form-control">
-                                                    <option aria-readonly="true">Select one icon</option>
-                                                </select>
-                                            </div>
+                                    <div class="form-group{{ $errors->has('icon') ? ' has-danger' : '' }}">
+                                        {{-- <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label>
+                                        --}}
+                                        <select name="icon" class="form-control">
+                                            <option value='<i class="far fa-hand-paper"></i>' aria-readonly="true"> Hand
+                                            </option>
+                                            <option value='<i class="far fa-hand-paper"></i>' aria-readonly="true">
+                                                Contact</option>
+                                            <option value='<i class="fas fa-archive"></i>' aria-readonly="true">Archive
+                                            </option>
+
+
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                    <div class="col-sm-6 mt-sm-4 mb-sm-5">
-                                    <div class="form-group{{ $errors->has('map_iframe_data') ? ' has-danger' : '' }}">
-                                            {{-- <label class="form-control-label" for="input-email">{{ __('Description') }}</label> --}}
-                                            <textarea name="map_iframe_data"
-                                                class="form-control form-control-alternative{{ $errors->has('map_iframe_data') ? ' is-invalid' : '' }}"
-                                                id="exampleFormControlTextarea1" value="{{ old('description') }}" rows="3"
-                                                placeholder="{{ __('A brief description about your feature :)') }}"></textarea>
-                                            @if ($errors->has('map_iframe_data'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('map_iframe_data') }}</strong>
-                                            </span>
-                                            @endif
-                                        </div>
+                                <div class="col-sm-6 mt-sm-4 mb-sm-5">
+                                    <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                        {{-- <label class="form-control-label" for="input-email">{{ __('Description') }}</label>
+                                        --}}
+                                        <textarea name="description"
+                                            class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                                            id="exampleFormControlTextarea1"  rows="3"
+                                            placeholder="{{ __('A brief description about your feature :)') }}"></textarea>
+                                        @if ($errors->has('description'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                        @endif
                                     </div>
-                           </div>
-                                <div class="row">
-                                <div class="col-sm">
-                                        <label class="form-control-label" for="input-password">{{ __('Active') }}</label>
-                                        <div title="One Feature should be Active" class="input-group mb-2">
-                                                <span class="clearfix"></span>
-                                                <label class="custom-toggle">
-                                                    <input type="checkbox" checked>
-                                                    <span class="custom-toggle-slider rounded-circle"></span>
-                                                </label>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm">
-                                        <label class="form-control-label"  for="input-password">{{ __('Add to Footer Feature') }}</label>
-                                        <div  title="You can add the same content as second Feature on top of footer" class="input-group mb-2">
-                                                <span class="clearfix"></span>
-                                                <label class="custom-toggle">
-                                                    <input type="checkbox" checked>
-                                                    <span class="custom-toggle-slider rounded-circle"></span>
-                                                </label>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm">
-                                            <label class="form-control-label" for="input-password">{{ __('Add to second Feature') }}</label>
-                                            <div class="input-group mb-2">
-                                                    <span class="clearfix"></span>
-                                                    <label class="custom-toggle">
-                                                        <input type="checkbox" checked>
-                                                        <span class="custom-toggle-slider rounded-circle"></span>
-                                                    </label>
-        
-                                            </div>
-                                        </div>
+                                </div>
                             </div>
+                            <div class="row">
+                              
+                                <div class="col-sm">
+                                    <label class="form-control-label"
+                                        for="input-password">{{ __('Make as Services') }}</label>
+                                    <div title="You can add the same content as second Feature on top of footer"
+                                        class="input-group mb-2">
+                                        <span class="clearfix"></span>
+                                        <label class="custom-toggle">
+                                            <input value="2" name="feature_div" type="checkbox" checked>
+                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                        </label>
 
+                                    </div>
+                                </div>
 
-
-
+                                
+                            </div>
+                            
+                            @if (count($feature)<7)
                             <div class="text-center">
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                             </div>
+                            @else
+                            <div class="text-center">
+                                    <button type="submit" disabled class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                </div>
+                            @endif
 
                         </div>
                     </form>
@@ -159,53 +153,95 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">
-                            Title
+                            Heading
                         </th>
                         <th scope="col">
-                            Hover Data
+                            icon
                         </th>
 
-
+                        <th scope="col">
+                                Button Value
+                            </th>
+                            <th scope="col">
+                                    Button Url
+                                </th>
+                                <th scope="col">
+                                        Show in Top of Footer
+                                    </th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody class="list">
-
+                    @php
+                        $i=1
+                    @endphp
+                    @foreach ($feature as $item)
                     <tr>
-                        <th>1</th>
+                        <th>{{$i++}}</th>
                         <th scope="row" class="name">
                             <div class="media align-items-center">
-                                <a href="#" class="avatar rounded-circle mr-3">
-                                    <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
-                                </a>
+                                
                                 <div class="media-body">
-                                    <span class="mb-0 text-sm">Argon Design System</span>
+                                <span class="mb-0 text-sm">{{$item->heading}}</span>
                                 </div>
                             </div>
                         </th>
 
                         <td class="status">
                             <span class="badge badge-dot mr-4">
-                                <i class="bg-warning"></i> data
+                             
+                                {!!$item->icon!!}
                             </span>
                         </td>
 
+                        <td class="status">
+                                <span class="badge badge-dot mr-4">
+                                
+                                    <button class="btn btn-sm">{{$item->button_value}}</button>
+                                </span>
+                            </td>  <td class="status">
+                                    <span class="badge badge-dot mr-4">
+                                      
+                                        {!!$item->url!!}
+                                    </span>
+                                </td>
+                                <td class="status">
+                                        @if ($item->feature_div == 2)
 
-                        <td class="text-right">
-                            <div class="dropdown">
-                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </td>
+                                        <span class="badge badge-dot mr-4">
+                                                  <i class="bg-success"></i>&#9989
+                                                </span>
+                                                @else
+  
+                                                <span class="badge badge-dot mr-4">
+                                                  <i class="bg-danger"></i>
+                                                
+  
+  
+                                                @endif
+  
+                                    </td>
+                                    <td class="text-right">
+                                            <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                  
+                                                   
+                                            <a class="dropdown-item" href="{{url('edit/features',$item->id)}}">Edit</a>
+                                            
+                                            <form action="{{ url('delete/features',$item->id) }}" method="post">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="dropdown-item">Delete</button>
+                                            </form>
+                                                </div>
+                                            </div>
+                                        </td>
                     </tr>
-
+                    @endforeach
 
                 </tbody>
             </table>

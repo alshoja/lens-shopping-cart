@@ -13,21 +13,20 @@
                             <h3 class="mb-0">{{ __('Client Testimonials') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('user.index') }}"
+                            <a href="{{ URL::previous()}}"
                                 class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}" autocomplete="off">
-                        @csrf
+                  
 
                         <h6 class="heading-small text-muted mb-4">{{ __('Manage Testimonials') }}</h6>
                         <div class="pl-lg-4">
-                            
 
-                      
-                                <div class="table-responsive">
+
+
+                            <div class="table-responsive">
                                 <div>
                                     <table class="table align-items-center">
                                         <thead class="thead-light">
@@ -37,75 +36,95 @@
                                                     Customer
                                                 </th>
                                                 <th scope="col">
-                                                        Work
-                                                    </th>
-                                                <th scope="col">
-                                                   Country
+                                                    Work
                                                 </th>
                                                 <th scope="col">
-                                                        Testimonial
-                                                     </th>
-                        
-                                                <th scope="col">First</th>
-                                                
+                                                    Country
+                                                </th>
+                                                <th scope="col">
+                                                    Testimonial
+                                                </th>
+
+                                                {{-- <th scope="col">First</th> --}}
+<th></th>
                                             </tr>
                                         </thead>
                                         <tbody class="list">
-                        
+                                            @php
+                                            $serial = 1
+                                            @endphp
+                                            @foreach ($testimonials as $item)
+
+
                                             <tr>
-                                                <th>1</th>
+                                                <th>{{$serial ++}}</th>
                                                 <th scope="row" class="name">
-                                                    Helen
+                                                    {{$item->customer_name}}
                                                 </th>
                                                 <th scope="row" class="name">
-                                                        Work
-                                                    </th>
+                                                    {{$item->work}}
+                                                </th>
                                                 <td class="status">
                                                     <span class="badge badge-dot mr-4">
-                                                  India
+                                                        {{$item->country}}
                                                     </span>
                                                 </td>
-                        
-                        <td>good</td>
-                        <td><div class="input-group mb-2">
-                                <span class="clearfix"></span>
-                                <label class="custom-toggle">
-                                    <input type="checkbox" checked>
-                                    <span class="custom-toggle-slider rounded-circle"></span>
-                                </label>
 
-                        </div></td>
-                                                <td class="text-right">
-                                                    <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                        </div>
+                                                <td  scope="row">{{$item->description}}</td>
+                                                {{-- <td>
+                                                    <div class="input-group mb-2">
+                                                        <span class="clearfix"></span>
+                                                        <label class="custom-toggle">
+                                                            <input type="checkbox" checked>
+                                                            <span class="custom-toggle-slider rounded-circle"></span>
+                                                        </label>
+
                                                     </div>
-                                                </td>
-                                            </tr>
-                        
-                        
-                                        </tbody>
-                                    </table>
-                                </div>
-                        
-                            </div>
-                        </div>
+                                                </td> --}}
+                                                <td class="text-right">
+
+
+                                                    <div class="dropdown">
+                                                        <form method="POST"
+                                                            action="{{url('delete/testimonials',$item->id)}}">
+                                                            @method('delete')
+                                                            @csrf
+                                                            <button class="btn btn-sm btn-danger text-light">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                        <form method="POST"
+                                                            action="{{url('delete/testimonials',$item->id)}}">
+                                                            @method('delete')
+                                                            @csrf
+
+                                                    </div>
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-sm btn-warning text-light">
+                                                            Archive
+                                                        </button>
                     </form>
                 </div>
+
+                </td>
+                </tr>
+                @endforeach
+
+                </tbody>
+                </table>
             </div>
+           
         </div>
     </div>
-    {{-- slider detaisl in list --}}
-    <span class="clearfix"></span>
+    {{ $testimonials->links() }}
+</div>
+</div>
+</div>
+</div>
+{{-- slider detaisl in list --}}
+<span class="clearfix"></span>
 
 
-    @include('layouts.footers.auth')
+@include('layouts.footers.auth')
 </div>
 @endsection

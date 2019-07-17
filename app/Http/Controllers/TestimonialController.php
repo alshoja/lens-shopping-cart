@@ -24,7 +24,8 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        return view('web-settings.Testimonials.testimonials');
+        $testimonials = Testimonial::paginate(10);
+        return view('web-settings.Testimonials.testimonials',compact('testimonials'));
     }
 
     /**
@@ -78,8 +79,9 @@ class TestimonialController extends Controller
      * @param  \App\Models\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial)
+    public function destroy(Testimonial $testimonial,$id)
     {
-        //
+        Testimonial::destroy($id);
+        return back();
     }
 }

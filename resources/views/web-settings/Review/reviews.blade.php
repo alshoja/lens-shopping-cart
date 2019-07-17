@@ -13,84 +13,102 @@
                             <h3 class="mb-0">{{ __('Rating & Reviews') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('user.index') }}"
+                            <a href="{{ URL::previous() }}"
                                 class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ route('user.store') }}" autocomplete="off">
-                        @csrf
-
+                 
                         <h6 class="heading-small text-muted mb-4">{{ __('Manage Reviews') }}</h6>
                         <div class="pl-lg-4">
-                            
 
-                      
-                                <div class="table-responsive">
+
+
+                            <div class="table-responsive">
                                 <div>
                                     <table class="table align-items-center">
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col">#</th>
+                                                {{-- <th scope="col">#</th> --}}
                                                 <th scope="col">
                                                     Product
                                                 </th>
                                                 <th scope="col">
-                                                   Stars
+                                                    Stars
                                                 </th>
                                                 <th scope="col">
-                                                        Review
-                                                     </th>
-                        
+                                                    Review
+                                                </th>
+
                                                 <th scope="col"></th>
                                             </tr>
                                         </thead>
+                                        @php
+                                            $i = 0
+                                            @endphp
                                         <tbody class="list">
-                        
+                                            
+                                            @foreach ($review as $item)
+
                                             <tr>
-                                                <th>1</th>
-                                                <th scope="row" class="name">
+                                                {{-- <td>{{$i++}}</td> --}}
+                                                <td scope="row" class="name">
                                                     <div class="media align-items-center">
-                                                        <a href="#" class="avatar rounded-circle mr-3">
-                                                            <img alt="Image placeholder" src="../../assets/img/theme/bootstrap.jpg">
-                                                        </a>
+                                                        {{-- <a href="#" class="avatar rounded-circle mr-3">
+                                                                <img src="{{URL::asset("assets/$menu->image")}}"
+                                                        class="img-thumbnail" alt="Cinque Terre" width="304"
+                                                        height="236">
+                                                        <img alt="Image placeholder"
+                                                            src="../../assets/img/theme/bootstrap.jpg">
+                                                        </a> --}}
                                                         <div class="media-body">
-                                                            <span class="mb-0 text-sm">Argon Design System</span>
+                                                            <span class="mb-0 text-sm">{{$item->product->name}}</span>
                                                         </div>
                                                     </div>
-                                                </th>
-                        
+                                                </td>
+
                                                 <td class="status">
                                                     <span class="badge badge-dot mr-4">
-                                                      ***
+                                                        @for ($i = 0; $i < $item->product->star; $i++)
+                                                            <i class="far fa-star"></i>
+                                                            @endfor
+
                                                     </span>
                                                 </td>
-                        
-                        <td>good</td>
+
+                                                <td>{{$item->review}}</td>
                                                 <td class="text-right">
                                                     <div class="dropdown">
-                                                        <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            <i class="fas fa-ellipsis-v"></i>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                            <a class="dropdown-item" href="#">Action</a>
-                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                        </div>
+                                                        <form method="POST" action="{{url('delete/reviews',$item->id)}}" >
+                                                            @method('delete')
+                                                            @csrf
+                                                        <button  class="btn btn-sm btn-danger text-light" > 
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                        </form>
+                                                        <form method="POST" action="{{url('delete/reviews',$item->id)}}" >
+                                                            @method('delete')
+                                                            @csrf                                          
+                                            
+                                                    </div>
+                                                    <div class="dropdown">
+                                                    <button  class="btn btn-sm btn-warning text-light" > 
+                                                            Archive
+                                                         </button>
+                                                         </form>
                                                     </div>
                                                 </td>
                                             </tr>
-                        
-                        
+                                            @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
-                        
+                                {{ $review->links() }}
                             </div>
                         </div>
-                    </form>
+                    
                 </div>
             </div>
         </div>

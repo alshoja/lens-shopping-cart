@@ -77,7 +77,10 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('update/home/timer', ['as' => '', 'uses' => 'MiddlePosterTimerController@update']);
 
 	Route::get('manage/reviews', ['as' => 'web-settings.Review.reviews', 'uses' => 'ReviewController@create']);
+	Route::delete('delete/reviews/{id}', ['as' => '', 'uses' => 'ReviewController@destroy']);
+
 	Route::get('manage/testimonials', ['as' => 'web-settings.Testimonials.testimonials', 'uses' => 'TestimonialController@create']);
+	Route::delete('delete/testimonials/{id}', ['as' => '', 'uses' => 'TestimonialController@destroy']);
 	
 	Route::get('manage/stock/categories', ['as' => 'stock-settings.categories.category', 'uses' => 'CategoryController@create']);
 	Route::post('store/stock/categories', ['as' => '', 'uses' => 'CategoryController@store']);

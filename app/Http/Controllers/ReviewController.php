@@ -24,7 +24,7 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        $review = Review::all();
+        $review = Review::with('product','product.user')->paginate(10);
         return view('web-settings.Review.reviews',compact('review'));
     }
 
@@ -79,8 +79,10 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
+    public function destroy(Review $review,$id)
     {
-        //
+        $review = Review::destroy($id);
+        return back();
+        
     }
 }

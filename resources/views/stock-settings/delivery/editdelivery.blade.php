@@ -13,15 +13,15 @@
                             <h3 class="mb-0">{{ __('Delivery Places') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('user.index') }}"
+                            <a href="{{ URL::previous() }}"
                                 class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ url('store/stock/delivery') }}" autocomplete="off">
+                    <form method="post" action="{{ url('update/stock/delivery',$delivary->id) }}" autocomplete="off">
                         @csrf
-
+@method('put')
                         <h6 class="heading-small text-muted mb-4">{{ __('Add Delivery Place') }}</h6>
                         <div class="pl-lg-4">
 
@@ -30,7 +30,7 @@
                                             <div class="form-group{{ $errors->has('state') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-email">{{ __('State') }}</label>
                                                 <div class="input-group mb-3">
-                                                        <input type="text" name="state" id="input-email" class="form-control form-control-alternative{{ $errors->has('state') ? ' is-invalid' : '' }}" placeholder="{{ __('State') }}"  required>
+                                                        <input type="text" name="state" id="input-email" value="{{$delivary->state}}" class="form-control form-control-alternative{{ $errors->has('state') ? ' is-invalid' : '' }}" placeholder="{{ __('State') }}"  required>
                                                       </div>
                                                 @if ($errors->has('state'))
                                                 <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                             <div class="form-group{{ $errors->has('district') ? ' has-danger' : '' }}">
                                                 <label class="form-control-label" for="input-email">{{ __('DIstrict') }}</label>
                                                 <div class="input-group mb-3">
-                                                        <input type="text" name="district" id="input-email" class="form-control form-control-alternative{{ $errors->has('district') ? ' is-invalid' : '' }}" placeholder="{{ __('District') }}"  required>
+                                                        <input type="text" name="district" value="{{$delivary->district}}" id="input-email" class="form-control form-control-alternative{{ $errors->has('district') ? ' is-invalid' : '' }}" placeholder="{{ __('District') }}"  required>
 
                                                       </div>
                                                 @if ($errors->has('district'))
@@ -61,7 +61,7 @@
                                                         <div class="input-group-prepend">
                                                           <span class="input-group-text" id="basic-addon1"><i class="fas fa-city"></i></span>
                                                         </div>
-                                                        <input type="number" class="form-control" name="pincode"  placeholder="{{ __(' Pincode') }}" aria-label="T url" aria-describedby="basic-addon1">
+                                                        <input type="number" class="form-control" name="pincode" value="{{$delivary->pincode}}"  placeholder="{{ __(' Pincode') }}" aria-label="T url" aria-describedby="basic-addon1">
                                                       </div>
                                                 @if ($errors->has('pincode'))
                                                 <span class="invalid-feedback" role="alert">

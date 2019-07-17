@@ -37,7 +37,13 @@ class DeliveryPlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $delivary = new DeliveryPlace;
+        $delivary->state = $request->state;
+        $delivary->district = $request->district;
+        $delivary->pincode = $request->pincode;
+        $delivary->save();
+        return back();
+
     }
 
     /**
@@ -57,9 +63,10 @@ class DeliveryPlaceController extends Controller
      * @param  \App\DeliveryPlace  $deliveryPlace
      * @return \Illuminate\Http\Response
      */
-    public function edit(DeliveryPlace $deliveryPlace)
+    public function edit(DeliveryPlace $deliveryPlace,$id)
     {
-        //
+        $delivary = DeliveryPlace::Findorfail($id);
+        return view('stock-settings.delivery.editdelivery',compact('delivary'));
     }
 
     /**
@@ -69,9 +76,14 @@ class DeliveryPlaceController extends Controller
      * @param  \App\DeliveryPlace  $deliveryPlace
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DeliveryPlace $deliveryPlace)
+    public function update(Request $request, DeliveryPlace $deliveryPlace,$id)
     {
-        //
+        $delivary =  DeliveryPlace::Findorfail($id);
+        $delivary->state = $request->state;
+        $delivary->district = $request->district;
+        $delivary->pincode = $request->pincode;
+        $delivary->save();
+        return back();
     }
 
     /**
@@ -80,9 +92,11 @@ class DeliveryPlaceController extends Controller
      * @param  \App\DeliveryPlace  $deliveryPlace
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeliveryPlace $deliveryPlace)
+    public function destroy(DeliveryPlace $deliveryPlace,$id)
     {
-        //
+        $delivary =  DeliveryPlace::destroy($id);
+        return back();
+
     }
 
     public function search(Request $request)

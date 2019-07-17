@@ -70,8 +70,12 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('update/features/{id}', ['as' => '', 'uses' => 'FirstFooterFeatureController@update']);
 	Route::delete('delete/features/{id}', ['as' => '', 'uses' => 'FirstFooterFeatureController@destroy']);
 
-	Route::get('update/offerbox', ['as' => 'web-settings.offerbox.offer', 'uses' => 'OfferBoxController@create']);
-	Route::get('update/home/timer', ['as' => 'web-settings.Hometimer.hometimer', 'uses' => 'MiddlePosterTimerController@create']);
+	Route::get('show/offerbox', ['as' => 'web-settings.offerbox.offer', 'uses' => 'OfferBoxController@create']);
+	Route::put('update/offerbox/{id}', ['as' => '', 'uses' => 'OfferBoxController@update']);
+
+	Route::get('show/home/timer', ['as' => 'web-settings.Hometimer.hometimer', 'uses' => 'MiddlePosterTimerController@create']);
+	Route::put('update/home/timer', ['as' => '', 'uses' => 'MiddlePosterTimerController@update']);
+
 	Route::get('manage/reviews', ['as' => 'web-settings.Review.reviews', 'uses' => 'ReviewController@create']);
 	Route::get('manage/testimonials', ['as' => 'web-settings.Testimonials.testimonials', 'uses' => 'TestimonialController@create']);
 	
@@ -87,12 +91,12 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('update/stock/type/{id}', ['as' => '', 'uses' => 'TypeController@update']);
 	Route::delete('delete/stock/type/{id}', ['as' => '', 'uses' => 'TypeController@destroy']);
 
-//pending	
+
 	Route::get('manage/stock/delivery', ['as' => 'stock-settings.delivery.delivery', 'uses' => 'DeliveryPlaceController@create']);
 	Route::post('store/stock/delivery', ['as' => '', 'uses' => 'DeliveryPlaceController@store']);
 	Route::get('edit/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@edit']);
 	Route::put('update/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@update']);
-	Route::delete('delete/stock/delivery{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@destroy']);
+	Route::delete('delete/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@destroy']);
 	
 	Route::get('show/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
 	Route::post('update/menu/items', ['as' => '', 'uses' => 'MenuController@update']);

@@ -24,7 +24,8 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        return view('web-settings.Review.reviews');
+        $review = Review::all();
+        return view('web-settings.Review.reviews',compact('review'));
     }
 
     /**

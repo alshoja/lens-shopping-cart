@@ -18,9 +18,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('web-settings.Homeslider.editslider',$slider->id) }}" enctype="multipart/form-data" autocomplete="off">
+                        <form method="post" action="{{ url('update/slider',$slider->id) }}" enctype="multipart/form-data" autocomplete="off">
                             @csrf
-                            {{ method_field('PUT') }}
+                           @method('put')
                             <h6 class="heading-small text-muted mb-4">{{ __('slider information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('title') ? ' has-danger' : '' }}">

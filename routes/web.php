@@ -40,7 +40,7 @@ Route::group(['middleware' => 'isadmin'], function () {
     Route::get('show/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@show']);
 	Route::put('update/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@update']);
 	Route::delete('delete/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@destroy']);
-	Route::patch('patch/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@MakeActive']);
+	Route::patch('patch/slider/{id}', ['as' => '', 'uses' => 'TopSliderController@MakeActive']);
 
 	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
 

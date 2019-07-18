@@ -27,8 +27,8 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                        {{-- <label class="form-control-label" for="input-password">{{ __('Title') }}</label>
-                                        --}}
+                                        <label class="form-control-label" for="input-password">{{ __('Type') }}</label>
+                                       
                                         <input type="text" name="name" id="input-password"
                                             class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Type') }}" value="" required>
@@ -41,10 +41,20 @@
                                     </div>
                                 </div>
 
-
+                                <div class="col-sm">
+                                    <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-password">{{ __('Select Category') }}</label>
+                                        <select required name="category_id" class="form-control">
+                                            <option aria-readonly="true" disabled >Select Category</option>
+                                            @foreach ($category as $item)
+                                            <option aria-readonly="true" value="{{$item->id}}">{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
-                    <div class="text-center">
+                            <div class="text-center">
                                 <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                             </div>
 
@@ -65,7 +75,9 @@
                         <th scope="col">
                             Type Name
                         </th>
-
+                        <th scope="col">
+                            Category
+                        </th>
 
 
                         <th scope="col"></th>
@@ -73,9 +85,9 @@
                 </thead>
                 <tbody class="list">
                     @php
-                        $i = 1
+                    $i = 1
                     @endphp
-@foreach ($type as $item)
+                    @foreach ($type as $item)
 
                     <tr>
                         <th>{{$i++}}</th>
@@ -85,29 +97,33 @@
                                 <i class="bg-warning"></i> {{$item->name}}
                             </span>
                         </td>
-
+                        <td class="status">
+                            <span class="badge badge-dot mr-4">
+                                <i class="bg-warning"></i> {{$item->category->name}}
+                            </span>
+                        </td>
 
                         <td class="text-right">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                      
-                                       
-                                <a class="dropdown-item" href="{{url('edit/stock/type',$item->id)}}">Edit</a>
-                                
-                                <form action="{{ url('delete/stock/type',$item->id) }}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="dropdown-item">Delete</button>
-                                </form>
-                                    </div>
+                            <div class="dropdown">
+                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+
+
+                                    <a class="dropdown-item" href="{{url('edit/stock/type',$item->id)}}">Edit</a>
+
+                                    <form action="{{ url('delete/stock/type',$item->id) }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="dropdown-item">Delete</button>
+                                    </form>
                                 </div>
-                            </td>
+                            </div>
+                        </td>
                     </tr>
-    
+
                     @endforeach
 
                 </tbody>

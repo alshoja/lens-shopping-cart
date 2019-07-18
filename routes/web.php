@@ -43,6 +43,7 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::patch('patch/slider/{id}', ['as' => '', 'uses' => 'TopSliderController@MakeActive']);
 
 	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
+	Route::post('store/stock', ['as' => '', 'uses' => 'StockController@store']);
 
 	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
 	Route::put('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@update']);

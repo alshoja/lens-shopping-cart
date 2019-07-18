@@ -27,8 +27,8 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                        {{-- <label class="form-control-label" for="input-password">{{ __('Title') }}</label>
-                                        --}}
+                                        <label class="form-control-label" for="input-password">{{ __('Name') }}</label>
+                                       
                                         <input type="text" name="name" id="input-password"
                                             class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
                                     placeholder="{{ __('Type') }}" value="{{$type->name}}" required>
@@ -40,7 +40,19 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="col-sm">
+                                        <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label"
+                                                for="input-password">{{ __('Categorie') }}</label>
+                                            <select required name="category_id" class="form-control">
 
+                                                <option aria-readonly="true" disabled selected>{{$type->category->name}}</option>
+                                                @foreach ($category as $item)
+                                                <option aria-readonly="true" value="{{$item->id}}">{{$item->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
 
                             </div>
 

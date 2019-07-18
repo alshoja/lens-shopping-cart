@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\Categorie;
 class TypeController extends Controller
 {
     /**
@@ -23,8 +24,10 @@ class TypeController extends Controller
      */
     public function create()
     {
-        $type = Type::all();
-        return view('stock-settings.type.type',compact('type'));
+        $type = Type::with('category')->get();
+        $category = Categorie::all();
+        //return response()->json($type, 200);
+        return view('stock-settings.type.type',compact('type','category'));
     }
 
     /**
@@ -37,6 +40,7 @@ class TypeController extends Controller
     {
         $type = new Type;
         $type->name = $request->name;
+        $type->category_id = $request->category_id;
         $type->user_id = Auth::user()->id;
         $type->save();
         return back();
@@ -61,8 +65,9 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        $type = Type::findorFail($id);
-        return view('stock-settings.type.edittype',compact('type'));
+        $type = Type::with('category')->findorFail($id);
+        $category = Categorie::all();
+        return view('stock-settings.type.edittype',compact('type','category'));
     }
 
     /**
@@ -75,6 +80,13 @@ class TypeController extends Controller
     public function update(Request $request, $id)
     {
         $type = Type::findorFail($id);
+        
+        if ($request->category_id) {
+            $type->category_id = $request->category_id;
+        } else {
+            $type->category_id = $type->category_id;
+        }
+        
         $type->name = $request->name;
         $type->save();
         return back();

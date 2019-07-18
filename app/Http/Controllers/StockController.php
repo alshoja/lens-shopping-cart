@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Product;
+use Auth;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -23,7 +26,10 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('web-settings.ManageStock.manageStock');
+        $stocks = Product::with('user', 'categorie', 'images', 'reviews', 'productImage')->orderby('id', 'desc')->paginate(5);
+        $category = Categorie::all();
+        // return  response()->json($stocks);
+        return view('web-settings.ManageStock.manageStock', compact('stocks', 'category'));
     }
 
     /**
@@ -34,7 +40,42 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$stock = stock::Findorfail($id);
+        $stock = new Product;
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        } else {
+            $file = $stock->image;
+        }
+        $stock->name = $request->name;
+        $stock->amount = $request->amount;
+        $stock->old_price = $request->old_price;
+        $stock->description = $request->description;
+        $stock->star = 0;
+        $stock->user_id = Auth::user()->id;
+        $stock->category_id = $request->category_id;
+        $stock->stock = $request->stock;
+        if ($request->in_flashSale) {
+            $stock->in_flashSale = $request->in_flashSale;
+        } else {
+            $stock->in_flashSale = 0;
+        }
+
+        if ($request->in_Featured_sale) {
+            $stock->in_Featured_sale = $request->in_Featured_sale;
+        } else {
+            $stock->in_Featured_sale = 0;
+        }
+
+        if ($request->is_inDeals) {
+            $stock->is_inDeals = $request->is_inDeals;
+        } else {
+            $stock->is_inDeals = 0;
+        }
+
+        $stock->enable_type = 0;
+        $stock->save();
+        return back();
     }
 
     /**

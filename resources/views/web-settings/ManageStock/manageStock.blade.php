@@ -267,6 +267,9 @@
                                     ₹-/ {{$item->stock}}
                             </td>
                             <td class="status">
+                                @if ($item->star == 0)
+                                <span>Not rated yet</span>
+                                @endif
                                     <span class="badge badge-dot mr-4">
                                         @for ($i = 0; $i < $item->star; $i++)
                                             <i class="far fa-star"></i>

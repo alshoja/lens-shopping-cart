@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use App\Models\Product;
+use App\Models\Product_image;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,11 @@ class StockController extends Controller
 
         $stock->enable_type = 0;
         $stock->save();
+        $product_image = new Product_image;
+        $product_image->product_id = $stock->id;
+        $product_image->user_id =Auth::user()->id;
+        $product_image->image = $file;
+        $product_image->save();
         return back();
     }
 

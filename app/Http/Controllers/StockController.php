@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\Product;
 use App\Models\Product_image;
 use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class StockController extends Controller
@@ -41,13 +42,12 @@ class StockController extends Controller
      */
     public function store(Request $request)
     {
-        //$stock = stock::Findorfail($id);
+        $this->validate($request, [
+            'description' => 'required',
+            'photos'=>'required',
+            ]);
+        
         $stock = new Product;
-        if (request()->file('image')) {
-            $file = request()->file('image')->store('uploads');
-        } else {
-            $file = $stock->image;
-        }
         $stock->name = $request->name;
         $stock->amount = $request->amount;
         $stock->old_price = $request->old_price;
@@ -76,11 +76,30 @@ class StockController extends Controller
 
         $stock->enable_type = 0;
         $stock->save();
-        $product_image = new Product_image;
-        $product_image->product_id = $stock->id;
-        $product_image->user_id =Auth::user()->id;
-        $product_image->image = $file;
-        $product_image->save();
+
+        if ($request->hasFile('photos')) {
+            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx'];
+            $files = $request->file('photos');
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+
+                if ($check) {
+                   
+                        $filename = $file->store('productImages');
+                        Product_image::create([
+                            'product_id' => $stock->id,
+                            'image' => $filename,
+                            'user_id' => Auth::user()->id,
+                        ]);
+                        Session::flash('message', "Uploaded");
+                } else {
+                        Session::flash('message', "File Size is too high or something went wrong");
+                }
+            }
+        }
+       
         return back();
     }
 

@@ -46,7 +46,7 @@ class StockController extends Controller
             'description' => 'required',
             'photos'=>'required',
             ]);
-        
+
         $stock = new Product;
         $stock->name = $request->name;
         $stock->amount = $request->amount;
@@ -78,7 +78,7 @@ class StockController extends Controller
         $stock->save();
 
         if ($request->hasFile('photos')) {
-            $allowedfileExtension = ['pdf', 'jpg', 'png', 'docx'];
+            $allowedfileExtension = ['pdf', 'jpg', 'png'];
             $files = $request->file('photos');
             foreach ($files as $file) {
                 $filename = $file->getClientOriginalName();
@@ -86,20 +86,20 @@ class StockController extends Controller
                 $check = in_array($extension, $allowedfileExtension);
 
                 if ($check) {
-                   
+
                         $filename = $file->store('productImages');
                         Product_image::create([
                             'product_id' => $stock->id,
                             'image' => $filename,
                             'user_id' => Auth::user()->id,
                         ]);
-                        Session::flash('message', "Uploaded");
+                        Session::flash('message', "Stock Added Succesfully");
                 } else {
-                        Session::flash('message', "File Size is too high or something went wrong");
+                        Session::flash('message', "Problem with your File size  or something went wrong");
                 }
             }
         }
-       
+
         return back();
     }
 
@@ -122,7 +122,11 @@ class StockController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stocks = Product::with('user', 'categorie', 'images', 'reviews', 'productImage')->orderby('id', 'desc')->findorfail($id);
+        $category = Categorie::all();
+        // return response()->json($stocks);
+        return view('web-settings.ManageStock.editmanageStock', compact('stocks', 'category'));
+
     }
 
     /**
@@ -145,6 +149,8 @@ class StockController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $stocks = Product::destroy($id);
+        return back();
+
     }
 }

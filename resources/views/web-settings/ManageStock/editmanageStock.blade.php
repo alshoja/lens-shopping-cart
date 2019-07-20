@@ -3,6 +3,7 @@
 @section('content')
 @include('users.partials.header', ['title' => __('Manage Stock')])
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 <div class="container-fluid mt--7">
     <div class="row">
         <div class="col-xl-12 order-xl-1">
@@ -32,7 +33,7 @@
                     @if (Session::has('message'))
                     <div class="alert alert-success">{{ Session::get('message') }}</div>
                     @endif
-                <form method="post" enctype="multipart/form-data" action="{{ url('store/stock') }}" autocomplete="off">
+                <form method="post" enctype="multipart/form-data" action="{{ url('update/stock',$stocks->id) }}" autocomplete="off">
                     @csrf
 
                     <h6 class="heading-small text-muted mb-4">{{ __('Add Stock') }}</h6>
@@ -44,7 +45,7 @@
                                     <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
                                     <input type="text" name="name" id="input-title"
                                         class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
+                                        placeholder="{{ __('Name') }}" value="{{ $stocks->name }}" required autofocus>
 
                                     @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
@@ -59,7 +60,7 @@
                                         for="input-email">{{ __('Current Price') }}</label>
                                     <input type="text" name="amount" id="numbervalidate"
                                         class="form-control form-control-alternative{{ $errors->has('amount') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Current Price') }}" value="{{ old('amount') }}" required>
+                                        placeholder="{{ __('Current Price') }}" value="{{ $stocks->amount }}" required>
 
                                     @if ($errors->has('amount'))
                                     <span class="invalid-feedback" role="alert">
@@ -73,7 +74,7 @@
                                     <label class="form-control-label" for="input-email">{{ __('Old Price') }}</label>
                                     <input type="number" name="old_price" id="numbervalidate"
                                         class="form-control form-control-alternative{{ $errors->has('old_price') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('Old Price') }}" value="{{ old('old_price') }}" required>
+                                        placeholder="{{ __('Old Price') }}" value="{{ $stocks->old_price }}" required>
 
                                     @if ($errors->has('old_price'))
                                     <span class="invalid-feedback" role="alert">
@@ -87,7 +88,7 @@
                                     <label class="form-control-label" for="input-email">{{ __('Stock') }}</label>
                                     <input type="number" pattern="^-?([0-9]*\?[0-9]+|[0-9]+\?[0-9]*)$" name="stock" id="input-email"
                                         class="form-control form-control-alternative{{ $errors->has('stock') ? ' is-invalid' : '' }}"
-                                        placeholder="{{ __('No of Stock') }}" value="{{ old('stock') }}" required>
+                                        placeholder="{{ __('No of Stock') }}" value="{{ $stocks->stock }}" required>
 
                                     @if ($errors->has('stock'))
                                     <span class="invalid-feedback" role="alert">
@@ -100,6 +101,8 @@
                                 <div class="form-group{{ $errors->has('categorie') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('Categorie') }}</label>
                                     <select name="category_id" class="form-control">
+                                            <option value="{{$stocks->id}}" aria-readonly="true">{{$stocks->name}}</option>
+
                                         @foreach ($category as $item)
                                         <option value="{{$item->id}}" aria-readonly="true">{{$item->name}}</option>
                                         @endforeach
@@ -128,7 +131,7 @@
                             <textarea name="description"
                                 class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                 id="exampleFormControlTextarea1" value="{{ old('description') }}" rows="3"
-                                placeholder="{{ __('Description about product') }}"></textarea>
+                        placeholder="{{ __('Description about product') }}">{{$stocks->description}}</textarea>
                             @if ($errors->has('description'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('description') }}</strong>
@@ -166,7 +169,13 @@
                                 <label class="form-control-label col-xs-2">Flash Sale</label>
                                 <div class="col-xs-10">
                                     <label class="custom-toggle">
+                                        @if ($stocks->in_flashSale == 1)
                                         <input name="in_flashSale" value="1" type="checkbox" checked>
+
+                                        @else
+                                        <input name="in_flashSale" value="1" type="checkbox">
+                                        @endif
+
                                         <span class="custom-toggle-slider rounded-circle"></span>
                                     </label>
                                 </div>
@@ -176,7 +185,12 @@
                                 <label class="form-control-label col-xs-2">In Deals</label>
                                 <div class="col-xs-10">
                                     <label class="custom-toggle">
-                                        <input name="is_inDeals" value="1" type="checkbox" checked>
+                                            @if ($stocks->is_inDeals == 1)
+                                            <input name="is_inDeals" value="1" type="checkbox" checked>
+
+                                            @else
+                                            <input name="is_inDeals" value="1" type="checkbox">
+                                            @endif
                                         <span class="custom-toggle-slider rounded-circle"></span>
                                     </label>
                                 </div>
@@ -186,7 +200,12 @@
                                 <label class=" form-control-label col-xs-2">Featured Sale</label>
                                 <div class="col-xs-10">
                                     <label class="custom-toggle">
-                                        <input name="in_Featured_sale" value="1" type="checkbox" checked>
+                                            @if ($stocks->in_Featured_sale == 1)
+                                            <input name="in_Featured_sale" value="1" type="checkbox" checked>
+
+                                            @else
+                                            <input name="in_Featured_sale" value="1" type="checkbox">
+                                            @endif
                                         <span class="custom-toggle-slider rounded-circle"></span>
                                     </label>
                                 </div>
@@ -206,197 +225,145 @@
 
 <br>
 <span class="clearfix"></span>
-<div class="table-responsive">
-    <div>
-        <table class="table align-items-center table-flush">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">
-                        Product Name
-                    </th>
-                    <th scope="col">
-                        Price
-                    </th>
-                    <th scope="col">
-                        Old Price
-                    </th>
 
-                    {{-- <th scope="col">
-                            Description
-                        </th> --}}
-                    <th scope="col">
-                        No of Stock
-                    </th>
-                    <th scope="col">
-                        Rating
-                    </th>
-                    <th scope="col">
-                        Category
-                    </th>
-                    <th scope="col">
-                        In Feature Section
-                    </th>
-                    <th scope="col">
-                        In Deals
-                    </th>
-                    <th scope="col">
-                        In Flash Sale
-                    </th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody class="list">
-                @php
-                $i = 1
-                @endphp
-
-                @foreach ($stocks as $item)
-
-                <tr>
-                    <th>{{$i++}}</th>
-                    <th scope="row" class="name">
-                        <div class="media align-items-center">
-                            <a href="#" class="avatar rounded-circle mr-3">
-                                @foreach ($item->productImage as $product_Image)
-                                <img alt="Image placeholder" src={{URL::asset("assets/$product_Image->image")}}>
-                                @endforeach
-                            </a>
-                            <div class="media-body">
-                                <span class="mb-0 text-sm">{{$item->name}}</span>
-                            </div>
-                        </div>
-                    </th>
-                    <td class="budget">
-                        ₹-/ {{$item->amount}}
-                    </td>
-                    <td class="status">
-
-                        <span class="mb-0 text-sm">₹-/{{$item->old_price}}</span>
-                        </span>
-                    </td>
-                    {{-- <td class="status">
-
-                                    <span class="mb-0 text-sm">{{$item->description}}</span>
-                    </span>
-                    </td> --}}
-                    <td class="budget">
-                        ₹-/ {{$item->stock}}
-                    </td>
-                    <td class="status">
-                        @if ($item->star == 0)
-                        <span>Not rated yet</span>
-                        @endif
-                        <span class="badge badge-dot mr-4">
-                            @for ($i = 0; $i < $item->star; $i++)
-                                <i class="far fa-star"></i>
-                                @endfor
-
-                        </span>
-                    </td>
-                    <td class="budget">
-                        {{$item->categorie->name}}
-                    </td>
-                    <td>
-                        <div class="avatar-group">
-                            @if ($item->in_Featured_sale)
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-success"></i>&#9989
-                            </span>
-                            @else
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-danger"></i>
-
-
-
-                                @endif
-
-
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="avatar-group">
-                            @if ($item->is_inDeals)
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-success"></i>&#9989
-                            </span>
-                            @else
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-danger"></i>
-
-
-
-                                @endif
-
-
-                        </div>
-
-                    </td>
-                    <td>
-                        <div class="avatar-group">
-                            @if ($item->in_flashSale)
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-success"></i>&#9989
-                            </span>
-                            @else
-
-                            <span class="badge badge-dot mr-4">
-                                <i class="bg-danger"></i>
-
-
-
-                                @endif
-
-
-                        </div>
-
-                    </td>
-                    <td class="text-right">
-                        <div class="dropdown">
-                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                {{-- <form action="{{ url('patch/slider',$item->id) }}" method="post">
-                                    @method('PATCH')
-                                    @csrf
-                                    <button class="dropdown-item" href="">Make as first Slide</button>
-                                </form> --}}
-                                <a class="dropdown-item" href="{{url('show/stock',$item->id)}}">Edit</a>
-                                <form action="{{ url('delete/stock',$item->id) }}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="dropdown-item">Delete</button>
-                                </form>
-
-                                {{-- <a class="dropdown-item" href="#">Something else here</a> --}}
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-    <div class="py-6">
-        <nav class="d-flex justify-content-end" aria-label="...">
-            {{ $stocks->links() }}
-        </nav>
-    </div>
-
-</div>
 </div>
 {{-- slider detaisl in list --}}
 <span class="clearfix"></span>
 
+<h2 style="text-align:center">Product Images</h2>
+
+<div class="container" style="width: 50%">
+    @php
+        $i=1
+    @endphp
+    @php
+    $max =  count($stocks->images)
+ @endphp
+    @foreach ($stocks->images as $item)
+  <div class="mySlides">
+  <div class="numbertext">{{$i++}} / {{$max}}
+        <div class="row" style="margin: 20px">
+                <div class="sm">
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Update
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form action="{{ url('update/stock/image',$item->id) }}" method="post">
+                @method('put')
+                @csrf
+
+
+
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Product Image </span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="photos[]" required class="custom-file-input"
+                                    id="inputGroupFile01" multiple>
+                                <label class="custom-file-label" for="inputGroupFile01"> File</label>
+                            </div>
+
+                            @if ($errors->has('photos'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('photos') }}</strong>
+
+                            </span>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    </div>&nbsp;
+    <div class="sm">
+
+        <form action="{{ url('delete/stock',$item->id) }}" method="post">
+            @method('delete')
+            @csrf
+        <button class="btn btn-sm btn-danger mt-4 ">Delete</button>
+        </form>
+    </div>
+</div>
+  </div>
+
+    <img src="{{URL::asset("assets/$item->image")}}" style="width:100%">
+
+  </div>
+  @endforeach
+
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+
+  <div class="caption-container">
+
+    <p  id="caption"></p>
+  </div>
+
+  <div class="row">
+      @php
+          $sno =1
+      @endphp
+        @foreach ($stocks->images as $item)
+    <div class="column">
+      <img class="demo cursor" src="{{URL::asset("assets/$item->image")}}" style="width:100%" onclick="currentSlide({{$sno++}})" alt="{{$item->image}}">
+    </div>
+
+    @endforeach
+  </div>
+</div>
+<script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("demo");
+          var captionText = document.getElementById("caption");
+          if (n > slides.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";
+          dots[slideIndex-1].className += " active";
+          captionText.innerHTML = dots[slideIndex-1].alt;
+        }
+        </script>
 
 <script>
     function myFunction() {

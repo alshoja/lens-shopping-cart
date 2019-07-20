@@ -44,6 +44,12 @@ Route::group(['middleware' => 'isadmin'], function () {
 
 	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
 	Route::post('store/stock', ['as' => '', 'uses' => 'StockController@store']);
+	Route::get('show/stock/{id}', ['as' => '', 'uses' => 'StockController@edit']);
+	Route::put('update/stock/{id}', ['as' => '', 'uses' => 'StockController@update']);
+    Route::delete('delete/stock/{id}', ['as' => '', 'uses' => 'StockController@destroy']);
+
+    Route::put('update/stock/image/{id}', ['as' => '', 'uses' => 'StockController@update']);
+	Route::delete('delete/stock/image/{id}', ['as' => '', 'uses' => 'StockController@destroy']);
 
 	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
 	Route::put('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@update']);
@@ -82,13 +88,13 @@ Route::group(['middleware' => 'isadmin'], function () {
 
 	Route::get('manage/testimonials', ['as' => 'web-settings.Testimonials.testimonials', 'uses' => 'TestimonialController@create']);
 	Route::delete('delete/testimonials/{id}', ['as' => '', 'uses' => 'TestimonialController@destroy']);
-	
+
 	Route::get('manage/stock/categories', ['as' => 'stock-settings.categories.category', 'uses' => 'CategoryController@create']);
 	Route::post('store/stock/categories', ['as' => '', 'uses' => 'CategoryController@store']);
 	Route::get('edit/stock/categories/{id}', ['as' => '', 'uses' => 'CategoryController@edit']);
 	Route::put('update/stock/categories/{id}', ['as' => '', 'uses' => 'CategoryController@update']);
 	Route::delete('delete/stock/categories/{id}', ['as' => '', 'uses' => 'CategoryController@destroy']);
-	
+
 	Route::get('manage/stock/type', ['as' => 'stock-settings.type.type', 'uses' => 'TypeController@create']);
 	Route::post('store/stock/type', ['as' => '', 'uses' => 'TypeController@store']);
 	Route::get('edit/stock/type/{id}', ['as' => '', 'uses' => 'TypeController@edit']);
@@ -101,8 +107,8 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::get('edit/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@edit']);
 	Route::put('update/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@update']);
 	Route::delete('delete/stock/delivery/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@destroy']);
-	
+
 	Route::get('show/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
 	Route::post('update/menu/items', ['as' => '', 'uses' => 'MenuController@update']);
-	
+
 });

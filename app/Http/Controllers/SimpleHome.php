@@ -131,7 +131,7 @@ class SimpleHome extends Controller
             ->with('user', 'images', 'categorie','productImage')
             ->orderBy('id', 'desc')
             ->paginate(12);
-
+            // return response()->json($deals);
         return view('shop', compact('deals', 'all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 

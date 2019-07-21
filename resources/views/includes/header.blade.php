@@ -66,11 +66,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-3 top-info-cart text-right mt-lg-4">
                     <ul class="cart-inner-info">
 
-                        <li class="button-log">
+                        {{-- <li class="button-log">
                             <a class="btn-open" href="#">
                                 <span class="fa fa-user" aria-hidden="true"></span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="galssescart galssescart2 cart cart box_1">
                             <form action="#" method="post" class="last">
                                 <input type="hidden" name="cmd" value="_cart">
@@ -166,8 +166,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <button type="button" class="overlay-close">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
-                    <form action="#" method="post" class="d-flex">
-                        <input class="form-control" type="search" placeholder="Search here..." required="">
+                    <form  action="{{URL('product/shop/price')}}" method="get" class="d-flex">
+                        <input class="form-control" name="search" type="search" placeholder="Search here..." required="">
                         <button type="submit" class="btn btn-primary submit">
                             <i class="fas fa-search"></i>
                         </button>
@@ -204,7 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						@else
 						@if ( Auth::user()->Is_admin)
                         <li class="nav-item button-log">
-                            <a class="dropdown-item" href="{{ route('dashboard') }}">
+                            <a target="_blank" class="dropdown-item" href="{{ route('dashboard') }}">
 
                                 <i class="fas fa-tachometer-alt"></i> {{ __('Dashboard') }} </a>
 
@@ -334,7 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h5 class="tittle-w3layouts-sub-nav">{{$menu->image_title}} </h5>
                         <div class="media-mini mt-3">
                             <a href="{{url('/shop')}}">
-                                <img src={{URL::asset("assets/images/$menu->image")}} class="img-fluid" alt="">
+                                <img src={{URL::asset("assets/$menu->image")}} class="img-fluid" alt="">
                             </a>
                         </div>
 

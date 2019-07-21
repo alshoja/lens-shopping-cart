@@ -174,14 +174,15 @@
                         </div>
                         <!-- //reviews -->
                         <!-- deals -->
-                        @foreach ($deals as $dealitem)
 
-                        @endforeach
                         <div class="deal-leftmk left-side">
                             <h3 class="agileits-sear-head">Special Deals</h3>
+                            @foreach ($deals as $dealitem)
                             <div class="special-sec1">
                                 <div class="img-deals">
-                                <img src="{{URL::asset('assets/images/s1.jpg')}}" alt="">
+                                    @foreach ($dealitem->productImage as $item)
+                                <img src={{URL::asset("assets/$item->image")}} alt="">
+                                      @endforeach
                                 </div>
                                 <div class="img-deal1">
                                 <h3>{{$dealitem->name}}</h3>
@@ -189,7 +190,9 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
+                            @endforeach
                         </div>
+
                         <!-- //deals -->
                     </div>
                     <!-- //product left -->
@@ -220,7 +223,9 @@
                                     <div class="product-googles-info googles">
                                         <div class="men-pro-item">
                                             <div class="men-thumb-item">
-                                                <img src="{{URL::asset("assets/images/s1.jpg")}}"  class="img-fluid" alt="">
+                                                @foreach ($item->productImage as $proimage)
+                                                <img src="{{URL::asset("assets/$proimage->image")}}"  class="img-fluid" alt="">
+                                                @endforeach
                                                 <div class="men-cart-pro">
                                                     <div class="inner-men-cart-pro">
                                                         <a href={{URL('product/item',$item->id)}} class="link-product-add-cart">Quick View</a>

@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Stock Management')])
 
 @section('content')
-@include('users.partials.header', ['title' => __('Manage Stock')])
+@include('users.partials.header', ['title' => __('Update Product')])
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
 <div class="container-fluid mt--7">
@@ -14,7 +14,7 @@
                             <h3 class="mb-0">{{ __('Update/add Stock') }}</h3>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('user.index') }}"
+                            <a href="{{ URL::previous() }}"
                                 class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
                     @endif
                 <form method="post" enctype="multipart/form-data" action="{{ url('update/stock',$stocks->id) }}" autocomplete="off">
                     @csrf
-
-                    <h6 class="heading-small text-muted mb-4">{{ __('Add Stock') }}</h6>
+@method('put')
+                    <h6 class="heading-small text-muted mb-4">{{ __('Update Product') }}</h6>
                     <div class="pl-lg-4">
 
                         <div class="row">
@@ -147,7 +147,7 @@
                                         <span class="input-group-text">Product Image </span>
                                     </div>
                                     <div class="custom-file">
-                                        <input type="file" name="photos[]" required class="custom-file-input"
+                                        <input type="file" name="photos[]"  class="custom-file-input"
                                             id="inputGroupFile01" multiple>
                                         <label class="custom-file-label" for="inputGroupFile01"> Can attach more than
                                             one
@@ -230,15 +230,27 @@
 {{-- slider detaisl in list --}}
 <span class="clearfix"></span>
 
-<h2 style="text-align:center">Product Images</h2>
 
-<div class="container" style="width: 50%">
+<div class="row">
+    <div class="col-md-12" >
+<div class="container" style="width: 40%">
     @php
         $i=1
     @endphp
     @php
     $max =  count($stocks->images)
  @endphp
+ @if ($max==0)
+ <div class="mySlides">
+    <div class="numbertext">No images found</div>
+    <div class="imgs">
+    <img src="{{URL::asset("argon/img/noimage.gif")}}" style="width:100%">
+    </div>
+    <marquee width="40%" direction="left" height="30%">
+       Nothing found..! Please add some images
+        </marquee>
+  </div>
+ @else
     @foreach ($stocks->images as $item)
   <div class="mySlides">
   <div class="numbertext">{{$i++}} / {{$max}}
@@ -248,9 +260,23 @@
 <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">
   Update
 </button>
+    </div>
+    <div class="sm">
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{ url('delete/stock/image',$item->id) }}" method="post">
+            @method('delete')
+            @csrf
+        <button type="submit" class="btn btn-sm btn-danger mt-4 ">Delete</button>
+        </form>
+    </div>
+</div>
+  </div>
+
+    <img src="{{URL::asset("assets/$item->image")}}" style="width:100%">
+
+  </div>
+  {{-- Modal starting here --}}
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -260,18 +286,15 @@
         </button>
       </div>
       <div class="modal-body">
-            <form action="{{ url('update/stock/image',$item->id) }}" method="post">
+            <form action="{{ url('update/stock/image',$item->product_id) }}" enctype="multipart/form-data" method="post">
                 @method('put')
                 @csrf
-
-
-
-                        <div class="input-group mb-3">
+                       <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Product Image </span>
                             </div>
                             <div class="custom-file">
-                                <input type="file" name="photos[]" required class="custom-file-input"
+                                <input type="file" name="photo" required class="custom-file-input"
                                     id="inputGroupFile01" multiple>
                                 <label class="custom-file-label" for="inputGroupFile01"> File</label>
                             </div>
@@ -289,31 +312,13 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-
       </div>
     </div>
   </div>
 </div>
-
-
-    </div>&nbsp;
-    <div class="sm">
-
-        <form action="{{ url('delete/stock',$item->id) }}" method="post">
-            @method('delete')
-            @csrf
-        <button class="btn btn-sm btn-danger mt-4 ">Delete</button>
-        </form>
-    </div>
-</div>
-  </div>
-
-    <img src="{{URL::asset("assets/$item->image")}}" style="width:100%">
-
-  </div>
+{{-- Modal ends here --}}
   @endforeach
-
+  @endif
   <a class="prev" onclick="plusSlides(-1)">❮</a>
   <a class="next" onclick="plusSlides(1)">❯</a>
 
@@ -333,6 +338,8 @@
 
     @endforeach
   </div>
+</div>
+    </div>
 </div>
 <script>
         var slideIndex = 1;

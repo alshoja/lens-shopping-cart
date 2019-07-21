@@ -48,8 +48,8 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('update/stock/{id}', ['as' => '', 'uses' => 'StockController@update']);
     Route::delete('delete/stock/{id}', ['as' => '', 'uses' => 'StockController@destroy']);
 
-    Route::put('update/stock/image/{id}', ['as' => '', 'uses' => 'StockController@update']);
-	Route::delete('delete/stock/image/{id}', ['as' => '', 'uses' => 'StockController@destroy']);
+    Route::put('update/stock/image/{id}', ['as' => '', 'uses' => 'ProductImageController@update']);
+	Route::delete('delete/stock/image/{id}', ['as' => '', 'uses' => 'ProductImageController@destroy']);
 
 	Route::get('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@create']);
 	Route::put('update/contact', ['as' => 'web-settings.Contact.contact', 'uses' => 'ContactController@update']);

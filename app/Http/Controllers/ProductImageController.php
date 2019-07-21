@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product_image;
+use App\Models\ProductType;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductImageController extends Controller
 {
@@ -67,12 +69,12 @@ class ProductImageController extends Controller
      * @param  \App\Models\ProductType  $productType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductType $productType)
+    public function update(Request $request, ProductType $productType,$id)
     {
-        $image = new Product_image;
-        if ($request->hasFile('photos')) {
+        $image = Product_image::where('product_id',$id)->first();
+        if ($request->hasFile('photo')) {
             $allowedfileExtension = ['pdf', 'jpg', 'png'];
-            $file = $request->file('photos');
+            $file = $request->file('photo');
 
             $filename = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
@@ -81,15 +83,14 @@ class ProductImageController extends Controller
             if ($check) {
 
                 $filename = $file->store('productImages');
-
                 Session::flash('message', "Stock updated Succesfully");
             } else {
+
                 Session::flash('message', "Problem with your File size  or something went wrong");
             }
 
         }
-        $image->image = $filename;
-        $image->save();
+        $image->update(['image' => $filename]);
         return back();
     }
 
@@ -99,8 +100,9 @@ class ProductImageController extends Controller
      * @param  \App\Models\ProductType  $productType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductType $productType)
+    public function destroy(ProductType $productType,$id)
     {
-        //
+        $image = Product_image::destroy($id);
+        return back();
     }
 }

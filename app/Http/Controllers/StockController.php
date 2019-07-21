@@ -138,7 +138,60 @@ class StockController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $stock =  Product::findorfail($id);
+        $stock->name = $request->name;
+        $stock->amount = $request->amount;
+        $stock->old_price = $request->old_price;
+        $stock->description = $request->description;
+        $stock->star = 0;
+        $stock->user_id = Auth::user()->id;
+        $stock->category_id = $request->category_id;
+        $stock->stock = $request->stock;
+        if ($request->in_flashSale) {
+            $stock->in_flashSale = $request->in_flashSale;
+        } else {
+            $stock->in_flashSale = 0;
+        }
+
+        if ($request->in_Featured_sale) {
+            $stock->in_Featured_sale = $request->in_Featured_sale;
+        } else {
+            $stock->in_Featured_sale = 0;
+        }
+
+        if ($request->is_inDeals) {
+            $stock->is_inDeals = $request->is_inDeals;
+        } else {
+            $stock->is_inDeals = 0;
+        }
+
+        $stock->enable_type = 0;
+        $stock->save();
+
+        if ($request->hasFile('photos')) {
+            $allowedfileExtension = ['pdf', 'jpg', 'png'];
+            $files = $request->file('photos');
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $check = in_array($extension, $allowedfileExtension);
+
+                if ($check) {
+
+                        $filename = $file->store('productImages');
+                        Product_image::create([
+                            'product_id' => $stock->id,
+                            'image' => $filename,
+                            'user_id' => Auth::user()->id,
+                        ]);
+                        Session::flash('message', "Stock updated Succesfully");
+                } else {
+                        Session::flash('message', "Problem with your File size  or something went wrong");
+                }
+            }
+        }
+
+        return back();
     }
 
     /**

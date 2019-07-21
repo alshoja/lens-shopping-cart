@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'>
     <script src="js/sweetalert.min.js"></script>
-    @include('sweet::alert') 
+    @include('sweet::alert')
 </head>
 
 <body>
@@ -58,8 +58,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="col-md-6 logo-w3layouts text-center">
                     <h1 class="logo-w3layouts">
-                        <a class="navbar-brand" href="index.html">
-                            Googgles </a>
+                    <a class="navbar-brand" href="{{url('/')}}">
+                            Store </a>
                     </h1>
                 </div>
 
@@ -189,10 +189,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
 
-                      
+
                         <!-- Authentication Links -->
                         @guest
-					
+
                         <li class="nav-item button-log">
                             <a class="nav-link btn-open" href="#">{{ __('Login') }}</a>
                         </li>
@@ -234,13 +234,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         @endguest
                     </ul>
                     <ul class="navbar-nav nav-mega mx-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
                             <a class="nav-link ml-lg-0" href=" {{url('/')}} ">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item {{ Route::is('about') ? 'active' : '' }}">
                             <a class="nav-link" href="{{url('/about')}}">About</a>
                         </li>
                         {{-- <li class="nav-item dropdown">
@@ -296,7 +296,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </li>
     </ul>
     </li> --}}
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown {{ Request::is('product/shop') ? 'active' : '' }}">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Shop
@@ -345,7 +345,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </ul>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{url('/contact')}}">Contact</a>
+        <a class="nav-link {{ Route::is('contact') ? 'active' : '' }}" href="{{url('/contact')}}">Contact</a>
     </li>
     </ul>
 

@@ -261,6 +261,8 @@
                                 @foreach ($item->productImage as $product_Image)
                                 <img alt="Image placeholder" src={{URL::asset("assets/$product_Image->image")}}>
                                 @endforeach
+
+
                             </a>
                             <div class="media-body">
                                 <span class="mb-0 text-sm">{{$item->name}}</span>

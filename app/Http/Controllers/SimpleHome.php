@@ -29,16 +29,16 @@ class SimpleHome extends Controller
     public function index()
     {
         $products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(4)->orderBy('id', 'desc')
             ->get();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $product_slider = Product::where('stock', '>', '0')
             ->where('in_flashSale', 1)
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -60,7 +60,7 @@ class SimpleHome extends Controller
             ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
-            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -81,7 +81,7 @@ class SimpleHome extends Controller
     {
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
@@ -93,7 +93,7 @@ class SimpleHome extends Controller
         $collection = Product::with('user', 'images', 'categorie', 'types', 'reviews', 'reviews.users')->findOrFail($id);
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
-            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -111,12 +111,12 @@ class SimpleHome extends Controller
         $contact = Contact::first();
         $deals = Product::where('stock', '>', '0')
             ->where('is_inDeals', 1)
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(4)->orderBy('id', 'desc')
             ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
-            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -124,11 +124,11 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $all_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->orderBy('id', 'desc')
             ->paginate(12);
 
@@ -192,7 +192,7 @@ class SimpleHome extends Controller
 
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
@@ -224,12 +224,12 @@ class SimpleHome extends Controller
         $contact = Contact::first();
         $deals = Product::where('stock', '>', '0')
             ->where('is_inDeals', 1)
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(4)->orderBy('id', 'desc')
             ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
-            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -237,13 +237,13 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
 
         $all_products = Product::where('stock', '>', '0')
             ->where('star', $id)
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->orderBy('id', 'desc')
             ->paginate(12);
 
@@ -263,12 +263,12 @@ class SimpleHome extends Controller
         $contact = Contact::first();
         $deals = Product::where('stock', '>', '0')
             ->where('is_inDeals', 1)
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(4)->orderBy('id', 'desc')
             ->get();
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
-            ->with('user', 'images', 'categorie', 'types', 'reviews')
+            ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
             ->take(8)
             ->orderBy('id', 'desc')
             ->get();
@@ -276,13 +276,13 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
         $new_products = Product::where('stock', '>', '0')
-            ->with('user', 'images', 'categorie')
+            ->with('user', 'images', 'categorie','productImage')
             ->take(8)->orderBy('id', 'desc')
             ->get();
         if ($from != null) {
             $all_products = Product::where('stock', '>', '0')
                 ->whereBetween('amount', [$from, $to])
-                ->with('user', 'images', 'categorie')
+                ->with('user', 'images', 'categorie','productImage')
                 ->orderBy('id', 'desc')
                 ->paginate(12);
 

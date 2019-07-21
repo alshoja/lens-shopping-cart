@@ -11,32 +11,32 @@
                     <ul class="footer-social text-left mt-lg-4 mt-3">
 
                         <li class="mx-2">
-                            <a href="{{$about->fb_url}}">
+                            <a target="_blank" href="{{$about->fb_url}}">
                                 <span class="fab fa-facebook-f"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="{{$about->twitter_url}}">
+                            <a target="_blank" href="{{$about->twitter_url}}">
                                 <span class="fab fa-twitter"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="{{$about->google_url}}">
+                            <a target="_blank" href="{{$about->google_url}}">
                                 <span class="fab fa-google-plus-g"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="{{$about->link_url}}">
+                            <a target="_blank" href="{{$about->link_url}}">
                                 <span class="fab fa-linkedin-in"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="{{$about->rss_link}}">
+                            <a target="_blank" href="{{$about->rss_link}}">
                                 <span class="fas fa-rss"></span>
                             </a>
                         </li>
                         <li class="mx-2">
-                            <a href="{{$about->other}}">
+                            <a target="_blank" href="{{$about->other}}">
                                 <span class="fab fa-vk"></span>
                             </a>
                         </li>
@@ -65,19 +65,19 @@
                 </div>
                 <ul class="links">
                     <li>
-                        <a href="index.html">Home</a>
+                    <a href="{{url('/')}}">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">About</a>
+                        <a href="{{url('/about')}}">About</a>
+                    </li>
+                    {{-- <li>
+                        <a href="{{url('/')}}">Error</a>
+                    </li> --}}
+                    <li>
+                        <a href="{{url('/product/shop')}}">Shop</a>
                     </li>
                     <li>
-                        <a href="404.html">Error</a>
-                    </li>
-                    <li>
-                        <a href="shop.html">Shop</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="{{url('/contact')}}">Contact Us</a>
                     </li>
                 </ul>
             </div>

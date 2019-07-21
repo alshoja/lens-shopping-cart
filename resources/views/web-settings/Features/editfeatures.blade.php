@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="{{ url('update/features') }}" autocomplete="off">
+                    <form method="post" action="{{ url('update/features',$feature->id) }}" autocomplete="off">
                         @csrf
                         @method('put')
                         <h6 class="heading-small text-muted mb-4">{{ __('Update Features') }}</h6>
@@ -28,7 +28,7 @@
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('heading') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-password">{{ __('Heading') }}</label>
-                                       
+
                                         <input type="text" name="heading" id="input-password"
                                             class="form-control form-control-alternative{{ $errors->has('heading') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Title') }}" value="{{$feature->heading}}" required>
@@ -43,7 +43,7 @@
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('button_value') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('Button Value') }}</label>
-                                       
+
                                         <input type="text" name="button_value" id="input-title"
                                             class="form-control form-control-alternative{{ $errors->has('button_value') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('Button Value') }}" value="{{$feature->button_value }}"
@@ -59,7 +59,7 @@
                                 <div class="col-sm">
                                     <div class="form-group{{ $errors->has('url') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-name">{{ __('URL') }}</label>
-                                       
+
                                         <input type="url" name="url" id="input-title"
                                             class="form-control form-control-alternative{{ $errors->has('url') ? ' is-invalid' : '' }}"
                                             placeholder="{{ __('URL:  http://www.example.com/') }}"
@@ -78,7 +78,7 @@
                                 <div class="col-sm-4">
                                     <div class="form-group{{ $errors->has('icon') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-password">{{ __('Icon') }}</label>
-                                       
+
                                         <select name="icon" class="form-control">
 
                                             <option value='<i class="far fa-hand-paper"></i>' aria-readonly="true"> Hand
@@ -97,7 +97,7 @@
                                 <div class="col-sm-6 mt-sm-4 mb-sm-5">
                                     <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-email">{{ __('Description') }}</label>
-                                       
+
                                         <textarea name="description"
                                             class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}"
                                             id="exampleFormControlTextarea1" rows="3"

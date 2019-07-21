@@ -35,14 +35,14 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
-    Route::get('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@create']);
+    Route::get('create/slider', [ 'uses' => 'TopSliderController@create'])->name('slider');;
     Route::post('create/slider', ['as' => 'web-settings.Homeslider.slider', 'uses' => 'TopSliderController@store']);
-    Route::get('show/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@show']);
+    Route::get('show/slider/{id}', [ 'uses' => 'TopSliderController@show'])->name('slider');
 	Route::put('update/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@update']);
 	Route::delete('delete/slider/{id}', ['as' => 'web-settings.Homeslider.editslider', 'uses' => 'TopSliderController@destroy']);
 	Route::patch('patch/slider/{id}', ['as' => '', 'uses' => 'TopSliderController@MakeActive']);
 
-	Route::get('create/stock', ['as' => 'web-settings.Homeslider.manageStock', 'uses' => 'StockController@create']);
+	Route::get('create/stock', ['as' => 'stock', 'uses' => 'StockController@create']);
 	Route::post('store/stock', ['as' => '', 'uses' => 'StockController@store']);
 	Route::get('show/stock/{id}', ['as' => '', 'uses' => 'StockController@edit']);
 	Route::put('update/stock/{id}', ['as' => '', 'uses' => 'StockController@update']);

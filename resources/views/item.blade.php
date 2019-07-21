@@ -17,10 +17,10 @@
 
             <ul class="short">
                 <li>
-                    <a href="index.html">Home</a>
+                    <a href="{{URL::to('/')}}">Home</a>
                     <i>|</i>
                 </li>
-                <li>Single Page</li>
+                <li>{{$collection->name}}</li>
             </ul>
         </div>
     </div>
@@ -40,8 +40,8 @@
 
                             <ul class="slides">
                                 @foreach ($collection->images as $img)
-                                <li data-thumb="{{URL::asset("assets/images/$img->image")}}">
-                                    <div class="thumb-image"> <img src="{{URL::asset("assets/images/$img->image")}}"
+                                <li data-thumb="{{URL::asset("assets/$img->image")}}">
+                                    <div class="thumb-image"> <img src="{{URL::asset("assets/$img->image")}}"
                                             data-imagezoom="true" class="img-fluid" alt=" "> </div>
                                 </li>
                                 @endforeach

@@ -30,7 +30,7 @@ class StockController extends Controller
     {
         $stocks = Product::with('user', 'categorie', 'images', 'reviews', 'productImage')->orderby('id', 'desc')->paginate(5);
         $category = Categorie::all();
-        // return  response()->json($stocks);
+        //  return  response()->json($stocks);
         return view('web-settings.ManageStock.manageStock', compact('stocks', 'category'));
     }
 

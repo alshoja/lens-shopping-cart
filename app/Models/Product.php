@@ -30,7 +30,7 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Review', 'product_id', 'id');
     }
-    
+
     public function productImage()
     {
         return $this->hasMany(Product_image::class)->take(1);

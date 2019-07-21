@@ -86,7 +86,7 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}"
                         href="{{ route('dashboard') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 {{ Request::routeIs('dashboard') ? 'text-primary' : '' }}"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
                 <li class="nav-item">
@@ -112,13 +112,13 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::routeIs('profile.edit') ? 'active' : '' }} " href="#navbar-examples"
+                    <a class="nav-link {{ Request::routeis('slider') ? 'active' : '' }} " href="#navbar-examples"
                         data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fas fa-screwdriver"></i>
                         <span class="nav-link-text">{{ __('Website Settings') }}</span>
                     </a>
 
-                    <div class="collapse show" id="navbar-examples">
+                    <div class="collapse {{ Request::routeis('slider') ? 'show' : '' }}" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('web-settings.Homeslider.slider') }}">
@@ -160,7 +160,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::routeIs('profile.edit') ? 'active' : '' }} " href="#navbar-examples"
+                    <a class="nav-link {{ Request::routeIs('stock') ? 'active' : '' }} " href="#navbar-examples"
                         data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
                         <i class="fab fa-opencart"></i>
                         <span class="nav-link-text">{{ __('Stock Management') }}</span>
@@ -169,8 +169,8 @@
                     <div class="collapse " id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('web-settings.Homeslider.manageStock') }}">
-                                    {{ __('Stock') }}
+                                <a class="nav-link" href="{{ url('create/stock') }}">
+                                    {{ __('Manage Stock') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -201,32 +201,32 @@
             <!-- Divider -->
             <hr class="my-3">
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Quick Access</h6>
+            <h6 class="navbar-heading text-muted ">Quick Access</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
 
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('web-settings.offerbox.offer') ? 'active' : '' }} ">
                     <a class="nav-link"
                 href="{{route('web-settings.offerbox.offer')}}">
-                        <i class="ni ni-paper-diploma"></i> OfferBox
+                        <i class="ni ni-paper-diploma {{ Route::is('web-settings.offerbox.offer') ? 'text-primary' : '' }} "></i> OfferBox
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{ Route::is('web-settings.Hometimer.hometimer') ? 'active' : '' }}">
                         <a class="nav-link"
                     href="{{route('web-settings.Hometimer.hometimer')}}">
-                            <i class="ni ni-time-alarm"></i> Make a offer Timer
+                            <i class="ni ni-time-alarm {{ Route::is('web-settings.Hometimer.hometimer') ? 'text-primary' : '' }}"></i> Make a offer Timer
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Route::is('web-settings.Review.reviews') ? 'active' : '' }}">
                             <a class="nav-link"
                         href="{{route('web-settings.Review.reviews')}}">
-                                <i class="ni ni-satisfied"></i> Manage Reviews
+                                <i class="ni ni-satisfied {{ Route::is('web-settings.Review.reviews') ? 'text-primary' : '' }}"></i> Manage Reviews
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{ Route::is('web-settings.Testimonials.testimonials') ? 'active' : '' }}">
                                 <a class="nav-link"
                             href="{{route('web-settings.Testimonials.testimonials')}}">
-                                    <i class="ni ni-trophy"></i> Manage Testimonials
+                                    <i class="ni ni-trophy {{ Route::is('web-settings.Testimonials.testimonials') ? 'text-primary' : '' }}"></i> Manage Testimonials
                                 </a>
                             </li>
 

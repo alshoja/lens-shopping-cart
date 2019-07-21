@@ -75,10 +75,9 @@
                     <div class="product-googles-info googles">
                         <div class="men-pro-item">
                             <div class="men-thumb-item">
-                                @foreach ($item->images as $img)
-
+                                @foreach ($item->productImage as $img)
                                 {{-- {{ $property_images = json_decode($img->images) }} --}}
-                                <img src={{URL::asset("assets/images/$img->image")}} class="img-fluid" alt="">
+                                <img src={{URL::asset("assets/$img->image")}} class="img-fluid" alt="">
                                 @endforeach
                                 <div class="men-cart-pro">
                                     <div class="inner-men-cart-pro">
@@ -225,7 +224,7 @@
     <!--/meddle-- banner-mid.jpg-->
     <div class="row">
         <div class="col-md-12 middle-slider my-4"
-            style=" background: url({{URL::asset("assets/images/$middle->poster_image")}}) no-repeat 0px 0px;">
+            style=" background: url({{URL::asset("assets/$middle->poster_image")}}) no-repeat 0px 0px;">
             <div class="middle-text-info ">
 
                 <h3 class="tittle-w3layouts two text-center my-lg-4 mt-3">{{$middle->title}}</h3>
@@ -247,15 +246,16 @@
                             <div class="product-googles-info slide-img googles">
                                 <div class="men-pro-item">
                                     <div class="men-thumb-item">
-                                        @foreach ($item_slider->images as $item)
+                                        @foreach ($item_slider->productImage as $item)
 
                                         {{-- {{$property_images = json_decode($item->images)}} --}}
-                                        <img src="{{URL::asset("assets/images/$item->image")}}" class="img-fluid"
+                                        <img src="{{URL::asset("assets/$item->image")}}" class="img-fluid"
                                             alt="">
                                         @endforeach
                                         <div class="men-cart-pro">
                                             <div class="inner-men-cart-pro">
-                                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                                    <a href="{{url('product/item',$item->id)}}" class="link-product-add-cart">
+                                               Quick View</a>
                                             </div>
                                         </div>
                                         <span class="product-new-top">New one</span>
@@ -369,7 +369,7 @@
             @foreach ($editorsPic as $Epic)
             <div class="col-lg-6 galsses-grid-left">
                 <figure class="effect-lexi">
-                    <img src={{URL::asset("assets/images/banner4.jpg")}} alt="" class="img-fluid">
+                    <img src={{URL::asset("assets/$Epic->image")}} alt="" class="img-fluid">
                     <figcaption>
                         <h3>
                             <span>{{$Epic->heading}}</span>
@@ -388,11 +388,12 @@
 
 
                 <div class="col-lg-4 bottom-sub-grid text-center">
-                    <div class="bt-icon">
-
+                    {{-- <div class="bt-icon">
                         <span class="far fa-hand-paper"></span>
-                    </div>
-
+                    </div> --}}
+                    <div class="bt-icon">
+                            {!!$f1->icon!!}
+                        </div>
                     <h4 class="sub-tittle-w3layouts my-lg-4 my-3">{{$f1->heading}}</h4>
                     <p>{{ str_limit($f1->description , $limit = 150, $end = '...') }}</p>
                     <p>
@@ -411,7 +412,7 @@
                 @foreach ($second_feature as $f2)
                 <div class="col-lg-3 footer-top-w3layouts-grid-sec">
                     <div class="mail-grid-icon text-center">
-                        <i class="fas fa-gift"></i>
+                        {!!$f2->icon!!}
                     </div>
                     <div class="mail-grid-text-info">
                         <h3>{{$f2->heading}}</h3>

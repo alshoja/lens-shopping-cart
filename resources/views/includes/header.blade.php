@@ -39,8 +39,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'>
-    <script src="js/sweetalert.min.js"></script>
-    @include('sweet::alert')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
+  
+   
 </head>
 
 <body>

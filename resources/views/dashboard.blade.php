@@ -31,11 +31,16 @@
                             </div>
                         </div>
                     </div>
+                 
                     <div class="card-body">
                         <!-- Chart -->
                         <div class="chart">
                             <!-- Chart wrapper -->
-                            <canvas id="chart-sales" class="chart-canvas"></canvas>
+                            {{-- <canvas id="chart-sales" class="chart-canvas"></canvas> --}}
+                          
+                            {!! $chart_line->container() !!}
+                            {!! $chart_line->script() !!}
+                          
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ use App\Models\OfferBox;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Testimonial;
+use App\Models\Review;
 use App\Models\TopSlider as Slider;
 use Illuminate\Http\Request;
 //use Illuminate\Support\Facades\Request;
@@ -91,6 +92,7 @@ class SimpleHome extends Controller
             ->get();
         $about = About::first();
         $collection = Product::with('user', 'images', 'categorie', 'types', 'reviews', 'reviews.users')->findOrFail($id);
+        $reviews = Review::with('users')->where('product_id',$id)->paginate(5);
         $product_featured = Product::where('stock', '>', '0')
             ->where('in_featured_sale', 1)
             ->with('user', 'images', 'categorie', 'types', 'reviews','productImage')
@@ -98,8 +100,8 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        // return response()->json($menu);
-        return view('item', compact('collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu'));
+        //  return response()->json($reviews);
+        return view('item', compact('collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu','reviews'));
     }
 
     public function shop()

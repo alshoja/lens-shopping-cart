@@ -189,27 +189,9 @@
                             <div class="tab2">
 
                                 <div class="single_page">
+                             
                                     <div class="bootstrap-tab-text-grids">
-                                        <div class="bootstrap-tab-text-grid">
-                                            @foreach ($collection->reviews as $Ritem)
-                                            <div class="bootstrap-tab-text-grid-left">
-                                                <img src="{{URL::asset("assets/images/user.png")}}" alt=" "
-                                                    class="img-fluid">
-                                            </div>
-
-                                            <div class="bootstrap-tab-text-grid-right">
-                                                <ul>
-                                                    <li><a href="#">{{$Ritem->users->name}}</a></li>
-                                                    <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i>
-                                                            Reply</a></li>
-                                                </ul>
-                                                <p>{{$Ritem->review}}</p>
-                                            </div>
-
-                                            <div class="clearfix"> </div>
-                                            <hr>
-                                        </div>
-                                        @endforeach
+                                       
                                         <div class="add-review">
                                                 <h4>add a review</h4>
 <div class="row">
@@ -244,10 +226,31 @@
                                         </div>
                                     </div>
                                     </div>
+                                    <div class="bootstrap-tab-text-grid">
+                                        @foreach ($reviews as $Ritem)
+                                        <div class="bootstrap-tab-text-grid-left">
+                                            <img width="20%" src="{{URL::asset("assets/images/user.png")}}" alt=" "
+                                                class="img-fluid">
+                                        </div>
 
+                                        <div class="bootstrap-tab-text-grid-right">
+                                            <ul>
+                                                <li><a href="#">{{$Ritem->users->name}}</a></li>
+                                                <li><a href="#"><i class="fa fa-reply-all" aria-hidden="true"></i>
+                                                        Reply</a></li>
+                                            </ul>
+                                            <p>{{$Ritem->review}}</p>
+                                        </div>
+
+                                        <div class="clearfix"> </div>
+                                        <hr>
+                                        @endforeach
+                                    </div>
+                                   
+                                    {{ $reviews->links() }}
                                 </div>
                             </div>
-                            {{-- <div class="tab3">
+                             {{-- <div class="tab3">
 
 
 
@@ -264,7 +267,7 @@
                                         </div>
 
 
-                                    </div> --}}
+                                    </div>  --}}
                         </div>
                     </div>
                 </div>

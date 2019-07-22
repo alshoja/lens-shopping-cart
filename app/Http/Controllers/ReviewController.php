@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use App\Models\Review;
+use App\Models\Product;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -44,8 +45,8 @@ class ReviewController extends Controller
         $review->product_id = $request->product_id;
         $review->save();
         $rating = $this->calculateRating($request->rating, $review->product_id, $review->id);
-        print_r($rating);
-        //return back();
+        Product::where('id',$review->product_id)->update(['star'=>$rating]);
+        return back();
     }
     /**
      * Calculate the specified Rating.
@@ -55,23 +56,45 @@ class ReviewController extends Controller
      */
     public function calculateRating($star, $product_id, $review_id)
     {
-        $rating =  Rating::findOrCreate(5);
+        $rating =  Rating::where('product_id',$product_id)->first();
+        if($rating == null){
+            $rating = new Rating;
+            $rating->review_id = $review_id;
+            if ($star == 1) {
+                $rating->one_star = $star;
+            }
+            if ($star == 2) {
+                $rating->two_star = $star;
+            }
+            if ($star == 3) {
+                $rating->three_star = $star;
+            }
+            if ($star == 4) {
+                $rating->four_star = $star;
+            }
+            if ($star == 5) {
+                $rating->five_star = $star;
+            }
+            $rating->product_id = $product_id;
+            $rating->avg_rating = 0;
+            $rating->save();
+        }
         $rating->review_id = $review_id;
         $rating->product_id = $product_id;
         if ($star == 1) {
-            $rating->one_star = $rating->one_star++;
+            $rating->one_star = $rating->one_star + 1;
         }
         if ($star == 2) {
-            $rating->two_star = $rating->two_star++;
+            $rating->two_star = $rating->two_star + 1;
         }
         if ($star == 3) {
-            $rating->three_star = $rating->three_star;
+            $rating->three_star = $rating->three_star + 1;
         }
         if ($star == 4) {
-            $rating->four_star = $rating->four_star++;
+            $rating->four_star = $rating->four_star + 1;
         }
         if ($star == 5) {
-            $rating->five_star = $rating->five_star++;
+            $rating->five_star = $rating->five_star + 1;
         }
         $currentRating = $this->currentRating(
             $rating->one_star,

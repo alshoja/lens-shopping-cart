@@ -43,7 +43,7 @@
                         <h3>{{$sliderdata->main_heading}}
                             <span>{{$sliderdata->sub_heading}}</span>
                         </h3>
-                        <a href="{{url('/shop')}}"
+                        <a href="{{url('product/shop')}}"
                             class="btn btn-sm animated-button gibson-three mt-4">{{$sliderdata->button_value}}</a>
 
                     </div>

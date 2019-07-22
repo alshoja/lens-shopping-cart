@@ -6,7 +6,7 @@ $factory->define(App\Models\Editorspic::class, function (Faker $faker) use($fact
     $bool = (bool)random_int(0, 1);
     return [
         'heading'=>$faker->name,
-        'image'=>'uploads/banner4.hpg',
+        'image'=>'uploads/banner4.jpg',
         'hover_data'=>$faker->company,
         'is_Active'=>$bool
     ];

@@ -231,7 +231,13 @@
                                                         <a href={{URL('product/item',$item->id)}} class="link-product-add-cart">Quick View</a>
                                                     </div>
                                                 </div>
-                                                <span class="product-new-top">New</span>
+
+                                                    @if (strtotime($item->created_at) < strtotime('-30 days'))
+                                                    <span class="product-new-top"> Months Ago</span>
+                                                    @else
+                                                    <span class="product-new-top">New </span>
+                                                    @endif
+
                                             </div>
                                             <div class="item-info-product">
                                                 <div class="info-product-price">

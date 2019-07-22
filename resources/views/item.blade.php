@@ -9,6 +9,8 @@
 @stop
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link href={{URL::asset("assets/css/rating.css")}} rel='stylesheet' type='text/css' />
 
 <!-- banner -->
 <div class="banner_inner" style=" background: url({{URL::asset("assets/images/banner-mid.jpg")}})no-repeat 0px -55px;">
@@ -191,7 +193,7 @@
                                         <div class="bootstrap-tab-text-grid">
                                             @foreach ($collection->reviews as $Ritem)
                                             <div class="bootstrap-tab-text-grid-left">
-                                                <img src="{{URL::asset("assets/images/team1.jpg")}}" alt=" "
+                                                <img src="{{URL::asset("assets/images/user.png")}}" alt=" "
                                                     class="img-fluid">
                                             </div>
 
@@ -210,27 +212,37 @@
                                         @endforeach
                                         <div class="add-review">
                                                 <h4>add a review</h4>
+<div class="row">
+    <div class="col-md-6">
+            <form action="{{url('store/reviews')}}" method="post">
+                @csrf
+                                                <fieldset class="rating">
+                                                        <input type="radio" id="star5" name="rating" value="5" required /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                                                        {{-- <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> --}}
+                                                        <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                                                        {{-- <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> --}}
+                                                        <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                                                        {{-- <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> --}}
+                                                        <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                                                        {{-- <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> --}}
+                                                        <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                                                        {{-- <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> --}}
+                                                    </fieldset>
+    </div>
+    <div class="col-md-6">
 
-                                                        <div class="container">
-                                                                <div class="smileybox">
-                                                                    <label for="r1" class="check x"><input class="star" type="checkbox" id="r1" onchange="ratingStar(event)"/><i class="em em-weary"></i></label>
-                                                                    <label for="r2" class="check x"><input class="star" type="checkbox" id="r2" onchange="ratingStar(event)"/><i class="em em-worried"></i></label>
-                                                                    <label for="r3" class="check x"><input class="star" type="checkbox" id="r3" onchange="ratingStar(event)"/><i class="em em-blush"></i></label>
-                                                                    <label for="r4" class="check x"><input class="star" type="checkbox" id="r4" onchange="ratingStar(event)"/><i class="em em-smiley"></i></label>
-                                                                    <label for="r5" class="check x"><input class="star" type="checkbox" id="r5" onchange="ratingStar(event)"/><i class="em em-sunglasses"></i></label>
-                                                                </div>
-                                                            </div>
 
-
-                                            <form action="#" method="post">
-                                                <input class="form-control" type="text" name="Name"
-                                                    placeholder="Enter your email..." required="">
+                                                <input class="form-control" type="text" name="name"
+                                                    placeholder="Name" required="">
                                                 <input class="form-control" type="email" name="Email"
                                                     placeholder="Enter your email..." required="">
-                                                <textarea name="Message" required=""></textarea>
+                                                    <input class="form-control" name="product_id" value="{{$collection->id}}" type="hidden" >
+                                                <textarea name="message" required=""></textarea>
                                                 <input type="submit" value="SEND">
                                             </form>
+    </div>
                                         </div>
+                                    </div>
                                     </div>
 
                                 </div>
@@ -344,6 +356,7 @@
                 </div>
             </div>
         </div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <!--//slider-->
     </div>
 </section>
@@ -365,7 +378,5 @@
     <script type="text/javascript">
     $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
     </script>
-    <script>
 
-    </script>
 @stop

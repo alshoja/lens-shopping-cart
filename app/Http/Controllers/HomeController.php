@@ -48,15 +48,6 @@ class HomeController extends Controller
         $chart_line->dataset('Users Chart', 'line', [$users_2_days_ago, $yesterday_users, $today_users]);
         $visitor = Tracker::currentSession();
         $users = Tracker::onlineUsers();
-        return Tracker::logByRouteName('index')
-        ->where(function($query)
-        {
-            $query
-                ->where('parameter', 'id')
-                ->where('value', 1);
-        })
-        ->count();
-        return response()->json($users);
         return view('dashboard', compact('chart_line','bar_chart'));
     }
 }

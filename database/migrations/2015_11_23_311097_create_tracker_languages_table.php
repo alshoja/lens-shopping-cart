@@ -23,8 +23,8 @@ class CreateTrackerLanguagesTable extends Migration
             function ($table) {
                 $table->bigIncrements('id');
 
-                $table->string('preference')->index();
-                $table->string('language-range')->index();
+                $table->string('preference',191)->index();
+                $table->string('language-range',191)->index();
 
                 $table->unique(['preference', 'language-range']);
 

@@ -11,7 +11,7 @@
                         <div class="row align-items-center">
                             <div class="col">
                                 <h6 class="text-uppercase text-light ls-1 mb-1">Overview</h6>
-                                <h2 class="text-white mb-0">Sales value</h2>
+                                <h2 class="text-white mb-0">Users Registration</h2>
                             </div>
                             {{-- <div class="col">
                                 <ul class="nav nav-pills justify-content-end">
@@ -56,7 +56,8 @@
                     <div class="card-body">
                         <!-- Chart -->
                         <div class="chart">
-                            <canvas id="chart-orders" class="chart-canvas"></canvas>
+                            {!! $bar_chart->container() !!}
+                            {!! $bar_chart->script() !!}
                         </div>
                     </div>
                 </div>

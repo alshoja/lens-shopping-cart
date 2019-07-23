@@ -6,6 +6,8 @@ use App\Charts\LineChart;
 use App\Models\Product;
 use App\User;
 use DB;
+use App\Charts\Barchart;
+use Tracker;
 
 class HomeController extends Controller
 {
@@ -33,16 +35,28 @@ class HomeController extends Controller
     public function dashboard()
     {
         $products = Product::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"), date('Y'))->get();
-        $chart_line = new LineChart;
-        // $chart->labels(['One', 'Two', 'Three']);
-        // $chart->dataset('My dataset 1', 'line', [1, 2, 3]);
+
+        $bar_chart = new Barchart;
+        $bar_chart->labels([ 'July', 'August','September','October','November','December']);
+        $bar_chart->dataset('Total Orders', 'bar', [1,2,3,4,5,6]);
+
         $today_users = User::whereDate('created_at', today())->count();
         $yesterday_users = User::whereDate('created_at', today()->subDays(1))->count();
         $users_2_days_ago = User::whereDate('created_at', today()->subDays(2))->count();
-
+        $chart_line = new LineChart;
         $chart_line->labels(['2 days ago', 'Yesterday', 'Today']);
         $chart_line->dataset('Users Chart', 'line', [$users_2_days_ago, $yesterday_users, $today_users]);
-
-        return view('dashboard', compact('chart_line'));
+        $visitor = Tracker::currentSession();
+        $users = Tracker::onlineUsers();
+        return Tracker::logByRouteName('index')
+        ->where(function($query)
+        {
+            $query
+                ->where('parameter', 'id')
+                ->where('value', 1);
+        })
+        ->count();
+        return response()->json($users);
+        return view('dashboard', compact('chart_line','bar_chart'));
     }
 }

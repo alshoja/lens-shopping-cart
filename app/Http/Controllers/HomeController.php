@@ -35,7 +35,6 @@ class HomeController extends Controller
     public function dashboard()
     {
         $products = Product::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"), date('Y'))->get();
-
         $bar_chart = new Barchart;
         $bar_chart->labels([ 'July', 'August','September','October','November','December']);
         $bar_chart->dataset('Total Orders', 'bar', [1,2,3,4,5,6]);

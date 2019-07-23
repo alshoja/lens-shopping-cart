@@ -211,6 +211,7 @@
                         <i class="ni ni-paper-diploma {{ Route::is('web-settings.offerbox.offer') ? 'text-primary' : '' }} "></i> OfferBox
                     </a>
                 </li>
+
                 <li class="nav-item {{ Route::is('web-settings.Hometimer.hometimer') ? 'active' : '' }}">
                         <a class="nav-link"
                     href="{{route('web-settings.Hometimer.hometimer')}}">
@@ -229,6 +230,21 @@
                                     <i class="ni ni-trophy {{ Route::is('web-settings.Testimonials.testimonials') ? 'text-primary' : '' }}"></i> Manage Testimonials
                                 </a>
                             </li>
+
+            </ul>
+            <hr class="my-3">
+            <!-- Heading -->
+            <h6 class="navbar-heading text-muted ">Order Details</h6>
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-3">
+
+                <li class="nav-item {{ Route::is('orders.orders') ? 'active' : '' }} ">
+                    <a class="nav-link"
+                href="{{url('manage/orders')}}">
+                <i class="fas fa-luggage-cart {{ Route::is('orders.orders') ? 'text-primary' : '' }}"></i> Orders
+                    </a>
+                </li>
+                
 
             </ul>
         </div>

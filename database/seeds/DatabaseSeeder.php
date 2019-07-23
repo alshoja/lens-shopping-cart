@@ -29,7 +29,9 @@ class DatabaseSeeder extends Seeder
                 DeliveryTableSeeder::class,
                 ProductTypeTableSeeder::class,
                 ReviewTableSeeder::class,
-                CreateMenusTableSeeder::class
+                CreateMenusTableSeeder::class,
+                OrderdetailsTableSeeder::class,
+                OrdersTableSeeder::class
             ]
         );
     }

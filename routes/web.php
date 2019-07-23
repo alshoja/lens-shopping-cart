@@ -112,4 +112,13 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::get('show/menu/items', ['as' => 'web-settings.Menu.menu', 'uses' => 'MenuController@create']);
 	Route::post('update/menu/items', ['as' => '', 'uses' => 'MenuController@update']);
 
+	Route::get('manage/orders', ['as' => 'orders.orders', 'uses' => 'OrdersController@create']);
+	Route::post('store/orders', ['as' => '', 'uses' => 'DeliveryPlaceController@store']);
+	Route::get('edit/orders/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@edit']);
+	Route::put('update/orders/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@update']);
+	Route::delete('delete/orders/{id}', ['as' => '', 'uses' => 'DeliveryPlaceController@destroy']);
+
+	Route::get('manage/order/details', ['as' => 'orders.orderDetails.orderdetails', 'uses' => 'OrderdetailController@create']);
+	
+
 });

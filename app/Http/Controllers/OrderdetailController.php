@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Orderdetail;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class OrderdetailController extends Controller
      */
     public function create()
     {
-        //
+        $orderdetails = Orderdetail::paginate(10);
+        return view('orders.orderDetails.orderdetails', compact('orderdetails'));
     }
 
     /**

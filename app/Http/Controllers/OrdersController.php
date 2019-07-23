@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+
 
 class OrdersController extends Controller
 {
@@ -23,7 +25,9 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+        $orders = Order::with('orderdetails','orderdetails.products')->paginate(10);
+        //  return response()->json($orders, 200);
+       return view('orders.orders',compact('orders'));
     }
 
     /**

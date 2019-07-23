@@ -8,7 +8,7 @@ class Product extends Model
 {
     public function user()
     {
-        return $this->hasOne('App\User','id','user_id');
+        return $this->hasOne('App\User', 'id', 'user_id');
     }
 
     public function images()
@@ -30,5 +30,10 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\Review', 'product_id', 'id');
     }
-    
+
+    public function productImage()
+    {
+        return $this->hasMany(Product_image::class)->take(1);
+    }
+
 }

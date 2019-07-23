@@ -13,7 +13,7 @@
 
 <!-- banner -->
 <div style="
-    background: url({{URL::asset("assets/images/$contact->header_image")}})no-repeat 0px -73px;
+    background: url({{URL::asset("assets/$contact->header_image")}})no-repeat 0px -73px;
     background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -26,7 +26,7 @@
 
             <ul class="short">
                 <li>
-                    <a href="index.html">Home</a>
+                <a href="{{url('/')}}">Home</a>
                     <i>|</i>
                 </li>
                 <li>Contact Us</li>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="col-md-9 address-right text-left">
                         <h6>Address</h6>
-                        <p> 
+                        <p>
                         {{$contact->location}}
                         </p>
                     </div>

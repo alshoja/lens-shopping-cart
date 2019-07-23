@@ -24,7 +24,8 @@ class TopSliderController extends Controller
      */
     public function create()
     {
-        //
+        $sliders = TopSlider::paginate(5);
+        return view('web-settings.Homeslider.slider', compact('sliders'));
     }
 
     /**
@@ -35,7 +36,16 @@ class TopSliderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $slider = new TopSlider;
+        $file = request()->file('image')->store('uploads');
+        $slider->main_heading = $request->title;
+        $slider->image = $file;
+        $slider->sub_heading = $request->sub_title;
+        $slider->button_value = $request->button_value;
+        $slider->order = 1;
+        $slider->isActive = 0;
+        $slider->save();
+        return back();
     }
 
     /**
@@ -44,9 +54,10 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function show(TopSlider $topSlider)
+    public function show(TopSlider $topSlider, $id)
     {
-        //
+        $slider = TopSlider::FindorFail($id);
+        return view('web-settings.Homeslider.editslider', compact('slider'));
     }
 
     /**
@@ -55,9 +66,11 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function edit(TopSlider $topSlider)
+    public function MakeActive(TopSlider $topSlider, $id)
     {
-        //
+        $slider = TopSlider::where('id', $id)->update(['isActive' => '1']);
+        $slider = TopSlider::where('id', '!=', $id)->update(['isActive' => '0']);
+        return back();
     }
 
     /**
@@ -67,9 +80,22 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TopSlider $topSlider)
+    public function update(Request $request, TopSlider $topSlider, $id)
     {
-        //
+        $slider = TopSlider::find($id);
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        } else {
+            $file = $slider->image;
+        }
+        $slider->main_heading = $request->title;
+        $slider->image = $file;
+        $slider->sub_heading = $request->sub_title;
+        $slider->button_value = $request->button_value;
+        $slider->order = 1;
+        $slider->isActive = 0;
+        $slider->save();
+        return back();
     }
 
     /**
@@ -78,8 +104,9 @@ class TopSliderController extends Controller
      * @param  \App\Models\TopSlider  $topSlider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TopSlider $topSlider)
+    public function destroy(TopSlider $topSlider, $id)
     {
-        //
+        TopSlider::destroy($id);
+        return back();
     }
 }

@@ -12,7 +12,7 @@ class About extends Seeder
     public function run()
     {
         DB::table('abouts')->insert([
-            'image' => 'banner1.jpg',
+            'image' => 'uploads/banner1.jpg',
             'heading' => 'About',
             'description' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
             'button_value'=>"Shop",

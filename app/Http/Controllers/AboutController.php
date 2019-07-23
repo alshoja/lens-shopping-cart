@@ -24,7 +24,8 @@ class AboutController extends Controller
      */
     public function create()
     {
-        //
+        $about = About::first();
+        return view('web-settings.About.about',compact('about'));
     }
 
     /**
@@ -69,7 +70,24 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about)
     {
-        //
+        $about = About::first();
+        if (request()->file('image')) {
+            $file = request()->file('image')->store('uploads');
+        } else {
+            $file = $about->image;
+        }
+        $about->heading = $request->heading;
+        $about->image = $file;
+        $about->description = $request->description;
+        $about->button_value = $request->button_value;
+        $about->link_url = $request->link_url;
+        $about->fb_url = $request->fb_url;
+        $about->google_url = $request->google_url;
+        $about->twitter_url = $request->twitter_url;
+        $about->rss_link = $request->rss_link;
+        $about->other = $request->other;
+        $about->save();
+        return back();
     }
 
     /**

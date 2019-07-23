@@ -24,7 +24,8 @@ class OfferBoxController extends Controller
      */
     public function create()
     {
-        //
+        $offer = OfferBox::first();
+        return view('web-settings.offerbox.offer', compact('offer'));
     }
 
     /**
@@ -69,7 +70,21 @@ class OfferBoxController extends Controller
      */
     public function update(Request $request, OfferBox $offerBox)
     {
-        //
+        $offer = OfferBox::first();
+        $offer->title = $request->title;
+        $offer->description = $request->description;
+        $offer->textbox_label = $request->textbox_label;
+        $offer->button_value = $request->button_value;
+        $offer->href_tittle = $request->href_tittle;
+        $offer->href_url = $request->href_url;
+        if ($request->isActive == null) {
+            $offer->isActive = 0;
+        } else {
+            $offer->isActive = 1;
+        }
+
+        $offer->save();
+        return back();
     }
 
     /**

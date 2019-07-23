@@ -24,7 +24,8 @@ class FirstFooterFeatureController extends Controller
      */
     public function create()
     {
-        //
+        $feature = FirstFooterFeature::all();
+        return view('web-settings.Features.feature', compact('feature'));
     }
 
     /**
@@ -35,7 +36,19 @@ class FirstFooterFeatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $feature = new FirstFooterFeature;
+        $feature->heading = $request->heading;
+        $feature->description = $request->description;
+        $feature->icon = $request->icon;
+        $feature->button_value = $request->button_value;
+        $feature->url = $request->url;
+        if ($request->feature_div) {
+            $feature->feature_div = $request->feature_div;
+        } else {
+            $feature->feature_div = 1;
+        }
+        $feature->save();
+        return back();
     }
 
     /**
@@ -55,9 +68,11 @@ class FirstFooterFeatureController extends Controller
      * @param  \App\Models\FirstFooterFeature  $firstFooterFeature
      * @return \Illuminate\Http\Response
      */
-    public function edit(FirstFooterFeature $firstFooterFeature)
+    public function edit(FirstFooterFeature $firstFooterFeature,$id)
     {
-        //
+        $feature = FirstFooterFeature::findorFail($id);
+        return view('web-settings.Features.editfeatures', compact('feature'));
+
     }
 
     /**
@@ -67,9 +82,21 @@ class FirstFooterFeatureController extends Controller
      * @param  \App\Models\FirstFooterFeature  $firstFooterFeature
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FirstFooterFeature $firstFooterFeature)
+    public function update(Request $request, FirstFooterFeature $firstFooterFeature,$id)
     {
-        //
+        $feature = FirstFooterFeature::Findorfail($id);
+        $feature->heading = $request->heading;
+        $feature->description = $request->description;
+        $feature->icon = $request->icon;
+        $feature->button_value = $request->button_value;
+        $feature->url = $request->url;
+        if ($request->feature_div) {
+            $feature->feature_div = $request->feature_div;
+        } else {
+            $feature->feature_div = 1;
+        }
+        $feature->save();
+        return back();
     }
 
     /**
@@ -78,8 +105,9 @@ class FirstFooterFeatureController extends Controller
      * @param  \App\Models\FirstFooterFeature  $firstFooterFeature
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FirstFooterFeature $firstFooterFeature)
+    public function destroy(FirstFooterFeature $firstFooterFeature,$id)
     {
-        //
+        $feature = FirstFooterFeature::destroy($id);
+        return back();
     }
 }

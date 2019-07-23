@@ -24,7 +24,8 @@ class MiddlePosterTimerController extends Controller
      */
     public function create()
     {
-        //
+        $timer = MiddlePosterTimer::first();
+        return view('web-settings.Hometimer.hometimer',compact('timer'));
     }
 
     /**
@@ -69,7 +70,18 @@ class MiddlePosterTimerController extends Controller
      */
     public function update(Request $request, MiddlePosterTimer $middlePosterTimer)
     {
-        //
+        $timer = MiddlePosterTimer::first();
+        if (request()->file('poster_image')) {
+            $file = request()->file('poster_image')->store('uploads');
+        } else {
+            $file = $timer->poster_image;
+        }
+        $timer->poster_image = $file;
+        $timer->title = $request->title;
+        $timer->timestamp = $request->timestamp;
+        $timer->save();
+        return back();
+
     }
 
     /**

@@ -105,38 +105,24 @@
 <td>&#8377;/ <span class="total"></span></td>
                 </tbody>
             </table>
+           
             <input type="hidden" name="final_amount" value="" id="final_amount" class="final_amount"  >
 
         </div>
         <div class="checkout-left row">
             <div class="col-md-4 checkout-left-basket">
-                <h4>Continue to basket</h4>
+            <a href="{{url('product/shop')}}" ><h4>Continue to basket</h4> </a>
                 <ul>
-                    <li>Product1
-                        <i>-</i>
-                        <span>$281.00 </span>
-                    </li>
-                    <li>Product2
-                        <i>-</i>
-                        <span>$325.00 </span>
-                    </li>
-                    <li>Product3
-                        <i>-</i>
-                        <span>$325.00 </span>
-                    </li>
-                    <li>Total Service Charges
-                        <i>-</i>
-                        <span>$55.00</span>
-                    </li>
+                    
                     <li>Total
                         <i>-</i>
-                        <span class="total"></span>
+                        <td>&#8377;/ <span class="total"></span></td>
                     </li>
                 </ul>
             </div>
             <div class="col-md-8 address_form">
                 <h4>Add a new Details</h4>
-                <form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
+                <form action="" method="post" class="creditly-card-form agileinfo_form">
                     <section class="creditly-wrapper wrapper">
                         <div class="information-wrapper">
                             <div class="first-row form-group">
@@ -178,7 +164,7 @@
                     </section>
                 </form>
                 <div class="checkout-right-basket">
-                    <a href="payment.html">Make a Payment </a>
+                        <button class="submit check_out">Make Payment</button>
                 </div>
             </div>
 

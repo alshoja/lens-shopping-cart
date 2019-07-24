@@ -52,6 +52,20 @@ class OrdersController extends Controller
         //
     }
 
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function UpdateStatus($id ,Request $request)
+    {
+        $status = Order::findorFail($id);
+        $status->order_status = $request->status;
+        $status->save();
+        return back();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

@@ -18,6 +18,9 @@
         <link href="{{ asset('argon') }}/css/carosel.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet">
+        <script data-require="jquery@*" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css" />
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -45,6 +48,6 @@
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
         <script src="{{ asset('assets') }}/js/number-validation.js"></script>
         {{-- <script src="js/sweetalert.min.js"></script> --}}
-        @include('sweet::alert')
+        {{-- @include('sweet::alert') --}}
     </body>
 </html>

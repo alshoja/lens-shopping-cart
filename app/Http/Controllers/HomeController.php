@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\User;
 use DB;
 use App\Charts\Barchart;
-use Tracker;
+
 
 class HomeController extends Controller
 {
@@ -34,10 +34,16 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $products = Product::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"), date('Y'))->get();
+        
+        $bar_data = collect([]); 
+        for ($days_backwards = 5; $days_backwards >= 0; $days_backwards--) {
+           
+            $bar_data->push(Product::whereDate('created_at', today()->subDays($days_backwards))->count());
+        }
+      
         $bar_chart = new Barchart;
         $bar_chart->labels([ 'July', 'August','September','October','November','December']);
-        $bar_chart->dataset('Total Orders', 'bar', [1,2,3,4,5,6]);
+        $bar_chart->dataset('Total Orders', 'bar', $bar_data);
 
         $today_users = User::whereDate('created_at', today())->count();
         $yesterday_users = User::whereDate('created_at', today()->subDays(1))->count();
@@ -45,8 +51,6 @@ class HomeController extends Controller
         $chart_line = new LineChart;
         $chart_line->labels(['2 days ago', 'Yesterday', 'Today']);
         $chart_line->dataset('Users Chart', 'line', [$users_2_days_ago, $yesterday_users, $today_users]);
-        $visitor = Tracker::currentSession();
-        $users = Tracker::onlineUsers();
         return view('dashboard', compact('chart_line','bar_chart'));
     }
 }

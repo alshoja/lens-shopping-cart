@@ -13,12 +13,12 @@ class Order extends Model
 
     public function staff()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'staff_id', 'id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'customer_id', 'id')->select('id','name');
     }
 
 }

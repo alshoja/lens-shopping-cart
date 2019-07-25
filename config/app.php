@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Patroklo\ImprovedLinks\Providers\ImprovedLinksProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        Tzsk\Payu\Provider\PayuServiceProvider::class,
       
 
         /*
@@ -229,6 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Payment' => Tzsk\Payu\Facade\Payment::class,
       
     ],
 

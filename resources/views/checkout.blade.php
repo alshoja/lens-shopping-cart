@@ -55,7 +55,9 @@
                     $i = 1;
                     $id = 0 ;
                     ?>
-
+<form action="{{url('product/payment')}}" method="POST">
+    @method('post')
+    @csrf
                     @foreach ($cart_items as $item)
                 <tr class="rem{{$i}}">
                 <td class="invert">{{$i}}</td>
@@ -71,7 +73,8 @@
                                     <div class="entry value">
                                     <span >{{$item['quantity']}}</span>
                                     <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
-                                    <input type="hidden" id="length" value="{{$item['length']}}" >
+                                    <input type="hidden" name="length" id="length" value="{{$item['length']}}" >
+                                    <input type="hidden" name="item_id_{{$i}}"  value="{{$item['item_id']}}" >
 
                                     </div>
                                 <button class="entry value-plus " id="plus{{$id}}" value="{{$item['quantity']}}"   onclick="plusButton({{$id}},{{$item['amount']}},this.value)"></button>
@@ -97,6 +100,7 @@
                     $id++;
                     ?>
 @endforeach
+
 <td></td>
 <td></td>
 <td></td>
@@ -122,40 +126,47 @@
             </div>
             <div class="col-md-8 address_form">
                 <h4>Add a new Details</h4>
-                <form action="" method="post" class="creditly-card-form agileinfo_form">
+             
                     <section class="creditly-wrapper wrapper">
                         <div class="information-wrapper">
                             <div class="first-row form-group">
                                 <div class="controls">
                                     <label class="control-label">Full name: </label>
-                                    <input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">
+                                    <input class="billing-address-name form-control" required type="text" name="name" placeholder="Full name">
                                 </div>
                                 <div class="card_number_grids">
                                     <div class="card_number_grid_left">
                                         <div class="controls">
                                             <label class="control-label">Mobile number:</label>
-                                            <input class="form-control" type="text" placeholder="Mobile number">
+                                            <input class="form-control" type="text" required name="mobile" placeholder="Mobile number">
                                         </div>
                                     </div>
                                     <div class="card_number_grid_right">
                                         <div class="controls">
                                             <label class="control-label">Landmark: </label>
-                                            <input class="form-control" type="text" placeholder="Landmark">
+                                            <input class="form-control"  name="landmark" type="text" placeholder="Landmark">
                                         </div>
                                     </div>
                                     <div class="clear"> </div>
                                 </div>
                                 <div class="controls">
                                     <label class="control-label">Town/City: </label>
-                                    <input class="form-control" type="text" placeholder="Town/City">
+                                    <input class="form-control" required name="city" type="text" placeholder="Town/City">
                                 </div>
                                 <div class="controls">
-                                    <label class="control-label">Address type: </label>
-                                    <select class="form-control option-w3ls">
-                                        <option>Office</option>
-                                        <option>Home</option>
-                                        <option>Commercial</option>
-
+                                        <label class="control-label">Pin: </label>
+                                        <input class="form-control" required name="pin" type="text" placeholder="Pincode">
+                                    </div>
+                                <div class="controls">
+                                        <label class="control-label">Address </label>
+                                   <textarea placeholder="Address 2" name="address" class="form-control"></textarea>
+                                    </div>
+                                <div class="controls">
+                                    <label class="control-label">Mode </label>
+                                    <select required name="order_method" class="form-control option-w3ls">
+                                     
+                                        <option value="NetBanking">Pay Now</option>
+                                        <option value="COD">Cod</option>
                                     </select>
                                 </div>
                             </div>
@@ -164,10 +175,10 @@
                     </section>
                 </form>
                 <div class="checkout-right-basket">
-                        <button class="submit check_out">Make Payment</button>
+                        {{-- <button class="submit check_out">Make Payment</button> --}}
                 </div>
             </div>
-
+        
             <div class="clearfix"> </div>
 
         </div>

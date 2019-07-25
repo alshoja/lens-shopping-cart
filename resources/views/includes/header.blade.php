@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-6 logo-w3layouts text-center">
                     <h1 class="logo-w3layouts">
                     <a class="navbar-brand" href="{{url('/')}}">
-                            Store </a>
+                            {{$settings->store_name}} </a>
                     </h1>
                 </div>
 

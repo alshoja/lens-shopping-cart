@@ -234,7 +234,7 @@
             </ul>
             <hr class="my-3">
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted ">Order Details</h6>
+            <h6 class="navbar-heading text-muted ">Order Details & Settings</h6>
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
 
@@ -245,7 +245,12 @@
                     </a>
                 </li>
                 
-
+                <li class="nav-item {{ Route::is('settings.settings') ? 'active' : '' }} ">
+                        <a class="nav-link"
+                    href="{{url('settings')}}">
+                    <i class="fas fa-cogs {{ Route::is('settings.settings') ? 'text-primary' : '' }}"></i> Settings
+                        </a>
+                    </li>
             </ul>
         </div>
     </div>

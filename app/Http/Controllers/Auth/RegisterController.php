@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Models\About;
-use App\Models\Categorie;
-use App\Models\Contact;
-use App\Models\Menu;
-use App\Models\Product;
-use App\Models\OfferBox;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Menu;
+use App\Models\About;
+use App\Models\Contact;
+use App\Models\Product;
+use App\Models\Setting;
+use App\Models\OfferBox;
+use App\Models\Categorie;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -48,6 +49,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        $settings =Setting::first();
         $menu = Menu::first();
         $about = About::first();
         $contact = Contact::first();
@@ -59,7 +61,7 @@ class RegisterController extends Controller
             ->take(8)->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
-        return view('user-auth.register', compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
+        return view('user-auth.register', compact('settings','contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
     }
 
     /**

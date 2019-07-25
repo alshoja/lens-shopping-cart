@@ -46,6 +46,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        $settings =Setting::first();
         $menu = Menu::first();
         $about = About::first();
         $contact = Contact::first();
@@ -58,7 +59,7 @@ class LoginController extends Controller
             ->orderBy('id', 'desc')
             ->get();
         $offer_box = OfferBox::first();
-        return view('user-auth.login',compact('contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
+        return view('user-auth.login',compact('settings','contact', 'about', 'menu','offer_box', 'categorie', 'new_products'));
     }
 
 }

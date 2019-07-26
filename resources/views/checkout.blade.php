@@ -55,7 +55,7 @@
                     $i = 1;
                     $id = 0 ;
                     ?>
-<form action="{{url('product/payment')}}" method="POST">
+<form action="{{url('payment')}}" method="POST">
     @method('post')
     @csrf
                     @foreach ($cart_items as $item)
@@ -69,16 +69,16 @@
                         <td class="invert">
                             <div class="quantity">
                                 <div class="quantity-select">
-                                    <button class="entry value-minus"  id="minus{{$id}}" value="{{$item['quantity']}}"   onclick="minusbutton({{$id}},{{$item['amount']}},this.value,{{$item['item_id']}})">&nbsp;</button>
+                                    <li class="entry value-minus"  id="minus{{$id}}" value="{{$item['quantity']}}"   onclick="minusbutton({{$id}},{{$item['amount']}},this.value,{{$item['item_id']}})">&nbsp;</li>
                                     <div class="entry value">
                                     <span >{{$item['quantity']}}</span>
                                     <input type="hidden" name="quantity_{{$i}}" value="{{$item['quantity']}}" id="item_quantity">
                                     <input type="hidden" name="length" id="length" value="{{$item['length']}}" >
                                     <input type="hidden" name="item_id_{{$i}}"  value="{{$item['item_id']}}" >
-                                    <input type="text" name="json" id="json"  value="0" >
+                                   
 
                                     </div>
-                                <button class="entry value-plus " id="plus{{$id}}" value="{{$item['quantity']}}"   onclick="plusButton({{$id}},{{$item['amount']}},this.value,{{$item['item_id']}})"></button>
+                                <li class="entry value-plus " id="plus{{$id}}" value="{{$item['quantity']}}"   onclick="plusButton({{$id}},{{$item['amount']}},this.value,{{$item['item_id']}})"></li>
                                 </div>
                             </div>
                         </td>
@@ -171,6 +171,7 @@
                                     </select>
                                 </div>
                             </div>
+                             <input type="text" name="json" id="json"  value="" >
                             <button  class="submit check_out">Delivery to this Address</button>
                         </div>
                     </section>

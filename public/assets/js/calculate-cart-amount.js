@@ -31,7 +31,7 @@ function urlParam() {
     console.log('with index', items)
     document.querySelector(".total").innerHTML = totalInit;
     document.getElementById("final_amount").value = totalInit;
-    localStorage['pay_items'] = JSON.stringify(items);// only strings
+     document.getElementById("json").value = JSON.stringify(items);
 }
 
 function remove(data_id,item_id) {
@@ -110,7 +110,7 @@ function sumOfCart() {
     }
     document.querySelector(".total").innerHTML = currentAmount
     console.log('current sum', currentAmount)
-    // document.getElementById("json").value = JSON.stringify(items);
+    document.getElementById("json").value = JSON.stringify(items);
 }
 
 function sendTophp(){

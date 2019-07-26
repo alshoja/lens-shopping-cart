@@ -29,7 +29,7 @@ Auth::routes();
 Route::get('/home', 'SimpleHome@index')->name('home');
 Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
 
-Route::get('payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
+Route::post('payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
 
 # Status Route
 Route::get('payment/status', ['as' => 'payment.status', 'uses' => 'PaymentController@status']);

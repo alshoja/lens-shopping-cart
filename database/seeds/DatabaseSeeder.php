@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
             [
                 UsersTableSeeder::class,
                 ProductsTableSeeder::class,
-                ProductsImageTableSeeder::class,
                 CategoriesTableSeeder::class,
                 TestimonialsTableSeeder::class,
                 EditorsPicTableSeeder::class,
@@ -23,6 +22,7 @@ class DatabaseSeeder extends Seeder
                 TopSliderTableSeeder::class,
                 PartnerTableSeeder::class,
                 About::class,
+                ProductsImageTableSeeder::class,
                 OfferBoxTableSeeder::class,
                 ContactTableSeeder::class,
                 MiddleTimerTableSeeder::class,

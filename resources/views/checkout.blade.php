@@ -105,7 +105,7 @@
 <td>&#8377;/ <span class="total"></span></td>
                 </tbody>
             </table>
-           
+
             <input type="hidden" name="final_amount" value="" id="final_amount" class="final_amount"  >
 
         </div>
@@ -113,7 +113,7 @@
             <div class="col-md-4 checkout-left-basket">
             <a href="{{url('product/shop')}}" ><h4>Continue to basket</h4> </a>
                 <ul>
-                    
+
                     <li>Total
                         <i>-</i>
                         <td>&#8377;/ <span class="total"></span></td>
@@ -164,7 +164,7 @@
                     </section>
                 </form>
                 <div class="checkout-right-basket">
-                        <button class="submit check_out">Make Payment</button>
+                        <button class="submit check_out" onclick="sendTophp()">Make Payment</button>
                 </div>
             </div>
 
@@ -178,6 +178,10 @@
 </section>
 <div hidden class="simply-countdown-custom" id="simply-countdown-custom"></div>
 <!--//checkout-->
+<script>
+
+
+</script>
 <script>
 
 window.onload = function() {

@@ -117,3 +117,7 @@ function sumOfCart() {
     document.querySelector(".total").innerHTML = currentAmount
     console.log('current sum', currentAmount)
 }
+
+function sendTophp(){
+
+}

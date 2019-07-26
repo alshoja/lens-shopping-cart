@@ -17,6 +17,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             window.scrollTo(0, 1);
         }
     </script>
+        <script>
+        var url = "<?php echo url('product/checkout'); ?>";
+
+        </script>
     <link href={{URL::asset('assets/css/bootstrap.css')}} rel='stylesheet' type='text/css' />
     <link href={{URL::asset("assets/css/login_overlay.css")}} rel='stylesheet' type='text/css' />
     {{-- <link href={{URL::asset("assets/css/rating.css")}} rel='stylesheet' type='text/css' /> --}}
@@ -40,8 +44,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel='stylesheet' href='https://afeld.github.io/emoji-css/emoji.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Playfair+Display:700i'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
-  
-   
+
+
 </head>
 
 <body>
@@ -61,7 +65,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="col-md-6 logo-w3layouts text-center">
                     <h1 class="logo-w3layouts">
                     <a class="navbar-brand" href="{{url('/')}}">
-                            Store </a>
+                            {{$settings->store_name}} </a>
                     </h1>
                 </div>
 

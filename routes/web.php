@@ -18,8 +18,9 @@ Route::get('/product/item/{id}', 'SimpleHome@item')->name('item');
 Route::get('/product/shop/cat/{id}', 'SimpleHome@star')->name('shop');
 Route::get('/about', 'SimpleHome@about')->name('about');
 Route::get('/contact', 'SimpleHome@contact')->name('contact');
-Route::get('product/payment', 'SimpleHome@payment')->name('payment');
+Route::post('product/payment', 'SimpleHome@payment')->name('payment');
 Route::get('/search','DeliveryPlaceController@search');
+// Route::post('manage/order/details', ['as' => '', 'uses' => 'OrderdetailController@store']);
 
 Route::get('/admin', 'admin\AdminController@login')->name('admin');
 Route::get('/admin/register', 'admin\AdminController@register')->name('admin');
@@ -27,6 +28,11 @@ Route::get('/admin/register', 'admin\AdminController@register')->name('admin');
 Auth::routes();
 Route::get('/home', 'SimpleHome@index')->name('home');
 Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
+
+Route::get('payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
+
+# Status Route
+Route::get('payment/status', ['as' => 'payment.status', 'uses' => 'PaymentController@status']);
 
 Route::group(['middleware' => 'isadmin'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
@@ -119,6 +125,11 @@ Route::group(['middleware' => 'isadmin'], function () {
 	Route::delete('delete/orders/{id}', ['as' => '', 'uses' => 'OrdersController@destroy']);
 
 	Route::get('manage/order/details', ['as' => 'orders.orderDetails.orderdetails', 'uses' => 'OrderdetailController@create']);
-	
+
+	Route::get('settings/', ['as' => 'settings.settings', 'uses' => 'SettingsController@create']);
+	Route::put('update/settings/', ['as' => '', 'uses' => 'SettingsController@update']);
+
 
 });
+
+

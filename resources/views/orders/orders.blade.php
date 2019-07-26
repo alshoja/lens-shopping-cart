@@ -244,7 +244,7 @@
                                                             </div>
                                                             <hr>
                                                             <h5 class="text-Default">Shipping Address:</h5>
-                                                            <address>{{$item->shipping_address}}</address>
+                                                            <address>{!!$item->shipping_address!!}</address>
                                                             <hr>
                                                             <h5 class="text-Default">Order Status:</h5>
                                                             <div class="row">

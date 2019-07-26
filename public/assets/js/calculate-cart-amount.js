@@ -1,12 +1,8 @@
 function add_number(div) {
-
-    console.log(div);
-    // var x = document.querySelectorAll("input.");
     var item_quantity = parseFloat(document.getElementById("item_quantity").value);
     var item_amount = parseFloat(document.getElementById("item_amount").value);
     var result = item_quantity * item_amount;
     document.querySelector(".buttonx").innerHTML = result;
-    // document.getElementById("txtresult").value = result;
 }
 
 function urlParam() {
@@ -35,11 +31,11 @@ function urlParam() {
     console.log('with index', items)
     document.querySelector(".total").innerHTML = totalInit;
     document.getElementById("final_amount").value = totalInit;
+    localStorage['pay_items'] = JSON.stringify(items);// only strings
 }
 
-function remove(data_id) {
+function remove(data_id,item_id) {
     var id = data_id;
-
     for (var i = 0; i < items.length; i++) {
         if (items[i].id == id) {
             console.log('f* id is  ',i)
@@ -47,23 +43,19 @@ function remove(data_id) {
             break;
         }
     }
-    // console.log('id from page', id)
-    // const removed = items.splice(item, 1);
-    // console.log('removed index', index)
-    // console.log('removed', removed)
      console.log('current items', items)
+     localStorage['pay_items'] = JSON.stringify(items);// only strings
     sumOfCart()
 }
 
-function plusButton(id, amount, quantity) {
-
+function plusButton(id, amount, quantity,item_id,name) {
     const newamount = parseFloat(amount)
     quantity = parseInt(quantity) + 1
     var newitem = {
         'id': id,
         'amount': newamount,
-        'item_id': '',
-        'item_name': '',
+        'item_id': item_id,
+        'item_name':name,
         'quantity': quantity
     }
     for (var i = 0; i < items.length; i++) {
@@ -77,18 +69,19 @@ function plusButton(id, amount, quantity) {
     document.getElementById("plus" + id).value = quantity;
     document.getElementById("minus" + id).value = quantity;
     console.log('new array', items)
+    localStorage['pay_items'] = JSON.stringify(items);// only strings
     sumOfCart()
 }
 
-function minusbutton(id, amount, quantity) {
+function minusbutton(id, amount, quantity,item_id,name) {
     if (quantity != 1) {
         const newamount = parseFloat(amount)
         quantity = parseInt(quantity) - 1
         var newitem = {
             'id':id,
             'amount': newamount,
-            'item_id': '',
-            'item_name': '',
+            'item_id': item_id,
+            'item_name': name,
             'quantity': quantity
         }
         for (var i = 0; i < items.length; i++) {
@@ -102,6 +95,7 @@ function minusbutton(id, amount, quantity) {
         document.getElementById("plus" + id).value = quantity;
         document.getElementById("minus" + id).value = quantity;
         sumOfCart()
+        localStorage['pay_items'] = JSON.stringify(items);// only strings
         console.log('new array', items)
     }
 
@@ -116,6 +110,7 @@ function sumOfCart() {
     }
     document.querySelector(".total").innerHTML = currentAmount
     console.log('current sum', currentAmount)
+    // document.getElementById("json").value = JSON.stringify(items);
 }
 
 function sendTophp(){

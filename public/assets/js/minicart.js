@@ -1896,14 +1896,13 @@ module.exports = Cart;
 
 var mixin = require('./util/mixin');
 
-
 var defaults = module.exports = {
 
     name: 'staplesbmincart',
 
     parent: (typeof document !== 'undefined') ? document.body : null,
-
-    action: 'product/checkout',
+// url is coming from the header file
+    action: url,
 
     target: '',
 

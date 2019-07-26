@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
                 ReviewTableSeeder::class,
                 CreateMenusTableSeeder::class,
                 OrderdetailsTableSeeder::class,
-                OrdersTableSeeder::class
+                OrdersTableSeeder::class,
+                SettingsTableSeeder::class
             ]
         );
     }

@@ -17,6 +17,7 @@ use App\Models\Editorspic;
 use App\Models\Orderdetail;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Models\Product_image;
 use App\Models\MiddlePosterTimer;
 use App\Models\TopSlider as Slider;
 use Illuminate\Support\Facades\Input;
@@ -79,7 +80,7 @@ class SimpleHome extends Controller
             ->get();
 
         // return response()->json($products);
-        return view('welcome', compact('settings','product_featured', 'categorie', 'new_products', 'products', 'middle', 'about', 'contact', 'offer_box', 'product_slider', 'testimonials', 'editorsPic', 'second_feature', 'first_feature', 'slider', 'menu'));
+        return view('welcome', compact('settings', 'product_featured', 'categorie', 'new_products', 'products', 'middle', 'about', 'contact', 'offer_box', 'product_slider', 'testimonials', 'editorsPic', 'second_feature', 'first_feature', 'slider', 'menu'));
     }
 
     public function item($id)
@@ -106,7 +107,7 @@ class SimpleHome extends Controller
             ->get();
 
         //  return response()->json($reviews);
-        return view('item', compact('settings','collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu', 'reviews'));
+        return view('item', compact('settings', 'collection', 'about', 'contact', 'new_products', 'offer_box', 'product_featured', 'categorie', 'menu', 'reviews'));
     }
 
     public function shop()
@@ -139,7 +140,7 @@ class SimpleHome extends Controller
             ->orderBy('id', 'desc')
             ->paginate(12);
         // return response()->json($deals);
-        return view('shop', compact('settings','deals', 'all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('settings', 'deals', 'all_products', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 
     public function contact()
@@ -156,7 +157,7 @@ class SimpleHome extends Controller
         $categorie = Categorie::take(8)
             ->orderBy('id', 'desc')
             ->get();
-        return view('contact', compact('settings','offer_box', 'menu', 'new_products', 'contact', 'categorie', 'about', 'contact'));
+        return view('contact', compact('settings', 'offer_box', 'menu', 'new_products', 'contact', 'categorie', 'about', 'contact'));
     }
 
     public function about()
@@ -176,7 +177,7 @@ class SimpleHome extends Controller
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
         //return response()->json($about);
-        return view('about', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu','settings'));
+        return view('about', compact('about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu', 'settings'));
     }
 
     public function checkout(Request $request)
@@ -187,16 +188,18 @@ class SimpleHome extends Controller
         $cart = array();
 
         for ($i = 1; $i <= $post['loop_length']; $i++) {
-
+            $id = $post['item_id_' . $i];
+            $product = Product_image::where('product_id',$id)->take(1)->get();        
             $cart_items[] = array(
                 "amount" => $post['amount_' . $i],
                 "name" => $post['googles_item_' . $i],
                 "item_id" => $post['item_id_' . $i],
                 "quantity" => $post['quantity_' . $i],
                 "length" => $post['loop_length'],
+                "image" => $product[0]['image']
             );
         }
-
+// return response()->json($cart_items, 200);
         $menu = Menu::first();
         $new_products = Product::where('stock', '>', '0')
             ->with('user', 'images', 'categorie', 'productImage')
@@ -211,7 +214,7 @@ class SimpleHome extends Controller
         $contact = Contact::first();
         $second_feature = Footer::where('feature_div', '=', '2')->take(4)->orderBy('id', 'desc')->get();
         // return response()->json($cart_items);
-        return view('checkout', compact('settings','cart_items', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
+        return view('checkout', compact('settings', 'cart_items', 'about', 'new_products', 'contact', 'categorie', 'partners', 'second_feature', 'offer_box', 'menu'));
 
     }
 
@@ -278,7 +281,7 @@ class SimpleHome extends Controller
             ->paginate(12);
 
         // return response()->json($all_products);
-        return view('shop', compact('settings','all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('settings', 'all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
 
     }
 
@@ -323,7 +326,7 @@ class SimpleHome extends Controller
         }
 
         // return response()->json($all_products);
-        return view('shop', compact('settings','all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
+        return view('shop', compact('settings', 'all_products', 'deals', 'categorie', 'new_products', 'menu', 'offer_box', 'about', 'contact', 'product_featured'));
     }
 
 }

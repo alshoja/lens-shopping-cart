@@ -59,11 +59,14 @@
     @method('post')
     @csrf
                     @foreach ($cart_items as $item)
+                    @php
+                        $image = $item['image'];
+                    @endphp
                 <tr class="rem{{$i}}">
                 <td class="invert">{{$i}}</td>
                         <td class="invert-image">
                             <a href="single.html">
-                                <img src="{{URL::asset("assets/images/s1.jpg")}}" alt="" class="img-responsive">
+                                <img src={{URL::asset("assets/$image")}} alt="" class="img-responsive">
                             </a>
                         </td>
                         <td class="invert">
@@ -171,7 +174,7 @@
                                     </select>
                                 </div>
                             </div>
-                             <input type="text" name="json" id="json"  value="" >
+                             <input type="hidden" name="json" id="json"  value="" >
                             <button  class="submit check_out">Delivery to this Address</button>
                         </div>
                     </section>
@@ -200,5 +203,18 @@
 window.onload = function() {
     urlParam();
 };
+</script>
+<script>
+$(document).bind("contextmenu",function(e) {
+ e.preventDefault();
+});
+</script>
+
+<script>
+$(document).keydown(function(e){
+    if(e.which === 123){
+       return false;
+    }
+});
 </script>
 @stop

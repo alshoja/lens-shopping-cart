@@ -20,18 +20,13 @@ Route::get('/about', 'SimpleHome@about')->name('about');
 Route::get('/contact', 'SimpleHome@contact')->name('contact');
 Route::post('product/payment', 'SimpleHome@payment')->name('payment');
 Route::get('/search','DeliveryPlaceController@search');
-// Route::post('manage/order/details', ['as' => '', 'uses' => 'OrderdetailController@store']);
-
 Route::get('/admin', 'admin\AdminController@login')->name('admin');
 Route::get('/admin/register', 'admin\AdminController@register')->name('admin');
 
 Auth::routes();
 Route::get('/home', 'SimpleHome@index')->name('home');
 Route::get('product/checkout', 'SimpleHome@checkout')->name('checkout');
-
 Route::post('payment', ['as' => 'payment', 'uses' => 'PaymentController@payment']);
-
-# Status Route
 Route::get('payment/status', ['as' => 'payment.status', 'uses' => 'PaymentController@status']);
 
 Route::group(['middleware' => 'isadmin'], function () {

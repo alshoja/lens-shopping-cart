@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/alshoja/ShoppingCart.svg?branch=master)](https://travis-ci.org/alshoja/ShoppingCart)
 
 
-# LenzKart Shopping 
+# LenzKart  
 A shopping cart which can to be used universaly for all types of Ekart systems
 ## Getting Started
 Project has been developed using Laravel and Bootsrap, You can sed the database and use

@@ -38,13 +38,13 @@ cp .env.example .env
 ```
 
     
-2. Update the Env
+2.Update the Env
 
 	DB_DATABASE=''
     DB_USERNAME=''
     DB_PASSWORD=''
     
-3. Migrate and Seed the database
+3.Migrate and Seed the database
 
     php artisan migrate --seed
 

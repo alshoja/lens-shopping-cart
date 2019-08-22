@@ -53,7 +53,7 @@ cp .env.example .env
 
 ## Look and Feel
 
-<a target="_blank" href="http://shoppingcart.zenithsbm.com"><img src="https://imgur.com/T0Po2qO"/></a>
+<a target="_blank" href="http://shoppingcart.zenithsbm.com"><img src="https://i.imgur.com/T0Po2qO.png"/></a>
 
 
 

@@ -8,12 +8,15 @@ Project has been developed using Laravel and Bootsrap, You can sed the database 
 ### Prerequisites
 
 1. PHP 7.x higher versions
-2. Composer
+2. Composer v1.9.0
 
 ### Features
 
 * Stock management
-* Payment Gateway (PayUmoney and PayUbiz)
+* Two Payment Gateways
+    * payubiz
+    * payumoney
+* Argon Dashboard
 
 
 ### Installing
@@ -33,10 +36,9 @@ cp .env.example .env
     
 2.Update the Env
 
-	'hostname' => 'YOUR_HOST',
-	'username' => 'YOUR_USERNAME',
-	'password' => 'YOUR_PASSWORD',
-	'database' => 'YourdataBase',
+	DB_DATABASE=''
+    DB_USERNAME=''
+    DB_PASSWORD=''
     
 2.Migrate and Seed the database
 

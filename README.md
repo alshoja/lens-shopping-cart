@@ -1,61 +1,68 @@
 [![Build Status](https://travis-ci.org/alshoja/ShoppingCart.svg?branch=master)](https://travis-ci.org/alshoja/ShoppingCart)
 
 
-# Income Expense Manager
-The Project is about income expense management with minumum  using Codeignitor,it is basicaly developed for a resturant but can be customized for purposes.
+# LenzKart Shopping 
+A shopping cart which can to be used universaly for all types of Ekart systems
 ## Getting Started
-
-Project is developed for a restuarant income expense management ,after developing the application some sort of problems occured in the client side so  am giving it as a opensource project customization pull requests are welcomed.
-
+Project has been developed using Laravel and Bootsrap, You can sed the database and use
 ### Prerequisites
 
 PHP 5.x higher versions
 
 ### Features
 
-* Credit Management
-* Debit Management
-* Reports
+* Stock management
+* Payment Gateway (PayUmoney and PayUbiz)
+
 
 ### Installing
 
-1. Clone the project
+1. Clone the project and update the Vendor (Hope Comopser is already installed)
 
 ```
-git clone https://github.com/alshoja/Income-Expence-Manager.git
+git clone https://github.com/alshoja/ShoppingCart.git
 ```
-2.Give the baseurl in Application/config/config.php
+```
+Composer install
+```
+```
+cp .env.example .env
+```
 
-    $config['base_url'] = 'http://YOUR/BASE/URL';
     
-3.Update the database details in Application/config/database.php
+2.Update the Env
 
 	'hostname' => 'YOUR_HOST',
 	'username' => 'YOUR_USERNAME',
 	'password' => 'YOUR_PASSWORD',
-	'database' => 'technely_pepper',
+	'database' => 'YourdataBase',
+    
+2.Migrate and Seed the database
+
+    php artisan migrate --seed
 
 
 ## You can find the demo Here
 
 
-[Application Demo](http://pepper.technalatus.com/)
+[Application Demo](http://shoppingcart.zenithsbm.com/)
 
 * Username :alshoja@gmail.com
 * Password :alshoja
 
 ## Look and Feel
 
-<a target="_blank" href="http://pepper.technalatus.com"><img src="https://i.imgur.com/Tf5yEMx.jpg"/></a>
+<a target="_blank" href="http://shoppingcart.zenithsbm.com"><img src="https://imgur.com/a/aUOrgMq"/></a>
 
 
 
 ## Built With
 
-* [Codeignitor](https://github.com/alshoja/Codeignitor-configured) - Download Preconfigured Codeignitor from here.
+* [Laravel](https://laravel.com) - Download  Laravel from here.
 * [Bootstrap](http://getbootstrap.com/) - Frontend
 * [Sweet Alert](http://getbootstrap.com/)- Alerts
-* [Purple Admin Dashboard](https://github.com/BootstrapDash/PurpleAdmin-Free-Admin-Template)- Dashboard
+* [Dashboard](https://www.creative-tim.com/product/argon-dashboard)
+* [Thanks to W3layouts ](https://demo.w3layouts.com/demos_new/template_demo/07-08-2018/goggles-web_Free/1521872807/web/index.html)
 
 
 

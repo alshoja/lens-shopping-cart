@@ -54,8 +54,11 @@ cp .env.example .env
 
 [Demo](http://shoppingcart.zenithsbm.com/)
 
-* Username :alshoja@gmail.com
-* Password :alshoja
+* Username :(Copy from users table after seeding)
+* Password : password
+```
+Change the role field to 'admin' in users table for access of admin panel
+```
 
 ## Built With
 

@@ -57,7 +57,7 @@ cp .env.example .env
 * Username :(Copy from users table after seeding)
 * Password : password
 ```
-Change the role field to 'admin' in users table for access of admin panel
+Update any of the user's role field to 'admin' in users table for access of admin panel
 ```
   Or
   

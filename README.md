@@ -59,6 +59,12 @@ cp .env.example .env
 ```
 Change the role field to 'admin' in users table for access of admin panel
 ```
+  Or
+  
+ # Change the First entry of user to admin
+ ```
+ UPDATE `users` SET `role` = 'admin' WHERE `users`.`id` = 1;
+ ```
 
 ## Built With
 

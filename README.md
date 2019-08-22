@@ -61,7 +61,7 @@ Update any of the user's role field to 'admin' in users table for access of admi
 ```
   Or
   
- # Change the First entry of user to admin
+ # Update the role in first entry of user as admin
  ```
  UPDATE `users` SET `role` = 'admin' WHERE `users`.`id` = 1;
  ```

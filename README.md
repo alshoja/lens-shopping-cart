@@ -3,12 +3,11 @@
 
 # LenzKart  
 A shopping cart which can to be used universaly for all types of Ecart systems
-## Getting Started
-Project has been developed using Laravel and Bootsrap, You can sed the database and use
-
 ## Look and Feel
 
 <a target="_blank" href="http://shoppingcart.zenithsbm.com"><img src="https://i.imgur.com/T0Po2qO.png"/></a>
+## Getting Started
+Project has been developed using Laravel and Bootsrap, You can sed the database and use
 
 ### Prerequisites
 

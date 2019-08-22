@@ -48,7 +48,7 @@ cp .env.example .env
 ## You can find the demo Here
 
 
-[Application Demo](http://shoppingcart.zenithsbm.com/)
+[Demo](http://shoppingcart.zenithsbm.com/)
 
 * Username :alshoja@gmail.com
 * Password :alshoja

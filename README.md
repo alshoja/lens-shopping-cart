@@ -2,7 +2,7 @@
 
 
 # LenzKart  
-A shopping cart which can to be used universaly for all types of Ekart systems
+A shopping cart which can to be used universaly for all types of Ecart systems
 ## Getting Started
 Project has been developed using Laravel and Bootsrap, You can sed the database and use
 ### Prerequisites

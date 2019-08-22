@@ -7,7 +7,7 @@ A shopping cart which can to be used universaly for all types of Ekart systems
 Project has been developed using Laravel and Bootsrap, You can sed the database and use
 ### Prerequisites
 
-1. PHP 5.x higher versions
+1. PHP 7.x higher versions
 2. Composer
 
 ### Features

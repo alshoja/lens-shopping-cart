@@ -8,6 +8,7 @@ Project has been developed using Laravel and Bootsrap, You can sed the database 
 ### Prerequisites
 
 PHP 5.x higher versions
+Composer
 
 ### Features
 

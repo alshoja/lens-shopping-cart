@@ -27,7 +27,7 @@ Project has been developed using Laravel and Bootsrap, You can sed the database 
 git clone https://github.com/alshoja/ShoppingCart.git
 ```
 ```
-Composer install
+composer install
 ```
 ```
 cp .env.example .env

@@ -2,8 +2,8 @@
 
 
 # LenzKart  
-A shopping cart which can to be used universaly for all types of Ecart systems
-## Look and Feel
+A shopping cart which can to be used universally for all types of Ecommerce Websites 
+# Look and Feel
 
 <a target="_blank" href="http://shoppingcart.zenithsbm.com"><img src="https://i.imgur.com/T0Po2qO.png"/></a>
 ## Getting Started

@@ -28,7 +28,7 @@ Project has been developed using Laravel and Bootsrap, You can seed the database
 1. Clone the project and update the Vendor (Hope Comopser is already installed)
 
 ```
-git clone https://github.com/alshoja/ShoppingCart.git
+git clone https://github.com/alshoja/lens-shopping-cart.git
 ```
 ```
 composer install
